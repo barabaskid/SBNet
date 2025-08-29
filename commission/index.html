@@ -5,7 +5,7 @@
     <!-- Meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commission Gallery | Samuel Butcher</title>
+    <title>Samuel Butcher</title>
     <meta name="description" content="A gallery of commissioned work." />
     <meta name="robots" content="noindex, nofollow" />
 
@@ -21,38 +21,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
-    <link href="../apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152" />
-    <link href="../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-    <link href="../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-    <link href="../safari-pinned-tab.svg" rel="mask-icon" />
     <meta content="#b91d47" name="msapplication-TileColor" />
     <meta content="#800000" name="theme-color" />
     <style>
-        .commission-item img {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.25); /* More pronounced drop shadow */
-            border: 1px solid #ccc; /* 1px grey border */
+        /* Basic styles to ensure functionality */
+        body { font-family: 'Crimson Text', serif; background-color: #f4f4f4; }
+        .main-content { padding-left: 250px; transition: padding-left 0.3s ease; }
+        .sidebar { width: 250px; position: fixed; top: 0; left: 0; height: 100vh; background: #333; color: #fff; padding: 20px; display: flex; flex-direction: column; }
+        .sidebar .nav-link { color: #fff; }
+        .sidebar .nav-link.active { font-weight: bold; }
+        .mobile-header { display: none; }
+        .preloader { position: fixed; left: 0; top: 0; width: 100%; height: 100%; background: #fff; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .preloader.hidden { display: none; }
+        .loader { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 2s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* Gallery and Text Styles */
+        .gallery-item img {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.25);
+            border: 1px solid #ccc;
             transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
             cursor: pointer;
-            max-height: 400px;
-            width: auto;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+            width: 100%;
+            height: auto;
+            border-radius: 8px; /* Added rounded corners */
         }
-        .commission-text p {
-            text-align: center;
+        .gallery-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
-        .commission-title-mobile {
-            text-align: center;
-            margin-bottom: 1rem;
+        .story-section {
+            margin-bottom: 3rem;
+        }
+        .main-text-content p {
+            text-align: justify;
+            text-justify: inter-word;
         }
         .header-page {
-            margin-bottom: 0px !important;
+            margin-bottom: 2rem !important;
         }
-        @media (min-width: 768px) {
-            .commission-item {
-                margin-bottom: 40px !important;
-            }
+        .top-gallery {
+            margin-bottom: 3rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .main-content { padding-left: 0; padding-top: 60px; /* Account for fixed header */ }
+            .sidebar { display: none; }
+            .mobile-header { display: flex; justify-content: space-between; align-items: center; padding: 10px; background: #333; color: #fff; position: fixed; top: 0; width: 100%; z-index: 1000;}
+            .mobile-nav-dropdown { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(40,40,40,0.95); z-index: 999; padding-top: 60px; }
+            .mobile-nav-dropdown.is-open { display: block; }
+            .hamburger-btn { cursor: pointer; z-index: 1001; }
         }
     </style>
 </head>
@@ -65,6 +84,7 @@
     </div>
 
     <!-- Desktop Sidebar Navigation -->
+        <!-- Desktop Sidebar Navigation -->
     <nav class="sidebar">
         <div class="sidebar-header">
             <a href="../index.html#home" class="logo-container">
@@ -124,100 +144,124 @@
 
     <!-- Main Content -->
     <main id="com" class="main-content">
-         <section class="content-section active-section">
+       <section class="content-section active-section">
             <div class="content-wrapper">
                 <div class="container">
-                    <div class="content-card">
+                    <div class="content-card p-4">
                         <div class="header-page text-center">
-                            <h2>Com</h2>
+                            <h2>You</h2>
                         </div>
-                        <div class="p-3">
-                            <!-- Item 1: Text Left, Image Right -->
-                            <div class="row commission-item">
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
-                                <div class="col-12 col-md-10">
-                                    <h4 class="d-md-none commission-title-mobile">Junge Dame vordem Spiegel - Siefert (1960)</h4>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-md-6 order-2 order-md-1">
-                                            <div class="commission-text p-3 text-md-right">
-                                                <h4 class="d-none d-md-block">Junge Dame vordem Spiegel - Siefert (1960)</h4>
-                                                <p>I was only a boy, shuffling through the cavernous Amsterdam home of the De Vries family from our church. My parents had told me their story in hushed, reverent tones: how during the war, they had hidden Jewish families within the walls of this very house and that the painting was a gift from a survivor who tracked them down 30 years after they helped him escape. With the cold breath of that story echoing on my neck I wandered into a quiet alcove and found her. She was a moment of impossible tranquility. Her head was tilted, a cascade of auburn curls catching the light, her gaze lost in a small mirror. The world outside the frame simply dissolved. It was the first time I understood that beauty wasn’t just a pretty picture, but a feeling - a profound, aching stillness that silenced everything else and resonated with a part of me I didn’t know existed. I had walked into that room a boy, interested only in when we could leave, but in the silent presence of that painting, I felt a permanent shift inside me. When we left, I felt I’d been gifted a secret: I now carried the knowledge of beauty so total and true it was a key to the unseen world of everything.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 order-1 order-md-2">
-                                            <a href="/commission/jds.jpg" class="image-popup">
-                                                <img src="/commission/jds.jpg" class="img-fluid" alt="Junge Dame vordem Spiegel - Siefert">
-                                            </a>
-                                        </div>
-                                    </div>
+                        
+                        <!-- Top Gallery Section -->
+                        <div class="gallery top-gallery">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 mb-4 gallery-item">
+                                    <a href="/commission/1.jpg" title="Image 1">
+                                        <img src="/commission/1.jpg" class="img-fluid" alt="Image 1">
+                                    </a>
                                 </div>
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
+                                <div class="col-md-4 col-sm-6 mb-4 gallery-item">
+                                    <a href="/commission/2.jpg" title="Image 2">
+                                        <img src="/commission/2.jpg" class="img-fluid" alt="Image 2">
+                                    </a>
+                                </div>
+                                <div class="col-md-4 col-sm-6 mb-4 gallery-item">
+                                    <a href="/commission/3.jpg" title="Image 3">
+                                        <img src="/commission/3.jpg" class="img-fluid" alt="Image 3">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Text and Scattered Images -->
+                        <div class="main-text-content gallery">
+                            
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-12">
+                                    <p>Each picture of you tells a story. That’s one of the damndest things about you - you’re able to communicate so much with just your body and face. Most people aren’t that expressive a moment in their whole lives. You can do it again and again and again. It’s amazing.</p>
+                                    <p>You also, at least for me, invite stories. Each picture of you is a moment snatched out of time and my mind turns immediately to what could have been in any moment after one of those amber-camera-captured perfections.</p>
+                                    <p>At the moment, I can’t stop looking at these: You are so beautiful and so sexy, so coy and so powerful, so charming and so beguiling. I don’t know what it is about you that makes me feel this way (or, for that matter, what it is about me that makes me feel this way), but I’m intoxicated by every part of it. It makes me think of magic.</p>
+                                </div>
                             </div>
 
-                            <!-- Item 2: Image Left, Text Right -->
-                            <div class="row commission-item">
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
-                                <div class="col-12 col-md-10">
-                                    <h4 class="d-md-none commission-title-mobile">The Embrace - Schiele (1917)</h4>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-md-6 order-1 order-md-1">
-                                             <a href="/commission/es.jpg" class="image-popup">
-                                                <img src="/commission/es.jpg" class="img-fluid" alt="The Embrace - Schiele">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6 order-2 order-md-2">
-                                            <div class="commission-text p-3 text-md-left">
-                                                <h4 class="d-none d-md-block">The Embrace - Schiele (1917)</h4>
-                                                <p>I’m always struck by how the dynamism of this piece completely enraptures in its raw, unapologetic portrayal of human intimacy. The distorted, elongated figures and sharp, angular lines create a visceral feeling of urgent, almost desperate, passion. I think the starkness of the composition forces the viewer to confront such a raw emotion directly, making the connection between the two figures the only focus. Not the two figures – no, the focus is on their connection, something almost outside the two of them. I’d be fascinated to see that same kind of brutal longing expressed with just one person.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-8">
+                                    <p>Don’t believe in magic? You’ve shown me some, let me try and show you. We have never met. We have never shared a word. But my attraction to you is a physical thing, a current in the air so strong you feel it in your bones. And you, being the artist you are, take that raw energy and make it into something infinitely more beautiful. SNAP. Behold: I create a world. In this world, there are only a few things that matter.</p>
+                                    <p>The sun, a fiery orb, bleeds orange and purple across the horizon, casting a long, shimmering path on the gentle waves. The secluded Florida beach is ours alone, the white sand still warm from the day's heat. The only sound is the soft hiss of the tide and the distant cry of a gull. There is a weathered driftwood log, smooth and silvered by the sun and salt, and I am sitting on it, wearing a simple t-shirt and shorts. That’s it. That’s all there is. There is no “before” this moment, there is no “after”.</p>
+                                    <p>You simply appear at the water's edge, the golden light catching in your hair. You are wearing a light, white summer dress that dances in the sea breeze. You see me and, puzzled, take a half step towards me and then pause. I hold up a single finger. “Wait,” I say. You stop and stand. You see me rise slowly from the log. Our eyes lock, and we look at each other for a long moment, smiles playing on each of our lips. I break the silence. “Dance,” I say, my voice soft but clear against the sound of the waves.</p>
+                                    <p>The last rays of the sun are your spotlight. You look at me again and I smile at you and nod my head ever so slightly. You surrender as you can to a moment and feel the rhythm of the ocean start to groove inside your skin. Your body starts to move fluidly with the gentle cadence of the waves. Your hands slide up and down your body as your hips sway. They slide up, caressing your breasts through the thin fabric of your dress, then up higher to your shoulders. They go on farther until they are playing in your hair, letting it cascade down through your fingers like splays of sunlight. The sunset seems to undulate with each movement you make.</p>
                                 </div>
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
+                                <div class="col-md-4 gallery-item">
+                                    <a href="/commission/4.jpg" title="Image 4">
+                                        <img src="/commission/4.jpg" class="img-fluid" alt="Image 4">
+                                    </a>
+                                </div>
                             </div>
 
-                            <!-- Item 3: Text Left, Image Right -->
-                            <div class="row commission-item">
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
-                                <div class="col-12 col-md-10">
-                                     <h4 class="d-md-none commission-title-mobile">The Lady of Shalott - Waterson (1832)</h4>
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col-md-6 order-2 order-md-1">
-                                             <div class="commission-text p-3 text-md-right">
-                                                <h4 class="d-none d-md-block">The Lady of Shalott - Waterson (1832)</h4>
-                                                <p>For me, having left England as a child, The Lady of Shalott bypasses the storybook tragedy and strikes a much deeper, more personal chord. That impossible, pre-Raphaelite green isn't just a riverbank; it's the phantom limb of a childhood I never fully experienced, a verdant, story-filled England that exists more in my memory than in reality. Her tower is the perfect, isolated cocoon of that youth, and Camelot becomes the shining, idealized vision of the home I left behind. But the painting’s power for me now lies in her choice to leave. That isn’t about Lancelot as a character; it’s about the moment a nostalgic dream is shattered by the sudden, visceral call of adult desire. Her journey down the river feels like the essential struggle of adulthood: the desperate attempt to bridge the profound longing for a youth that never quite was with the tangible, urgent force of erotism. It’s as if the only way to reconcile with that beautiful, hazy past is to steer it directly into the arms of a real, passionate present, even if it means the dream itself cannot survive the journey.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 order-1 order-md-2">
-                                           <a href="/commission/lsw.jpg" class="image-popup">
-                                                <img src="/commission/lsw.jpg" class="img-fluid" alt="The Lady of Shalott - Waterson">
-                                            </a>
-                                        </div>
-                                    </div>
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-4 order-md-1 gallery-item">
+                                    <a href="/commission/5.jpg" title="Image 5">
+                                        <img src="/commission/5.jpg" class="img-fluid" alt="Image 5">
+                                    </a>
                                 </div>
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
+                                <div class="col-md-8 order-md-2">
+                                    <p>You move closer towards me; your hands never stop moving. Your fingers continually dance up and down your skin, copper like virgin sand. Your hands draw my eyes to wherever they are: your round breasts, the curve of your neck, your flat belly. As you sway, your fingers find the straps of your dress, slowly pushing them off your shoulders. The dress loosens, pooling around your waist as you continue to move to the beat of the surf.</p>
+                                    <p>You are only a foot away, and I stare intently. I am sure I can smell your arousal, a sweet, musky scent mixing with the salt in the air. With a final, graceful movement, you let the dress fall to the sand. "Show me,” I beg, the words escaping before I can stop them.</p>
+                                    <p>You gladly reveal yourself as the last sliver of sun dips below the water. I sink back down onto the log, breathless. You approach, a low sly chuckle escaping your lips as you drop to your knees before me. You smile up, and your hand squeezes my erect cock through my shorts. A groan escapes my lips; I am already so hard it hurts. As you continue massaging me with your right hand, your left undoes the button on my shorts, then pulls the zipper down. You look up, your eyes locking with mine.</p>
+                                    <p>My cock springs free, hard and heavy, right before your face. Your eyes widen, a mixture of surprise and hungry curiosity flashing across your face as a soft gasp escapes your lips. You hold your nose just above it, breathing in deeply. You lightly wrap your small hand around my shaft. Leaning in, you seem to admire my cock. It feels impossibly hard, aching for your touch. The head is swollen, throbbing. You rub it against your soft cheek, then your lips. Your tongue darts out, giving a single lick along the sensitive cleft beneath the head. My hips give an involuntary jerk. You place your lips on the tip and give it a light kiss. Your soft lips pull back, and then your tongue slowly traces the edge. You lick and kiss your way down the shaft, all the way to the base, then repeat the journey up the other side. You lick all around the head, coating it in your saliva.</p>
+                                </div>
                             </div>
 
-                            <!-- Item 4: Image Left, Text Right -->
-                            <div class="row commission-item">
-                                 <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
-                                 <div class="col-12 col-md-10">
-                                     <h4 class="d-md-none commission-title-mobile">Rousse - Henride Toulouse-Lautrec (1889)</h4>
-                                     <div class="row no-gutters align-items-center">
-                                         <div class="col-md-6 order-1 order-md-1">
-                                            <a href="/commission/rhl.jpg" class="image-popup">
-                                                <img src="/commission/rhl.jpg" class="img-fluid" alt="Rousse - Henride Toulouse-Lautrec">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-6 order-2 order-md-2">
-                                           <div class="commission-text p-3 text-md-left">
-                                                <h4 class="d-none d-md-block">Rousse - Henride Toulouse-Lautrec (1889)</h4>
-                                                <p>What I always find so arresting in Lautrec's Rousse is its profound, almost startling honesty. There’s no performance here, no grand gesture or story being told for our benefit; we’re simply looking at a woman from behind, completely absorbed in her own world. She isn’t showing off or presenting a version of herself to the viewer. She is just being, and in her un-self-conscious posture, there's a vulnerability that is utterly disarming. For me, that is precisely where its majesty is found. It’s not the majesty of wealth or power, but the profound dignity of the unobserved moment, the beauty in the mundane truth of a person’s existence. Lautrec refuses to idealize her, and in doing so, he elevates her, suggesting that the most majestic thing one can witness is not a person on display, but a life being quietly, honestly lived.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-8">
+                                    <p>Your hand slides up, tightening on the head, giving a light twist that sends shivers down my spine. You bring your other hand up – I see it is slick with your own juices – and wrap it around my shaft. You squeeze tightly and begin to pump, twisting your hands in opposite directions as you work me up and down. Pleased moans rumble in my chest, my breathing growing heavy. You take your hand off the head and cup my balls, rolling them gently in your palm. You lean forward again, taking a long, wet lick around the head of my cock. Your tongue explores every inch. I feel a dribble of pre-cum escape, and you greedily lick it up before turning your face towards mine.</p>
+                                    <p>Your mouth swoops down, enveloping me completely. The teasing is over; you are hungry. You suck beautifully, your tongue swirling around the head, flicking rapidly over the swollen flesh while your lips massage the shaft. You pump your hand rapidly up and down my shaft, the mix of your juices and saliva making it slide easily. Your strokes become shallower as your lips work farther down. Your other hand still cradles my balls, massaging lightly. My cock stiffens even more, my heart pounding. A throaty growl escapes through my clenched teeth. I instinctively place one hand on your head, tangling my fingers in your soft hair. I begin to guide your head down, wanting you to take more of me. You offer no resistance.</p>
+                                    <p>You take your hands from me and place them on my thighs for leverage, taking me deeper into your consuming mouth. I feel your tongue trace every protruding vein as you gobble me down. Your lips draw more of me in, your head sliding lower until I press against the back of your throat. You fight back your gag reflex, swallowing me down. You take me all the way in until your nose presses into my pubic hair. You hold there, and I feel the warmth of your mouth all around me. Just as I feel you tremble slightly, needing air, my hand pulls back gently on your hair, letting your mouth slide back up my shaft. You take a quick gulp of air, but that is all you need. Your lips wrap around me again, a crushing, wonderful pressure, as your head bobs up and down. Your soft tongue presses and rubs hard against me as your mouth rises and sinks. I hardly need to guide you now; you work me eagerly. Your soft moans vibrate right through me, mingling with my own pleased groans.</p>
+                                    <p>Your hand latches onto my shaft again, pumping hard, adding even more sensation. The intensity is incredible; you are pushing me towards an edge I do not think I will escape from. My breathing grows faster, my groans become more primal. My cock feels swollen, like it is about to explode. I twist my hand in your hair, groaning out. You don’t need the warning; you can already tell. Your lips clamp tight around my head as you begin to suck deep and sloppy. Your hand jerks along my shaft, your tongue tickling the sensitive tip – that final push I need. My body shakes uncontrollably as I shoot spurts of hot cum deep into your mouth. You keep your eyes wide open and locked with mine as each tremor of my cock lets another rope of cum splash into your mouth. Even as you swallow, some spills from the corners of your lips.</p>
                                 </div>
-                                <div class="col-1 d-none d-md-block"></div> <!-- Gutter -->
+                                <div class="col-md-4 gallery-item">
+                                    <a href="/commission/6.jpg" title="Image 6">
+                                        <img src="/commission/6.jpg" class="img-fluid" alt="Image 6">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-4 order-md-1 gallery-item">
+                                    <a href="/commission/7.jpg" title="Image 7">
+                                        <img src="/commission/7.jpg" class="img-fluid" alt="Image 7">
+                                    </a>
+                                </div>
+                                <div class="col-md-8 order-md-2">
+                                    <p>You continue to suck until the waves of my orgasm subside and the sensitivity starts to fade. You lick and suck along my length as I slowly deflate. You look up at me and smile, your tongue darting out to catch a stray drop of my cum. A panted moan is all I can manage in response. You laugh, the sound like music, raising a single, sly eyebrow as you pull me towards a blanket you've spread over the cooling sand. You lie down on your stomach, your ass a perfect peach in the twilight air. I lie on top of you, wearing only my shorts, my chest to your back, my crotch to your ass. The weight of me is comforting and warm.</p>
+                                    <p>You can feel the weight of me against you as I begin to kiss the top of your spine, slow droplets of kisses, down to the nape of your neck. You feel the blood rush to your chest. Your skin starts to feel like it’s glowing in the dusk. As I kiss and gently roll my tongue around the nape of your neck my hand slides down your side, briefly over the crest of your ass. Then down the tops of your thighs. A few grains of sand scratch between our skin; the hard against the soft. My hand travels back up onto your ass. Just my fingertips at first, tracing big wide circles around the arcs of your hips and glutes. My mouth slides to your cheek and I kiss up to your ear, running my tongue around the lobe.</p>
+                                    <p>I whisper into your ear, “Up on all fours. You can moan as loud as you want; only the ocean will hear.” You do exactly as I say, exactly because you want to. I don’t issue commands. I don’t yell and froth and whine. I simply say what will be; and you, without even considering questioning, do it. Confidence isn’t being willing to say “I’m going to bury my tongue in your pussy and your ass until you cum”; confidence doesn’t need to show off. Confidence is knowing that only one thing in this life will ever kill me, so beyond that there is nothing to be afraid of.</p>
+                                    <p>You arch your back and feel the cool night air as your ass rises. You know I am looking at you, enjoying everything about every inch of you. You squirm, and I hook my thumbs into the sides of your panties and gently pull them down. Your ass up in the air, your pussy starting to drip onto the blanket, me behind you, and you desperate for my touch.</p>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-8">
+                                    <p>You feel my hands on each one of your ass cheeks, my palms down, my thumbs on your inner thighs. You moan as I slowly spread your ass apart and push my thumbs between your legs, tracing up each side of your labia. I lean forward and rest my chin on your lower back, but my hands, my thumbs, are slowly running up and down your outer labia. I place a thumb at your wet opening and you greedily buck onto it, sliding my thumb into your wet pussy. I let the pad of my thumb come to rest inside you on your g-spot, and take the middle finger of my opposite hand. I raise it to your mouth. You smile and suck it in, letting your spit coat it. I pull it back and slide it between your legs onto your clit. My middle finger clockwise on your clit. My thumb inside you counterclockwise on your g-spot. The blood rushes to your head.</p>
+                                    <p>You feel my chin lift from your back. You hear me say it. Simple as fact. Truth as rock. “I’m going to taste you. Open yourself for me.” You moan and slide your own hands back up onto your ass and pull your cheeks apart. With a wet lick, my tongue buries itself onto your asshole and you spasm with a moan. My fingers start moving faster – not harder, just a bit faster – as my tongue eagerly laps at your tiny asshole. You can feel my tongue start to push you open and you moan deeply into the night air. You can feel yourself starting to climax, and you begin to shudder – pushing your ass harder into my mouth, your pussy deeper onto my fingers – as a bolt of pleasure rips through you into the pit of your stomach and ignites an explosion that rockets from the core of you to the tips of your fingers and toes. I let you ride each wave of your orgasm, tonguing your ass, milking your pussy, moaning myself at the wonder of your pleasure.</p>
+                                    <p>You collapse forward and start laughing. It is the sweetest sound I’ve ever heard. The first star peaks out overhead; bashful, but there all the same.</p>
+                                </div>
+                                <div class="col-md-4 gallery-item">
+                                     <a href="/commission/8.jpg" title="Image 8">
+                                        <img src="/commission/8.jpg" class="img-fluid" alt="Image 8">
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <div class="row align-items-center story-section">
+                                <div class="col-md-4 order-md-1 gallery-item">
+                                    <a href="/commission/9.jpg" title="Image 9">
+                                        <img src="/commission/9.jpg" class="img-fluid" alt="Image 9">
+                                    </a>
+                                </div>
+                                <div class="col-md-8 order-md-2">
+                                     <!-- This space is intentionally left for balance, as the last image is placed here. -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -237,58 +281,72 @@
         document.addEventListener('DOMContentLoaded', function() {
             const mainContent = document.querySelector('.main-content');
             
-            // --- From sb.js ---
-            // 1. Initialize Preloader
+            // --- Preloader ---
             const preloader = document.getElementById('preloader');
             window.addEventListener('load', () => {
-                preloader.classList.add('hidden');
-                mainContent.classList.add('loaded');
-            });
-
-            // 2. Initialize Copyright
-            document.getElementById('copyright-year').textContent = new Date().getFullYear();
-
-            // 3. Initialize Theme Switcher
-            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
-            themeToggles.forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    document.body.classList.toggle('light-mode');
-                    const isLightMode = document.body.classList.contains('light-mode');
-                    themeToggles.forEach(t => {
-                        t.classList.toggle('fa-sun', isLightMode);
-                        t.classList.toggle('fa-moon', !isLightMode);
-                    });
-                });
-            });
-            
-            // 4. Initialize Mobile Menu (Modified for multi-page navigation)
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const mobileNav = document.getElementById('mobile-nav-dropdown');
-            const mobileLinks = mobileNav.querySelectorAll('.nav-link');
-            const toggleMenu = () => {
-                hamburgerBtn.classList.toggle('is-open');
-                mobileNav.classList.toggle('is-open');
-            };
-            hamburgerBtn.addEventListener('click', toggleMenu);
-            // This part is different: we don't prevent default, just close the menu.
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    if (mobileNav.classList.contains('is-open')) {
-                        toggleMenu();
-                    }
-                });
-            });
-
-            // --- Page-Specific JS ---
-            // Initialize Magnific Popup
-            $('.image-popup').magnificPopup({
-                type: 'image',
-                closeOnContentClick: true,
-                mainClass: 'mfp-img-mobile',
-                image: {
-                    verticalFit: true
+                if(preloader) {
+                    preloader.classList.add('hidden');
                 }
             });
+
+            // --- Copyright Year ---
+            const copyrightYear = document.getElementById('copyright-year');
+            if (copyrightYear) {
+                copyrightYear.textContent = new Date().getFullYear();
+            }
+
+            // --- Theme Switcher ---
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
+            themeToggles.forEach(toggle => {
+                if (toggle) {
+                    toggle.addEventListener('click', () => {
+                        document.body.classList.toggle('light-mode');
+                        const isLightMode = document.body.classList.contains('light-mode');
+                        themeToggles.forEach(t => {
+                            if (t) {
+                                t.classList.toggle('fa-sun', isLightMode);
+                                t.classList.toggle('fa-moon', !isLightMode);
+                            }
+                        });
+                    });
+                }
+            });
+            
+            // --- Mobile Menu ---
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav-dropdown');
+            if (hamburgerBtn && mobileNav) {
+                const mobileLinks = mobileNav.querySelectorAll('.nav-link');
+                const toggleMenu = () => {
+                    hamburgerBtn.classList.toggle('is-open');
+                    mobileNav.classList.toggle('is-open');
+                };
+                hamburgerBtn.addEventListener('click', toggleMenu);
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mobileNav.classList.contains('is-open')) {
+                            toggleMenu();
+                        }
+                    });
+                });
+            }
+
+            // --- Magnific Popup Gallery ---
+            if ($.fn.magnificPopup) {
+                $('.gallery').magnificPopup({
+                    delegate: 'a', // child items selector, by clicking on it popup will open
+                    type: 'image',
+                    gallery:{
+                        enabled:true
+                    },
+                    mainClass: 'mfp-with-zoom', // this class is for CSS animation below
+                    zoom: {
+                        enabled: true, 
+                        duration: 300, // duration of the effect, in milliseconds
+                        easing: 'ease-in-out', // CSS transition easing function
+                    }
+                });
+            }
         });
     </script>
     
