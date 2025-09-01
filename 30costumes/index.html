@@ -238,6 +238,7 @@
         .instructions-text {
             font-size: 0.8rem;
             color: var(--text-color);
+            opacity: 0.8;
             margin-top: -5px;
             font-style: italic;
             line-height: 1.4;
@@ -256,16 +257,16 @@
             font-weight: normal;
             margin-top: 1.5rem;
         }
-		.costume-image {
-			max-width: 100%;
-			max-height: 40vh;
-			width: auto;
-			height: auto;
-			border-radius: 8px;
-			margin-bottom: 1.5rem;
-			border: 2px solid var(--active-color);
-			box-shadow: 0 6px 18px -8px var(--shadow-color);
-		}
+        .costume-image {
+            max-width: 100%;
+            max-height: 40vh; /* This sets the maximum height relative to the screen */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensures the whole image is visible without being cropped */
+            border-radius: 8px; /* Optional: adds slightly rounded corners */
+            margin-bottom: 1.5rem; /* Adds some space between the image and the title */
+            border: 2px solid var(--active-color); /* Added border as requested */
+        }
 
         /* ==========================================================================
         * 6. SLIDER STYLES
@@ -466,7 +467,6 @@
                     <div class="content-card">
                         <div class="swiper">
                             <div class="swiper-wrapper">
-                                <!-- Welcome Slide (No Image) -->
                                 <div class="swiper-slide">
                                     <div class="story-section welcome-story">
                                         <h3>Welcome, Lover</h3>
@@ -477,7 +477,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Costume Slides with Images -->
                                 <div class="swiper-slide">
                                     <div class="story-section">
                                         <h3><b>1 - A Ship in a Bottle</b></h3>
@@ -490,7 +489,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>2 - Strawberry Bush</b></h3>
+                                        <h3><b>2 - A Strawberry Bush</b></h3>
                                         <img src="/30costumes/sb.jpg" alt="2 - A Strawberry Bush" class="costume-image">
                                         <p class="prose-poem">Prose</p>
                                         <div class="story-controls">
@@ -500,7 +499,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>3 - Snow Globe</b></h3>
+                                        <h3><b>3 - A Snow Globe</b></h3>
                                         <img src="/30costumes/snowglobe.jpg" alt="3 - A Snow Globe" class="costume-image">
                                         <p class="prose-poem">Prose</p>
                                         <div class="story-controls">
@@ -540,7 +539,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>7 - Grandfather Clock</b></h3>
+                                        <h3><b>7 - A Grandfather Clock</b></h3>
                                         <img src="/30costumes/grandfatherclock.jpg" alt="7 - A Grandfather Clock" class="costume-image">
                                         <p class="prose-poem">Poem</p>
                                         <div class="story-controls">
@@ -650,7 +649,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>18 - Record Player</b></h3>
+                                        <h3><b>18 - A Record Player</b></h3>
                                         <img src="/30costumes/recordplayer.jpg" alt="18 - A Record Player" class="costume-image">
                                         <p class="prose-poem">Poem</p>
                                         <div class="story-controls">
@@ -670,7 +669,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>20 - Little Red Riding Hood</b></h3>
+                                        <h3><b>20 - Red Riding Hood</b></h3>
                                         <img src="/30costumes/lrrh.jpg" alt="20 - Red Riding Hood" class="costume-image">
                                         <p class="prose-poem">Prose</p>
                                         <div class="story-controls">
@@ -680,7 +679,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>21 - Wind-Up Toy</b></h3>
+                                        <h3><b>21 - A Wind-Up Toy</b></h3>
                                         <img src="/30costumes/wut.jpg" alt="21 - A Wind-Up Toy" class="costume-image">
                                         <p class="prose-poem">Prose</p>
                                         <div class="story-controls">
@@ -710,7 +709,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>24 - Stained Glass Window</b></h3>
+                                        <h3><b>24 - A Stained Glass Window</b></h3>
                                         <img src="/30costumes/sglass.jpg" alt="24 - A Stained Glass Window" class="costume-image">
                                         <p class="prose-poem">Poem</p>
                                         <div class="story-controls">
@@ -720,8 +719,8 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <div class="story-section">
-                                        <h3><b>25 - A Laptop</b></h3>
-                                        <img src="/30costumes/type.jpg" alt="25 - A Laptop" class="costume-image">
+                                        <h3><b>25 - A Typewriter</b></h3>
+                                        <img src="/30costumes/type.jpg" alt="25 - A Typewriter" class="costume-image">
                                         <p class="prose-poem">Prose</p>
                                         <div class="story-controls">
                                             <button class="play-button" data-audio-id="audio-costume-25"><i class="fas fa-play"></i></button>
@@ -798,6 +797,7 @@
             const storySections = document.querySelectorAll('.story-section');
             let currentAudio = null;
             let currentPlayButton = null;
+            let isChaining = false; // Flag for continuous playback
 
             // Initialize Swiper
             const swiper = new Swiper('.swiper', {
@@ -824,6 +824,17 @@
                             currentPlayButton = null;
                         }
                     },
+                    slideChangeTransitionEnd: function () {
+                        if (isChaining) {
+                            // Find the play button in the new active slide and click it.
+                            const activeSlide = swiper.slides[swiper.activeIndex];
+                            const nextPlayButton = activeSlide.querySelector('.play-button');
+                            if (nextPlayButton) {
+                                nextPlayButton.click();
+                            }
+                            isChaining = false; // Reset the flag
+                        }
+                    }
                 },
             });
 
@@ -860,10 +871,6 @@
                         currentAudio = null;
                         currentPlayButton = null;
                     }
-                    
-                    if (playButton.id === 'welcome-play-button') {
-                        swiper.slideNext();
-                    }
                 });
 
                 audio.addEventListener('ended', () => {
@@ -873,6 +880,7 @@
                     currentPlayButton = null;
 
                     if (!swiper.isEnd) {
+                        isChaining = true; // Set the flag to trigger the next track
                         swiper.slideNext();
                     }
                 });
@@ -898,4 +906,3 @@
     
 </body>
 </html>
-
