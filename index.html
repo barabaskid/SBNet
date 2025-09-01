@@ -1,1017 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
+ <head>
+  <meta content="text/html; charset=utf-8" http-equiv="content-type"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <meta content="Portfolio for the artist Nautii" name="description"/>
+  <meta content="musician, portfolio, miami, nautii" name="keywords">
+   <meta content="index, follow" name="robots"/>
+   <title>
+    Nautii | Official Website
+   </title>
+   <link href="media/fav.png" rel="shortcut icon" type="image/png"/>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@400;500&family=Rock+Salt&display=swap" rel="stylesheet">
+   <style>
+    /*==================================================
+      [Table of Contents]
+      --------------------------------------------------
+      - General & Root Variables
+      - Preloader
+      - Customizer Sidebar & Theme Switcher
+      - Navigation (Hybrid)
+      - FullPage.js Structure & Sections
+      - Section: Intro Slider
+      - Section: General Content
+      - Media Queries
+    ==================================================*/
 
-<head>
-    <!-- Meta -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samuel Butcher | Criminal Defense & Legal Professional</title>
-    <meta name="description" content="A legal professional providing a rigorous, educated, and passionate defense. An advocate, shield, and compatriot for those facing the criminal justice system." />
-    <meta name="robots" content="index, follow" />
+    /*==================================================
+      General & Root Variables
+    ==================================================*/
+    :root {
+      --accent-gradient: linear-gradient(135deg, #F72585, #B5179E);
+      --accent-color-primary: #F72585;
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Poppins', sans-serif;
+      --font-brand: 'Rock Salt', cursive;
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
-    <link rel="stylesheet" href="lib/css/style.css">
+      /* Light Mode */
+      --background-color-light: #FFF8F0;
+      --text-color-light: #333;
+      --section-bg-light: #ffffff;
+      --dark-bg-light: #f8f8f8;
+      --subtle-text-light: #6c757d;
+      --border-color-light: #eee;
+    }
+
+    body.dark-mode {
+      /* Dark Mode */
+      --background-color-light: #1a233b;
+      --text-color-light: #f1f1f1;
+      --section-bg-light: #232d44;
+      --dark-bg-light: #151c2e;
+      --subtle-text-light: #adb5bd;
+      --border-color-light: #343a40;
+    }
     
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    body {
+      background: var(--background-color-light);
+      height: 100%;
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-color-light);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
 
-    <meta content="RdoH3YaYwtP6shVKf3Flhv2hxL-qg8dkvxW5D6P1H6g" name="google-site-verification" />
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJ7BCTTT1H"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-EJ7BCTTT1H');
-    </script>
-
-    <!-- Favicon -->
-    <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152" />
-    <link href="favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
-    <link href="favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
-    <link href="safari-pinned-tab.svg" rel="mask-icon" />
-    <meta content="#800000" name="msapplication-TileColor" />
-    <meta content="#800000" name="theme-color" />
-
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.samuelbutcher.net/" />
-    <meta property="og:title" content="Samuel Butcher | Criminal Defense & Legal Professional" />
-    <meta property="og:description" content="A legal professional providing a rigorous, educated, and passionate defense. An advocate, shield, and compatriot for those facing the criminal justice system." />
-    <meta property="og:image" content="https://www.samuelbutcher.net/lib/img/logo.png" />
-
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.samuelbutcher.net/" />
-    <meta property="twitter:title" content="Samuel Butcher | Criminal Defense & Legal Professional" />
-    <meta property="twitter:description" content="A legal professional providing a rigorous, educated, and passionate defense. An advocate, shield, and compatriot for those facing the criminal justice system." />
-    <meta property="twitter:image" content="https://www.samuelbutcher.net/lib/img/logo.png" />
-
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-heading);
+    }
     
-</head>
+    .accent-text {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
 
-<body>
+    .btn {
+        border-radius: 25px;
+        padding: 10px 30px;
+        font-family: var(--font-body);
+        font-weight: 500;
+        border: none;
+    }
+    
+    .btn-primary {
+        background: var(--accent-gradient);
+        color: white;
+    }
 
-    <!-- Preloader -->
-    <div id="preloader" class="preloader">
-        <div class="loader"></div>
+    .btn-primary:hover {
+        opacity: 0.9;
+        color: white;
+    }
+
+    .btn-secondary {
+      border: 2px solid var(--accent-color-primary);
+      color: var(--accent-color-primary);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--accent-color-primary);
+        color: white;
+    }
+
+    a {
+      color: var(--accent-color-primary);
+      text-decoration: none;
+    }
+    
+    a:hover {
+      color: #B5179E;
+    }
+    
+    /*==================================================
+      Preloader
+    ==================================================*/
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #1a233b;
+      z-index: 9999999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .equalizer-loader {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100px;
+    }
+    
+    .equalizer-loader .bar {
+      display: inline-block;
+      width: 10px;
+      height: 50px;
+      margin: 0 4px;
+      background: var(--accent-gradient);
+      border-radius: 5px;
+      animation: equalize 1.2s infinite ease-in-out;
+    }
+    
+    .equalizer-loader .bar:nth-child(1) { animation-delay: -0.1s; }
+    .equalizer-loader .bar:nth-child(2) { animation-delay: -0.3s; }
+    .equalizer-loader .bar:nth-child(3) { animation-delay: -0.5s; }
+    .equalizer-loader .bar:nth-child(4) { animation-delay: -0.2s; }
+    .equalizer-loader .bar:nth-child(5) { animation-delay: -0.4s; }
+    
+    @keyframes equalize {
+      0% { transform: scaleY(0.1); }
+      50% { transform: scaleY(1.0); }
+      100% { transform: scaleY(0.1); }
+    }
+
+    .preloader-text {
+      margin-top: 25px;
+      font-family: var(--font-brand);
+      font-size: 1.5rem;
+      color: var(--accent-color-primary);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .preloader-text.font-loaded {
+        opacity: 1;
+    }
+    
+    @keyframes pulse {
+        from { opacity: 0.6; }
+        to { opacity: 1; }
+    }
+
+
+    /*==================================================
+      Customizer & Theme Switcher
+    ==================================================*/
+    #theme-switcher, .theme-customizer-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--section-bg-light);
+        color: var(--text-color-light);
+        border: 1px solid var(--border-color-light);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .theme-customizer-toggle {
+        right: 80px;
+    }
+
+    #theme-switcher .fa-sun { display: none; }
+    #theme-switcher .fa-moon { display: block; }
+    body.dark-mode #theme-switcher .fa-sun { display: block; }
+    body.dark-mode #theme-switcher .fa-moon { display: none; }
+    
+    #theme-customizer {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background: var(--section-bg-light);
+        z-index: 1001;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        transition: right 0.4s ease-in-out;
+        padding: 20px;
+        overflow-y: auto;
+    }
+    body.customizer-open #theme-customizer {
+        right: 0;
+    }
+    #theme-customizer h4 {
+        margin-bottom: 20px;
+    }
+    #theme-customizer .form-label {
+        margin-top: 15px;
+        font-weight: 500;
+    }
+
+
+    /*==================================================
+      Navigation (Hybrid)
+    ==================================================*/
+    #header {
+      height: 50px;
+    }
+  
+    nav.nav-center {
+      background: rgba(0,0,0,0.8);
+      border: 0;
+      font-family: var(--font-body);
+      margin-bottom: 0;
+      padding: 10px 0;
+    }
+
+    nav.nav-center .navbar-brand {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0;
+      padding: 0;
+    }
+    
+    .logo-text {
+        position: relative;
+        font-family: var(--font-brand);
+        color: var(--accent-color-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        width: 150px;
+    }
+    .logo-n {
+        font-size: 5rem;
+        font-weight: bold;
+        opacity: 0.5;
+        position: absolute;
+    }
+    .logo-autii {
+        font-size: 1.5rem;
+        position: absolute;
+        bottom: 15px;
+        text-shadow: 0px 0px 5px rgba(0,0,0,0.5);
+    }
+      
+    nav.nav-center .navbar-collapse {
+      border: none;
+    }
+      
+    nav.nav-center ul.navbar-nav li a {
+      color: #fff;
+      padding: 15px 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    nav.nav-center ul.navbar-nav li a:hover,
+    nav.nav-center ul.navbar-nav li a:focus,
+    nav.nav-center ul.navbar-nav li.active a {
+      color: var(--accent-color-primary);
+      background: transparent;
+    }
+    
+    
+    /*==================================================
+      FullPage.js Structure & Sections
+    ==================================================*/
+    .fp-watermark { display: none !important; }
+    .fp-controlArrow.fp-prev {
+        border-color: transparent var(--accent-color-primary) transparent transparent !important;
+    }
+    .fp-controlArrow.fp-next {
+        border-color: transparent transparent transparent var(--accent-color-primary) !important;
+    }
+    .section {
+        background-color: var(--section-bg-light);
+    }
+    #fullpage .section::after {
+        content: attr(data-section-name);
+        font-family: var(--font-heading);
+        font-size: 12rem;
+        position: absolute;
+        top: 15%;
+        right: 5%;
+        color: var(--border-color-light);
+        opacity: 0.5;
+        z-index: 0;
+        line-height: 1;
+        text-transform: uppercase;
+    }
+    
+    /*==================================================
+      Section: Intro Slider
+    ==================================================*/
+    #intro .slide {
+        text-align: center;
+        overflow: hidden;
+    }
+
+    #intro.section::after {
+        content: none; /* Do not show background text on slider section */
+    }
+
+    .my-info {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10%;
+        margin: auto;
+        z-index: 10;
+        color: white;
+    }
+    
+    .my-info h1 {
+        font-size: 6rem;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .my-info h2 {
+        font-size: 2rem;
+        color: white;
+        background: none;
+        -webkit-text-fill-color: white;
+    }
+
+    .intro-slide-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: white;
+        background: rgba(0,0,0,0.5);
+        padding: 2rem;
+    }
+    .intro-slide-content h2 {
+        font-size: 4rem;
+        color: white;
+        background: none;
+        -webkit-text-fill-color: white;
+    }
+    .intro-slide-content img.album-art {
+        max-width: 300px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    
+
+    /*==================================================
+      General Content Sections
+    ==================================================*/
+    .section-content-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 60px 0;
+        position: relative;
+        z-index: 1;
+    }
+    .section-content-wrapper h1 {
+        font-size: 4rem;
+    }
+
+    .modal-content {
+        background-color: var(--section-bg-light);
+        border-radius: 15px;
+        border: none;
+    }
+    .modal-header, .modal-footer {
+        border-bottom: 1px solid var(--border-color-light);
+        border-top: 1px solid var(--border-color-light);
+    }
+    .modal-header .btn-close {
+        filter: invert(0.5) brightness(1.5);
+    }
+    body.dark-mode .modal-header .btn-close {
+        filter: invert(1) brightness(1);
+    }
+    
+    /* Gallery */
+    .my-photos {
+        column-count: 3;
+        column-gap: 1rem;
+    }
+    .my-photos img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .my-photos img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    /*==================================================
+      Media Queries
+    ==================================================*/
+    @media only screen and (max-width : 991px) {
+        nav.nav-center .navbar-brand { position: relative; left: 0; transform: none; }
+        .my-info h1 { font-size: 4rem; }
+        .intro-slide-content h2 { font-size: 3rem; }
+        .section-content-wrapper h1 { font-size: 3rem; }
+        #fullpage .section::after { font-size: 8rem; }
+    }
+    
+    @media only screen and (max-width : 767px) {
+        .my-photos { column-count: 2; }
+        #fullpage .section::after { font-size: 5rem; right: 2%; top: 5%;}
+    }
+   </style>
+  </meta>
+ </head>
+ <body>
+  <div class="preloader">
+    <div class="equalizer-loader">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
     </div>
+    <div class="preloader-text">Nautii is Coming...</div>
+  </div>
 
-    <!-- Desktop Sidebar Navigation -->
-    <nav class="sidebar">
-        <div class="sidebar-header">
-            <a href="#home" class="logo-container">
-                <img src="lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
-                <img src="lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
-            </a>
+  <button id="theme-switcher" class="btn"><i class="fas fa-sun"></i><i class="fas fa-moon"></i></button>
+  <button class="theme-customizer-toggle btn"><i class="fas fa-cog"></i></button>
+  <div id="theme-customizer">
+    <h4 class="accent-text">Customize Theme</h4>
+    <div>
+        <label for="accent-color-picker" class="form-label">Accent Color (Primary)</label>
+        <input type="color" class="form-control form-control-color" id="accent-color-picker" value="#F72585" data-css-var="--accent-color-primary">
+    </div>
+    <div>
+        <label for="font-heading-selector" class="form-label">Heading Font</label>
+        <select id="font-heading-selector" class="form-select" data-css-var="--font-heading">
+            <option value="'Playfair Display', serif">Playfair Display</option>
+            <option value="'Rock Salt', cursive">Rock Salt</option>
+            <option value="'Poppins', sans-serif">Poppins</option>
+        </select>
+    </div>
+    <div>
+        <label for="font-body-selector" class="form-label">Body Font</label>
+        <select id="font-body-selector" class="form-select" data-css-var="--font-body">
+            <option value="'Poppins', sans-serif">Poppins</option>
+            <option value="'Montserrat', sans-serif">Montserrat</option>
+            <option value="'Lato', sans-serif">Lato</option>
+        </select>
+    </div>
+  </div>
+  
+  <header id="header">
+   <nav class="navbar navbar-expand-lg navbar-dark fixed-top nav-center">
+    <div class="container-fluid">
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+     
+     <a class="navbar-brand logo" href="#firstPage">
+      <div class="logo-text">
+        <span class="logo-n">N</span>
+        <span class="logo-autii">autii</span>
+      </div>
+     </a>
+
+     <div class="collapse navbar-collapse" id="main-nav">
+      <ul class="navbar-nav">
+       <li data-menuanchor="firstPage" class="nav-item active"><a class="nav-link" href="#firstPage">Home</a></li>
+       <li data-menuanchor="secondPage" class="nav-item"><a class="nav-link" href="#secondPage">About</a></li>
+       <li data-menuanchor="3rdPage" class="nav-item"><a class="nav-link" href="#3rdPage">Music</a></li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+       <li data-menuanchor="4thpage" class="nav-item"><a class="nav-link" href="#4thpage">Gallery</a></li>
+       <li data-menuanchor="5thpage" class="nav-item"><a class="nav-link" href="#5thpage">Tour</a></li>
+       <li data-menuanchor="6thpage" class="nav-item"><a class="nav-link" href="#6thpage">Contact</a></li>
+      </ul>
+     </div>
+    </div>
+   </nav>
+  </header>
+
+  <div id="fullpage">
+   
+   <div class="section" id="intro">
+    <div class="slide active" style="background: url('https://placehold.co/1920x1080/222/FFF?text=Welcome+Background') center/cover;">
+        <div class="intro-slide-content">
+            <h2>Welcome</h2>
+            <h1 style="font-size: 8rem; line-height: 1;" class="accent-text">I'm Nautii</h1>
         </div>
-        <div class="nav-container">
-            <ul class="nav">
-                <li class="nav-item"><a class="nav-link active" href="#home"><span>Home</span></a></li>
-                <li class="nav-item-divider">
-                    <div class="navdivider-line"></div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#about"><span>About</span></a></li>
-                <li class="nav-item-divider">
-                    <div class="navdivider-line"></div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#resume"><span>Resume</span></a></li>
-                <li class="nav-item-divider">
-                    <div class="navdivider-line"></div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#skills"><span>Skills</span></a></li>
-                <li class="nav-item-divider">
-                    <div class="navdivider-line"></div>
-                </li>
-                <!-- ADDED: Positions Link (hidden) -->
-                <li class="nav-item hidden"><a class="nav-link" href="#positions"><span>Positions</span></a></li>
-                <li class="nav-item-divider hidden">
-                    <div class="navdivider-line hidden"></div>
-                </li>
-                <li class="nav-item"><a class="nav-link" href="#contact"><span>Contact</span></a></li>
-            </ul>
+    </div>
+    <div class="slide" style="background: url('https://placehold.co/1920x1080/333/FFF?text=Album+Background') center/cover;">
+     <div class="intro-slide-content">
+        <img src="https://placehold.co/400x400/F72585/FFF?text=Album+Art" alt="Album Art" class="album-art mb-4">
+        <h2>"MIAMI", my new single, is out now!</h2>
+        <button class="btn btn-primary">Listen Here</button>
+     </div>
+    </div>
+    <div class="slide" style="background: url('https://placehold.co/1920x1080/555/FFF?text=Tour+Background') center/cover;">
+        <div class="intro-slide-content">
+            <h2>My World Tour 2026</h2>
+            <p class="lead">Tickets are on sale this Friday.</p>
+            <button class="btn btn-secondary">Get Tickets</button>
         </div>
-        <div class="sidebar-footer">
-            <div class="style-switcher">
-                <i class="fas fa-moon" id="theme-toggle"></i>
+    </div>
+    <div class="slide" style="background: #000;">
+        <div class="intro-slide-content">
+            <h2>Watch My New Music Video</h2>
+            <iframe width="80%" height="70%" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+   </div>
+
+   <div class="section" id="about" data-section-name="About">
+    <div class="section-content-wrapper">
+        <div class="container text-center">
+            <h1 class="accent-text mb-4">A Little About Me</h1>
+            <p class="lead col-md-8 mx-auto">Hey, I'm Nautii. Miami born and raised, I pour the sun, the sea, and the city's vibrant energy into my music. I'm all about creating sounds that feel both powerful and intimate. This is my story, my sound. Welcome.</p>
+        </div>
+    </div>
+   </div>
+
+   <div class="section" id="music" data-section-name="Music">
+     <div class="section-content-wrapper">
+        <div class="container text-center">
+            <h1 class="accent-text mb-5">My Music</h1>
+            <p class="lead">Listen to my latest tracks below.</p>
             </div>
-            <p class="copyright">&copy; <span id="copyright-year"></span> Samuel Butcher</p>
-        </div>
-    </nav>
+     </div>
+   </div>
 
-    <!-- Mobile Header -->
-    <header class="mobile-header">
-        <a href="#home" class="logo-container">
-            <img src="lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
-            <img src="lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
-        </a>
-        <div class="style-switcher">
-            <i class="fas fa-moon" id="mobile-theme-toggle"></i>
+   <div class="section" id="gallery" data-section-name="Gallery">
+    <div class="section-content-wrapper">
+        <div class="container">
+            <h1 class="accent-text text-center mb-5">A Few Moments</h1>
+            <div class="my-photos">
+                <img alt="Gallery Photo 1" data-bs-toggle="modal" data-bs-target="#photoModal1" src="https://placehold.co/600x800/f8f8f8/333?text=Photo+1"/>
+                <img alt="Gallery Photo 2" data-bs-toggle="modal" data-bs-target="#photoModal2" src="https://placehold.co/600x600/f8f8f8/333?text=Photo+2"/>
+                <img alt="Gallery Photo 3" data-bs-toggle="modal" data-bs-target="#photoModal3" src="https://placehold.co/600x900/f8f8f8/333?text=Photo+3"/>
+                <img alt="Gallery Photo 4" data-bs-toggle="modal" data-bs-target="#photoModal4" src="https://placehold.co/600x700/f8f8f8/333?text=Photo+4"/>
+                <img alt="Gallery Photo 5" data-bs-toggle="modal" data-bs-target="#photoModal5" src="https://placehold.co/600x500/f8f8f8/333?text=Photo+5"/>
+                <img alt="Gallery Photo 6" data-bs-toggle="modal" data-bs-target="#photoModal6" src="https://placehold.co/600x800/f8f8f8/333?text=Photo+6"/>
+            </div>
         </div>
-        <div class="hamburger-btn" id="hamburger-btn">
-            <span></span><span></span><span></span><span></span>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation Dropdown -->
-    <div class="mobile-nav-dropdown" id="mobile-nav-dropdown">
-        <ul class="nav">
-            <li class="nav-item"><a class="nav-link active" href="#home"><span>Home</span></a></li>
-            <li class="nav-item-divider">
-                <div class="navdivider-line"></div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#about"><span>About</span></a></li>
-            <li class="nav-item-divider">
-                <div class="navdivider-line"></div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#resume"><span>Resume</span></a></li>
-            <li class="nav-item-divider">
-                <div class="navdivider-line"></div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#skills"><span>Skills</span></a></li>
-            <li class="nav-item-divider">
-                <div class="navdivider-line"></div>
-            </li>
-            <!-- ADDED: Positions Link (hidden) -->
-            <li class="nav-item hidden"><a class="nav-link" href="#positions"><span>Positions</span></a></li>
-            <li class="nav-item-divider hidden">
-                <div class="navdivider-line hidden"></div>
-            </li>
-            <li class="nav-item"><a class="nav-link" href="#contact"><span>Contact</span></a></li>
-        </ul>
     </div>
+   </div>
+   
+   <div class="section" id="tour" data-section-name="Tour">
+     <div class="section-content-wrapper">
+        <div class="container text-center">
+            <h1 class="accent-text mb-5">See Me Live</h1>
+            <p class="lead">I'll be announcing new tour dates soon. Sign up to be the first to know!</p>
+            <button class="btn btn-secondary">Join My Mailing List</button>
+        </div>
+     </div>
+   </div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section id="home" class="content-section active-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="content-card">
+   <div class="section" id="contact" data-section-name="Contact">
+     <div class="section-content-wrapper">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h1 class="accent-text mb-4">Get In Touch With Me</h1>
+                    <p class="lead">For bookings or just to say hi, send me a message below.</p>
+                    <form class="mt-4">
                         <div class="row">
-                            <div class="col-12">
-                                <h1>Advocate for Justice &bull; Shield in the System &bull; Compatriot in the Struggle</h1>
-                            </div>
+                            <div class="col-md-6 mb-3"><input type="text" class="form-control" placeholder="Your Name" style="border-radius: 20px;"></div>
+                            <div class="col-md-6 mb-3"><input type="email" class="form-control" placeholder="Your Email" style="border-radius: 20px;"></div>
                         </div>
-                    </div>
-                    <div class="content-card">
-                        <div class="row">
-                            <div class="col-12 text-left">
-                                <p>As equal members of the human family, no person should face the crushing power of the state alone. To stand strong in the raging waters of the criminal justice system requires not just a lawyer, it requires an <strong>advocate</strong>                                    to speak truth to power, a <strong>shield</strong> to guard the rights of the accused, and a <strong>compatriot</strong> to fortify the spirit in the struggle for justice.</p>
-                                <p>The principles of justice upon which freedom sits demand a defense that is rigorously <strong>informed</strong>, sharply <strong>educated</strong>, and tirelessly <strong>passionate</strong>. A proper defense, grounded
-                                    in the rich traditions of <strong>law</strong> and the critical lens of modern <strong>criminology</strong>, provides the optimum framework to dissect a case's myriad complexities. This understanding, in turn, becomes the <strong>catalyst</strong> for a meticulous and
-                                    unrelenting approach to <strong>investigation and strategy</strong>, where passionate commitment to the dignity of the individual fuels the fight. Any outcome that can rightly be called just comes, invariably, from the better angels
-                                    of our <strong>character, beliefs, and actions</strong>.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="content-card d-none d-md-block">
-                        <div class="quote-slider owl-carousel owl-theme">
-                            <div class="quote-item">
-                                <p class="quote-text">"To be just, it is not enough to be a good man; one must be a good man for others."</p>
-                                <p class="quote-author">- Jean-Jacques Rousseau</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"Injustice anywhere is a threat to justice everywhere."</p>
-                                <p class="quote-author">- Martin Luther King Jr.</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"The law, in its majestic equality, forbids the rich as well as the poor to sleep under bridges, to beg in the streets, and to steal bread."</p>
-                                <p class="quote-author">- Anatole France</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"It is the mark of an educated mind to be able to entertain a thought without accepting it."</p>
-                                <p class="quote-author">- Aristotle</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"The life of the law has not been logic; it has been experience."</p>
-                                <p class="quote-author">- Oliver Wendell Holmes Jr.</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"We must believe in free will. We have no choice."</p>
-                                <p class="quote-author">- Isaac Bashevis Singer</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"Man is condemned to be free; because once thrown into the world, he is responsible for everything he does."</p>
-                                <p class="quote-author">- Jean-Paul Sartre</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"It is of the very nature of a free society to advance upon its own mistakes."</p>
-                                <p class="quote-author">- Felix Frankfurter</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"The greatest glory in living lies not in never falling, but in rising every time we fall."</p>
-                                <p class="quote-author">- Nelson Mandela</p>
-                            </div>
-                            <div class="quote-item">
-                                <p class="quote-text">"The law must be stable, but it must not stand still."</p>
-                                <p class="quote-author">- Roscoe Pound</p>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="mb-3"><textarea class="form-control" rows="5" placeholder="Your Message" style="border-radius: 20px;"></textarea></div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
                 </div>
             </div>
-        </section>
-        <section id="about" class="content-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 content-card">
-                            <div class="header-page">
-                                <h2>About</h2></div>
-                            <div class="row">
-                                <div class="col-lg-12 text-left">
-                                    <div class="about-info-sb">
-                                        <div class="about-sb">
-                                            <div class="img">
-                                                <div class="img-in"><img src="lib/img/hero.png" title="SB" alt="A profile photograph of Samuel Butcher" /></div>
-                                                <div class="nav social-icons justify-content-center">
-                                                    <a href="https://www.linkedin.com/in/samuelbu/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                                                    <a href="https://www.youtube.com/c/SamuelButcher"><i class="fab fa-youtube"></i></a>
-                                                    <a href="https://www.facebook.com/barabaskid" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                                    <a href="https://www.instagram.com/butchersamuel/" target="_blank"><i class="fab fa-instagram"></i></a>
-                                                    <a href="https://www.paypal.com/paypalme/samuelbutcher" target="_blank"><i class="fab fa-paypal"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="about-text">
-                                            <p>My worldview, both cosmopolitan and critical, was forged by a life lived across continents: born in London, raised in Amsterdam, and educated in New York City after a formative Floridian youth. As an adult I
-                                                have never lived in a single place for more than a few years - a gentle wind at my back ever asking what life is like over the next hill. Life’s experiences introduced me to different kinds of people living
-                                                different kinds of ways, exposing me, from an early age, to the rich tapestry of human culture and custom. This constant proximity to difference instilled in me an ease, comfort, and confidence in interacting
-                                                with people from all walks of life, regardless of their background or belief system. These countless conversations with generous strangers sparked a fascination with the fundamental question of how we might
-                                                best live together to promote the common welfare.</p>
-                                            <p>This interest was further deepened by a lifelong love of literature, which offers an unparalleled access to the myriad versions of the human experience. For me, reading is another form of travel, a way to understand
-                                                the internal lives and moral landscapes of others, reinforcing the empathy that is essential to both life and law. Ultimately, this confluence of experiences - geographic and literary - led me to my current
-                                                path. It is a path that seeks to understand and articulate the human story within the rigid framework of the law. A legal case is a collision of narratives, a contest of stories demanding to be told with
-                                                clarity and conviction. My life has fostered an education in character, motive, and the tragic complexities of the human condition. A life spent navigating diverse cultures has stripped from me any illusion
-                                                of a monolithic truth, replacing it with a keen appreciation for the subjective realities that shape individual lives. It is at this critical intersection, where the intimate story confronts the impersonal
-                                                statute, that my work finds its purpose.</p>
-                                        </div>
-                                        <div class="info-list">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <ul>
-                                                        <li>
-                                                            <label>Anagrams of Name:</label> <span class="anatext"></span></li>
-                                                        <li>
-                                                            <label>Date of Birth:</label> <span>497452929 (UNIX Timestamp)</span></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <ul>
-                                                        <li>
-                                                            <label>Political Ideology:</label> <span>-8.26, -4.77 (<a href="https://www.politicalcompass.org/" target="_blank">Political Compass)</a></span></li>
-                                                        <li>
-                                                            <label>Age:</label> <span>166 Years (on Mercury)</span></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row pt-3">
-                        <div class="col-12 content-card">
-                            <div class="subsection-title">
-                                <h3>Areas of Expertise</h3>
-                                <div class="divider div-transparent div-stopper"></div>
-                            </div>
-                            <div class="row align-items-center">
-                                <div class="col-lg-3 col-md-4 col-12">
-                                    <ul class="nav nav-pills-sb flex-column px-0" id="pills-tab" role="tablist">
-                                        <li class="nav-item mt-4 pt-2">
-                                            <a class="nav-link rounded active" id="pills-law-tab" data-toggle="pill" href="#pills-law" role="tab" aria-controls="pills-law" aria-selected="true">
-                                                <div class="skill-container text-center pt-1 pb-1">
-                                                    <h6 class="title mb-0">Law & Advocacy</h6></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item mt-4 pt-2">
-                                            <a class="nav-link rounded" id="pills-research-tab" data-toggle="pill" href="#pills-research" role="tab" aria-controls="pills-research" aria-selected="false">
-                                                <div class="skill-container text-center pt-1 pb-1">
-                                                    <h6 class="title mb-0">Research & Analysis</h6></div>
-                                            </a>
-                                        </li>
-                                        <li class="nav-item mt-4 pt-2">
-                                            <a class="nav-link rounded" id="pills-criminology-tab" data-toggle="pill" href="#pills-criminology" role="tab" aria-controls="pills-criminology" aria-selected="false">
-                                                <div class="skill-container text-center pt-1 pb-1">
-                                                    <h6 class="title mb-0">Criminology & Client-Centered Defense</h6></div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-lg-9 col-md-8 col-12">
-                                    <div class="tab-content pl-lg-4" id="pills-tabContent">
-                                        <div class="tab-pane fade show active" id="pills-law" role="tabpanel" aria-labelledby="pills-law-tab">
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Trial and Courtroom Strategy</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 95%">
-                                                        <div class="progress-value d-block h6">95%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Motion Practice</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 92%">
-                                                        <div class="progress-value d-block h6">92%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Persuasive Writing</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 96%">
-                                                        <div class="progress-value d-block h6">96%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Post-Conviction and Appellate Relief</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 90%">
-                                                        <div class="progress-value d-block h6">90%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Sentencing Mitigation and Alternatives</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 92%">
-                                                        <div class="progress-value d-block h6">92%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Crisis Management</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 90%">
-                                                        <div class="progress-value d-block h6">90%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Constitutional and Civil Rights Litigation</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 90%">
-                                                        <div class="progress-value d-block h6">90%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="pills-research" role="tabpanel" aria-labelledby="pills-research-tab">
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Precedent and Case Law Analysis</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 96%">
-                                                        <div class="progress-value d-block h6">96%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Statutory Interpretation,</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 93%">
-                                                        <div class="progress-value d-block h6">93%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Forensics and Evidence Analysis</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 91%">
-                                                        <div class="progress-value d-block h6">91%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Evidence Deconstruction</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 92%">
-                                                        <div class="progress-value d-block h6">92%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Investigative Factual Development</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 87%">
-                                                        <div class="progress-value d-block h6">87%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Expert Witness Collaboration and Cross-Examination</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 93%">
-                                                        <div class="progress-value d-block h6">93%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Case Theory Formulation</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 91%">
-                                                        <div class="progress-value d-block h6">91%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="pills-criminology" role="tabpanel" aria-labelledby="pills-criminology-tab">
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Root Cause Analysis</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 94%">
-                                                        <div class="progress-value d-block h6">94%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Needs-Based Defense Planning</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 97%">
-                                                        <div class="progress-value d-block h6">97%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Policy Critique</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 90%">
-                                                        <div class="progress-value d-block h6">90%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Rehabilitation and Re-entry Strategy</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 87%">
-                                                        <div class="progress-value d-block h6">87%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Cross-Cultural Communication and Competency</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 97%">
-                                                        <div class="progress-value d-block h6">97%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="progress-box mt-4 pt-2">
-                                                <h6 class="font-weight-normal text-left">Policy Insights</h6>
-                                                <div class="progress">
-                                                    <div class="progress-bar position-relative bg-color" style="width: 90%">
-                                                        <div class="progress-value d-block h6">90%</div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="resume" class="content-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 content-card">
-                            <div class="header-page">
-                                <h2>Resume</h2></div>
-                            <div class="row">
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="subsection-title">
-                                        <h3>Education</h3>
-                                        <div class="divider div-transparent div-stopper"></div>
-                                    </div>
-                                    <div class="cv">
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Juris Doctor</h4>
-                                                <p>City University of New York - School of Law</p>
-                                                <p class="pmb">2021 - 2024</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">My legal education was a deliberate immersion in foundational principles, statutory interpretation, and case law analysis at the leading public interest law school in the country. Through demanding coursework
-                                                and invaluable experiential learning, I forged the core legal skills of research, writing, and oral advocacy. My practical experience was sharpened in the nation's top-ranked Defenders Clinic, where I represented
-                                                indigent clients in clemency matters. It was in the Big Apple that my theoretical tenets of justice were forged into the practical instruments of advocacy.</p>
-                                        </div>
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Master of Science - Criminal Justice</h4>
-                                                <p>Florida State University - School of Criminology</p>
-                                                <p class="pmb">2019 - 2021</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">As a graduate student Seminole I acquired a sophisticated understanding of criminological theory, justice policy, and research methodology. My focuses centered on identifying and addressing criminogenic needs
-                                                and domestic violence, which cultivated a specialized knowledge in assessing risk factors and the root causes of criminal behavior. This work was defined by the application of evidence-based practices and
-                                                the critical evaluation of programs designed to reduce recidivism. Here, the scientific principles of criminology were sharpened into the essential tools for understanding the human narrative behind each
-                                                case.</p>
-                                        </div>
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Bachelor of Science - Political Science</h4>
-                                                <p>Florida State University</p>
-                                                <p class="pmb">2003 - 2008</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">My undergraduate studies provided a comprehensive understanding of political systems, theories, and institutions. The program demanded a rigorous analysis of political behavior, public policy, and the philosophical
-                                                underpinnings of governance, cultivating the analytical and critical thinking skills that are now indispensable to my legal practice. Matriculating as a Junior as an AP Scholar With Distinction, I took a
-                                                three-year sabbatical from 2004 to 2007 - a deliberate interlude dedicated to broadening my experience and developing a more complete understanding of my own personhood beyond the confines of formal academia.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-sm-12">
-                                    <div class="subsection-title">
-                                        <h3>Experience</h3>
-                                        <div class="divider div-transparent div-stopper"></div>
-                                    </div>
-                                    <div class="cv">
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Superior Court of the Virgin Islands</h4>
-                                                <p>Clerk</p>
-                                                <p class="pmb">2024 - Present</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">In my current role, I operate at the heart of the judicial process, providing direct legal support to a Superior Court Judge. This position demands a rigorous application of legal analysis and persuasive writing,
-                                                as I conduct in-depth research across a wide spectrum of civil and criminal matters. I am tasked with drafting bench memoranda, orders, and opinions, which requires a meticulous synthesis of complex factual
-                                                records and the precise application of relevant statutes and case law. This role affords a comprehensive insight into trial court operations and the mechanics of judicial decision-making, sharpening my critical
-                                                evaluation of legal arguments from a neutral vantage point.</p>
-                                        </div>
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Alaska Public Defender Agency</h4>
-                                                <p>Public Defender</p>
-                                                <p class="pmb">2024</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">As a public defender, I provided comprehensive legal representation to indigent clients, a role that embodies the front-line struggle for justice. My work involved managing a substantial caseload that required
-                                                not only robust defense strategies but also thorough client interviews and factual investigations to unearth the human narrative within each case. I engaged in all aspects of pre-trial litigation, from performing
-                                                extensive legal research to drafting and arguing motions, negotiating plea agreements, and preparing cases for trial. In every court proceeding, I advocated zealously for my clients, ensuring the steadfast
-                                                protection of their constitutional rights.</p>
-                                        </div>
-                                        <div class="item">
-                                            <div class="main">
-                                                <h4>Zeg LLC / Zeg LTD</h4>
-                                                <p>Chief Managing Member</p>
-                                                <p class="pmb">2010 - Present</p>
-                                            </div>
-                                            <p class="pt-2 text-justify">As head of a specialized consultancy, I directed complex international projects focused on the location, research, and repatriation of lost or displaced historical materials. This work demanded not only rigorous
-                                                archival investigation and provenance research but also delicate negotiations with a formidable array of governmental and cultural bodies. It was a formative education in the often-fraught intersection where
-                                                power meets wealth. In this high-stakes arena, I held firm to principle against considerable pressure, ensuring that the common good - the restoration of cultural heritage - prevailed over the allure of
-                                                private enrichment.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 pt-2 content-card hidden">
-                            <div class="subsection-title">
-                                <h3>Awards</h3>
-                                <div class="divider div-transparent div-stopper"></div>
-                            </div>
-                            <p>Here</p>
-                        </div>
-                        <div class="col-12 pt-2 content-card">
-                            <div class="subsection-title pt-2">
-                                <h3>Proficiencies</h3>
-                                <div class="divider div-transparent div-stopper"></div>
-                            </div>
-                            <ul class="knowledges">
-                                <li class="hvr-float">Writing</li>
-                                <li class="hvr-float">Research</li>
-                                <li class="hvr-float">Oratory</li>
-                                <li class="hvr-float">Logic</li>
-                                <li class="hvr-float">Criminological Theory</li>
-                                <li class="hvr-float">Political Theory</li>
-                                <li class="hvr-float">Problem-Solving</li>
-                                <li class="hvr-float">Negotiation</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="skills" class="content-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 content-card">
-                            <div class="header-page">
-                                <h2>Skills</h2></div>
-                            <p class="text-left">The defense of the accused is not merely a matter of statutory knowledge; it is an exercise in strategic thought, persuasive rhetoric, and unwavering dedication. The skills I bring to bear are the very instruments of that dedication,
-                                embodied in the tripartite role of advocate, shield, and compatriot. As the advocate, I construct and forcefully articulate the counter-narrative to the state's accusations. As the shield, I employ a mastery
-                                of law and procedure as a bulwark against the misuse of state power. And as a compatriot, I stand with the accused, fortifying the human spirit against the isolating machinery of the justice system. Without the advocate,
-                                a defense is silent; without the shield, it is vulnerable; and without the compatriot, it is hollow. My approach is founded upon the principle that a complete defense requires all three.</p>
-                        </div>
-                        <div class="col-12 content-card">
-                            <div class="subsection-title">
-                                <h3>As a Defense Attorney</h3>
-                                <div class="divider div-transparent div-stopper"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-laptop-house"></i>
-                                        <h6 class="sb-service-title">Forensic Analysis and Strategic Deconstruction</h6>
-                                        <p class="sb-service-description">A defense begins not with a flourish of dramatic rhetoric, but with a serial and scrutinizing forensic deconstruction of the state's case. I am committed to a deep and exhaustive analysis of every detail, meticulously
-                                            dissecting the prosecution's evidence to expose its weaknesses, its inconsistencies, and its procedural failings. This is the step by step, ounce by ounce, word by word cornerstone upon which a powerful, tailored
-                                            defense is built.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-chalkboard-teacher"></i>
-                                        <h6 class="sb-service-title">Persuasive Rhetoric and Courtroom Advocacy</h6>
-                                        <p class="sb-service-description">An individual's story, so often muted by the impersonal machinery of the court, must be rendered with clarity and force. I excel at translating complex legal issues into understandable terms and presenting a case
-                                            with conviction, whether in negotiations, written motions, or before a judge and jury. In the courtroom, my advocacy is relentless, yet my presence is one of confident affability, a synthesis I have found crucial
-                                            for building the necessary rapport that allows a jury to see the human story behind the legal arguments.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-chess"></i>
-                                        <h6 class="sb-service-title">Strategic Negotiation and Persuasion</h6>
-                                        <p class="sb-service-description">While always prepared for trial, I recognize the distinct power of skillful negotiation, particularly for those to whom “a speedy trial” does not come soon enough to not wreak havoc on their life. I engage prosecutors
-                                            with a deep understanding of the legal landscape and a persuasive approach aimed at securing charge reductions, alternative resolutions, or outright dismissals. The goal is always to achieve the most favorable
-                                            outcome, often before the arduous process of a trial becomes necessary.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-balance-scale"></i>
-                                        <h6 class="sb-service-title">Doctrinal Mastery and Intellectual Agility</h6>
-                                        <p class="sb-service-description">The law is a living, breathing entity, and so is my commitment to mastering it. I maintain an in-depth, current understanding of criminal law, procedure, and precedent. This dedication to continuous learning ensures
-                                            that a client's defense benefits from the most current and effective strategies available.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-binoculars"></i>
-                                        <h6 class="sb-service-title">Proactive Investigation and Factual Development</h6>
-                                        <p class="sb-service-description">A formidable defense rarely relies solely on the information provided by the state. My approach is proactive: I spearhead independent investigations, seek out and interview witnesses, unearth exculpatory evidence,
-                                            and collaborate with top investigators and experts when needed. Experience has taught that such diligent, front-loaded effort invariably yields dividends, often uncovering the very detail upon which a successful
-                                            defense turns.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-tasks"></i>
-                                        <h6 class="sb-service-title">Creative Problem-Solving and Tactical Adaptability</h6>
-                                        <p class="sb-service-description">Legal cases are rarely linear. The ability to think critically on one's feet, adapt to unexpected turns, and craft creative solutions to complex problems is paramount. It is this intellectual agility that transforms
-                                            unforeseen challenges from potential pitfalls into tactical advantages.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 content-card">
-                            <div class="subsection-title">
-                                <h3>In Legal Support</h3>
-                                <div class="divider div-transparent div-stopper"></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 text-left">
-                                    <p>Effective legal support is the unseen architecture of justice. It is not a secondary function but the very substructure upon which sound judicial outcomes are built. This work demands an unwavering commitment to diligence,
-                                        integrity, and collaboration. As the diligent researcher, I ensure every legal argument is built upon a bedrock of accurate and exhaustive precedent. As the guardian of standards, I uphold the integrity of the process,
-                                        ensuring every document and procedure meets the highest benchmarks of the profession. And as the collaborative colleague, I work to create a seamless synergy within the legal team, recognizing that the pursuit of
-                                        justice is a collective endeavor. Without diligence, the foundation is weak; without integrity, it is corrupt; and without collaboration, it is fragmented. My skills in these areas ensure operational excellence.</p>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-briefcase"></i>
-                                        <h6 class="sb-service-title">Exhaustive Legal Research</h6>
-                                        <p class="sb-service-description">I conduct exhaustive research into statutes, case law, and precedent, not merely to find support, but to understand the intellectual contours of the law and deliver analysis that is both thorough and insightful.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-pen-nib"></i>
-                                        <h6 class="sb-service-title">Precise Legal Writing and Drafting</h6>
-                                        <p class="sb-service-description">My writing is an instrument of precision. Whether in motions, pleadings, or correspondence, I craft clear, concise, and legally sound documents where every detail is meticulously considered to be both compliant
-                                            and persuasive.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-calendar-alt"></i>
-                                        <h6 class="sb-service-title">Meticulous Document Analysis</h6>
-                                        <p class="sb-service-description">In an era of information overload, I possess the crucial skill of reviewing vast document sets to identify critical details, synthesize key findings, and distill complex information into actionable intelligence
-                                            for discovery and trial readiness.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-satellite"></i>
-                                        <h6 class="sb-service-title">Scholarly Citation and Doctrinal Accuracy</h6>
-                                        <p class="sb-service-description">Adherence to standards like The Bluebook is second nature. This diligence in cite-checking is not just a technical exercise; it is a commitment to the intellectual honesty that guarantees the credibility of every
-                                            legal submission.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-compass"></i>
-                                        <h6 class="sb-service-title">Systematic Case Management</h6>
-                                        <p class="sb-service-description">True organization is the bedrock of effective litigation. I bring a systematic approach to managing case files, tracking deadlines, and preparing for hearings, ensuring a seamless and efficient progression where
-                                            no detail is left to chance.</p>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="sb-single-service"><i class="service-icon fas fa-users"></i>
-                                        <h6 class="sb-service-title">Effective Interpersonal Collaboration</h6>
-                                        <p class="sb-service-description">Law is a profoundly human and collaborative enterprise. I foster strong interpersonal relationships and communicate effectively with all stakeholders—attorneys, clients, and court staff—to build the synergy essential
-                                            for a productive legal process.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- ADDED: Positions Section -->
-        <section id="positions" class="content-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="content-card">
-                                <div class="header-page">
-                                    <h2>Positions</h2>
-                                </div>
-                                <p class="text-center mb-4">This is a dummy sentence to introduce the section.</p>
-                                <h3 class="text-center mb-4">Foundations</h3>
-                                <div class="row">
-                                    <!-- Position 1 -->
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#positionModal1">
-                                            <h4>Article Title 1</h4>
-                                            <p>A brief description of the first article goes here. It should be engaging and entice the user to click to read more.</p>
-                                        </div>
-                                    </div>
-                                    <!-- Position 2 -->
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#positionModal2">
-                                            <h4>Article Title 2</h4>
-                                            <p>A brief description of the second article goes here. It should be engaging and entice the user to click to read more.</p>
-                                        </div>
-                                    </div>
-                                    <!-- Position 3 -->
-                                    <div class="col-lg-4 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#positionModal3">
-                                            <h4>Article Title 3</h4>
-                                            <p>A brief description of the third article goes here. It should be engaging and entice the user to click to read more.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="content-card">
-                                <h3 class="text-center mb-4">Policy Positions</h3>
-                                <div class="row">
-                                    <!-- Policy Position 1 -->
-                                    <div class="col-lg-3 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#policyModal1">
-                                            <h4>Policy Title 1</h4>
-                                            <p>A brief description of the first policy position.</p>
-                                        </div>
-                                    </div>
-                                    <!-- Policy Position 2 -->
-                                    <div class="col-lg-3 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#policyModal2">
-                                            <h4>Policy Title 2</h4>
-                                            <p>A brief description of the second policy position.</p>
-                                        </div>
-                                    </div>
-                                    <!-- Policy Position 3 -->
-                                    <div class="col-lg-3 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#policyModal3">
-                                            <h4>Policy Title 3</h4>
-                                            <p>A brief description of the third policy position.</p>
-                                        </div>
-                                    </div>
-                                    <!-- Policy Position 4 -->
-                                    <div class="col-lg-3 mb-4">
-                                        <div class="position-card" data-toggle="modal" data-target="#policyModal4">
-                                            <h4>Policy Title 4</h4>
-                                            <p>A brief description of the fourth policy position.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="contact" class="content-section">
-            <div class="content-wrapper">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="content-card">
-                                <div class="header-page">
-                                    <h2>Contact</h2></div>
-                                <div class="row">
-                                    <div class="col-lg-9">
-                                        <div class="contact-form text-left">
-                                            <p class="text-center">You can contact me using my listed phone or email, or by using the form below.</p>
-                                            <form id="contact-form">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input name="name" id="name" placeholder="Name *" class="form-control" type="text" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <input name="email" id="email" placeholder="E-mail *" class="form-control" type="email" required>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <input name="subject" id="subject" placeholder="Subject" class="form-control" type="text">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <textarea name="message" id="message" placeholder="Your message *" rows="5" class="form-control" required></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <p class="required-text">* Denotes a Required Field</p>
-                                                    </div>
-                                                    <div class="col-md-12 text-center">
-                                                        <button class="send-btn" type="submit">Send Message</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 text-left">
-                                        <div class="contact-info">
-                                            <div class="info-box">
-                                                <i class="fas fa-envelope"></i>
-                                                <h4>E-Mail</h4>
-                                                <p>butcher.samuel AT gmail.com</p>
-                                            </div>
-                                            <div class="info-box">
-                                                <i class="fas fa-phone-alt"></i>
-                                                <h4>Phone</h4>
-                                                <p>+1 (407) 547-6556</p>
-                                            </div>
-                                            <div class="info-box">
-                                                <i class="fas fa-map-marker-alt"></i>
-                                                <h4>Location</h4>
-                                                <p>St. Croix, USVI</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- ADDED: Modals for Positions Section -->
-    <!-- Modal 1 -->
-    <div class="modal fade" id="positionModal1" tabindex="-1" role="dialog" aria-labelledby="positionModal1Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="positionModal1Label">It's All the Middle Ground</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>A story. Likely apocryphal but too useful to discard: Winston Churchill sits at a high society dinner, beside him a woman of considerable social standing. Churchill leans over and asks, "Madam, would you sleep with me for one million pounds?" The woman, after a moment of thoughtful consideration, concedes that, for such a life-altering sum, she would. Churchill lets the admission hang in the air for a beat. "Would you fuck me for five pounds?" Aghast and insulted, the woman retorts, "Good heavens, Mr. Churchill! What kind of woman do you think I am?" Churchill's replies: "We have already established what you are. We are now merely haggling over the price."</p>
-
-            <p>The sting of the punchline has little to do with the lady's virtue and everything to do with our own. We, too, prefer to believe our principles are fortresses, built on the bedrock of absolute conviction. We declare ourselves for or against a cause, as if we are choosing between two irreconcilable poles of existence. We are for freedom or we are for control. We are for the collective or we are for the individual. We are for tradition or we are for progress. This, though, is not only delusion, it is a rhetorical fallacy that stymies debate and thus advancement. The Churchillian exchange, in its acid wit, exposes a fundamental truth of almost all human disagreement: we are rarely arguing about absolutes. We are, almost always, merely haggling over the price. Our most intractable debates are not clashes between *what* we believe, but rather negotiations over *where* on a spectrum of belief we are willing to draw the line.</p>
-
-            <p>Consider the perpetually inflamed American argument over gun control. The debate is often framed as a Manichean struggle between two absolutist camps: those who would seize every last firearm and those who would arm every citizen with any weapon they desire. Even nuance in either camp is seen as suspect. The reality is that virtually everyone is already on the same spectrum - the trick is to properly identify that spectrum. Find the most ardent Second Amendment absolutist and ask him if his neighbor ought to have the right to purchase a tactical nuclear warhead and park it in his garage. He will, after perhaps questioning your sanity, concede that this is an absurd proposition. In that concession, the principle of absolute, unfettered gun ownership dies. The fortress of "no infringement" is revealed to be a fiction. His intellectual enemy, who wants all firearms banned, is simply further away from the pole of “no individual should own nuclear weapons” than he.</p>
-
-            <p>Once we agree that a line must be drawn somewhere—that a private citizen cannot own a nuclear weapon, a vial of weaponized anthrax, or perhaps even a Stinger missile—the entire argument ceases to be about principle and becomes one of degree. We have established what we are: people who believe in limits on the right to bear arms. We are now merely haggling over the price. Is the line at the tank? The belt-fed machine gun? The semi-automatic rifle? The handgun? Each position is simply a different point on the same continuum, a continuum that begins with a butter knife and ends with planetary annihilation. The argument is not between "no guns" and "all guns," but between a vast and varied landscape of intermediate positions.</p>
-
-            <p>Step down a constitutional amendment from the second to the first, and the same reasoning can be applied. Here, too, the discourse is dominated by the illusion of warring absolutes: the champions of unconditional expression versus the guardians of public safety and decency. Yet, the axiom of this spectrum is as universally accepted as the prohibition on private nuclear arms. But nobody outside of a psychiatric ward truly defend the right to falsely shout "Fire!" in a crowded theater. In this shared consensus - on this shared spectrum - the myth of absolutes vanishes. We are all, in fact, believers in limits. The furious argument is simply about where that line is drawn. We are haggling over the cost of public discourse. Is defamation a tolerable price for a free press? Is incitement to violence a bug or a feature of passionate political speech? Where does the right to protest a funeral intersect with the right to grieve in peace? What of libel, slander, state secrets, and copyright? The person who believes hate speech should be banned and the person who believes it must be protected are not on opposite sides of a chasm; they are standing on the same plank, merely disagreeing on how far towards the edge one can safely walk before it gives way.</p>
-
-            <p>The implications of this reframing are important. When parties believe they are defending absolute, diametrically opposed principles, discourse becomes trench warfare. The only objective is the annihilation of the opposing view, and any concession is a shameful surrender. There is no middle ground, only a vast and unbridgeable abyss of enmity. But when we recognize that we are all on the same spectrum, separated only by degrees, the entire landscape changes. The no-man's-land between the trenches of debate is suddenly revealed as a continuum, rich with the potential for compromise. This is where productive debate lives. It transforms the conflict from a holy war into a negotiation. It replaces the sterile and self-righteous performance of ideological purity with the difficult, messy, but ultimately essential work of crafting functional solutions for a pluralistic society.</p>
-
-            <p>To foster the most verdant discussions, then, requires a conscious first step. Before the swords are drawn and the banners raised, the parties must first seek the common ground of the spectrum itself. They must ask: what is the shared, foundational principle we both, however reluctantly, accept? Is it that some weapons are too dangerous for private hands? That some speech is too harmful to be protected? That some level of taxation is necessary for a state to function? Finding this shared axiom is the key that unlocks the negotiation.</p>
-
-            <p>Once that spectrum is identified, the nature of the disagreement is transformed. The question is no longer "if," but "where." The argument is no longer about identity, but about calibration. The fundamental conflict is solved, and all that remains is the question of distance. How far apart are we on this line we both stand upon? This does not guarantee agreement, nor does it make the subsequent negotiation easy. But it makes progress possible. It allows us, in short, to stop posturing about what we are and start negotiating, honestly, about the price.</p>
-          </div>
         </div>
-      </div>
-    </div>
+     </div>
+   </div>
 
-    <!-- Modal 2 -->
-    <div class="modal fade" id="positionModal2" tabindex="-1" role="dialog" aria-labelledby="positionModal2Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="positionModal2Label">Article Title 2</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>This is the full text for the second article. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.</p>
-            <p>Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam. Sorbi in ipsum. Duis a mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+  </div><div class="modal fade" id="photoModal1" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x800/f8f8f8/333?text=Photo+1"/></div></div></div>
+  <div class="modal fade" id="photoModal2" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x600/f8f8f8/333?text=Photo+2"/></div></div></div>
+  <div class="modal fade" id="photoModal3" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x900/f8f8f8/333?text=Photo+3"/></div></div></div>
+  <div class="modal fade" id="photoModal4" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x700/f8f8f8/333?text=Photo+4"/></div></div></div>
+  <div class="modal fade" id="photoModal5" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x500/f8f8f8/333?text=Photo+5"/></div></div></div>
+  <div class="modal fade" id="photoModal6" tabindex="-1"><div class="modal-dialog modal-lg modal-dialog-centered"><div class="modal-content"><img class="img-fluid" src="https://placehold.co/600x800/f8f8f8/333?text=Photo+6"/></div></div></div>
 
-    <!-- Modal 3 -->
-    <div class="modal fade" id="positionModal3" tabindex="-1" role="dialog" aria-labelledby="positionModal3Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="positionModal3Label">Article Title 3</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>This is the full text for the third article. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh.</p>
-            <p>Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam. Sorbi in ipsum. Duis a mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam tincidunt urna. Nulla ullamcorper vestibulum turpis. Pellentesque cursus luctus mauris.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Policy Modals -->
-    <div class="modal fade" id="policyModal1" tabindex="-1" role="dialog" aria-labelledby="policyModal1Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="policyModal1Label">Policy Title 1</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Full text for policy position 1.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="policyModal2" tabindex="-1" role="dialog" aria-labelledby="policyModal2Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="policyModal2Label">Policy Title 2</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Full text for policy position 2.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="policyModal3" tabindex="-1" role="dialog" aria-labelledby="policyModal3Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="policyModal3Label">Policy Title 3</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Full text for policy position 3.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="modal fade" id="policyModal4" tabindex="-1" role="dialog" aria-labelledby="policyModal4Label" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title w-100 text-center" id="policyModal4Label">Policy Title 4</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>Full text for policy position 4.</p>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- JS Dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="lib/js/sb.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
 
-    
-</body>
+  <script>
+   "use strict";
+
+    $(document).ready(function() {
+        // Font loading for preloader text
+        const preloaderText = $('.preloader-text');
+        if (preloaderText.length) {
+            document.fonts.load('1em "Rock Salt"').then(function () {
+                preloaderText.addClass('font-loaded');
+            }).catch(function () {
+                // If font fails to load, still show the text
+                preloaderText.addClass('font-loaded');
+            });
+        }
+        
+        // Preloader
+        const preloader = $('.preloader');
+        if (preloader.length) {
+            $(window).on('load', function() {
+                preloader.fadeOut(800, function() {
+                    $(this).remove();
+                });
+            });
+        }
+
+        // FullPage.js Initialization
+        if ($('#fullpage').length) {
+            new fullpage('#fullpage', {
+                licenseKey: 'YOUR_KEY_HERE', // Replace with your license key if needed
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', '5thpage', '6thpage'],
+                menu: '#main-nav',
+                scrollingSpeed: 1000,
+                navigation: false,
+                slidesNavigation: true,
+                loopHorizontal: true,
+                responsiveWidth: 992,
+            });
+        }
+
+        // Theme Switcher
+        const themeSwitcher = $('#theme-switcher');
+        const body = $('body');
+        
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                body.addClass('dark-mode');
+            } else {
+                body.removeClass('dark-mode');
+            }
+        }
+
+        themeSwitcher.on('click', function() {
+            if (body.hasClass('dark-mode')) {
+                localStorage.setItem('theme', 'light');
+                applyTheme('light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+                applyTheme('dark');
+            }
+        });
+        
+        // Apply theme on load
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+
+
+        // Live Customizer
+        const customizerToggle = $('.theme-customizer-toggle');
+        
+        customizerToggle.on('click', function() {
+            body.toggleClass('customizer-open');
+        });
+        
+        $('#theme-customizer input, #theme-customizer select').on('input change', function() {
+            const cssVar = $(this).data('css-var');
+            let value = $(this).val();
+            document.documentElement.style.setProperty(cssVar, value);
+        });
+
+    });
+  </script>
+ </body>
 </html>

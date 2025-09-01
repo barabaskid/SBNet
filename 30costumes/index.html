@@ -23,7 +23,6 @@
     <meta content="#b91d47" name="msapplication-TileColor" />
     <meta content="#800000" name="theme-color" />
 
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EJ7BCTTT1H"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -199,6 +198,49 @@
         * 5. MAIN CONTENT & PRESENTATION STYLES
         ==========================================================================
         */
+        .navigator-container {
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .slide-navigator-select {
+            width: 80%;
+            max-width: 500px;
+            padding: 12px 20px;
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--active-color);
+            border-radius: 8px;
+            font-family: var(--font-link);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-appearance: none; /* Removes default styling */
+            -moz-appearance: none;
+            appearance: none;
+            /* Custom dropdown arrow */
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23d1d1d1%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.6-3.6%205.4-7.8%205.4-13%200-5-1.8-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-position: right 15px top 50%;
+            background-size: 10px auto;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-align-last: center;
+        }
+        body.light-mode .slide-navigator-select {
+             background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23121212%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.6-3.6%205.4-7.8%205.4-13%200-5-1.8-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+
         .content-card {
             background-color: var(--card-bg-color); padding: 40px; border-radius: 12px;
             box-shadow: 0 8px 25px -10px var(--shadow-color);
@@ -364,6 +406,14 @@
             }
             .mobile-nav-dropdown .nav-link.active { color: var(--text-color); font-weight: 500; }
             .style-switcher { margin-bottom: 0px !important; }
+
+            .navigator-container {
+                margin-bottom: 15px;
+            }
+            .slide-navigator-select {
+                width: 100%; /* Full width on mobile */
+            }
+
             .content-card { padding: 25px; }
             .story-section h3 { padding: 0 20px; font-size: 1.5rem; }
             .welcome-story h3 {
@@ -397,7 +447,7 @@
     <audio id="audio-costume-15" src="/30costumes/forrestfire.mp3" preload="metadata"></audio>
     <audio id="audio-costume-16" src="/30costumes/po.mp3" preload="metadata"></audio>
     <audio id="audio-costume-17" src="/30costumes/qos.mp3" preload="metadata"></audio>
-    <audio id="audio-costume-18" src="/30costumes/recordplayer.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-18" src="/3Gcostumes/recordplayer.mp3" preload="metadata"></audio>
     <audio id="audio-costume-19" src="/30costumes/lavalamp.mp3" preload="metadata"></audio>
     <audio id="audio-costume-20" src="/30costumes/lrrh.mp3" preload="metadata"></audio>
     <audio id="audio-costume-21" src="/30costumes/wut.mp3" preload="metadata"></audio>
@@ -471,6 +521,11 @@
             <div class="content-wrapper">
                 <div class="container">
                     
+                    <div class="navigator-container">
+                        <label for="slide-navigator" class="sr-only">Jump to a Costume</label>
+                        <select id="slide-navigator" class="slide-navigator-select"></select>
+                    </div>
+
                     <div class="content-card">
                         <div class="swiper">
                             <div class="swiper-wrapper">
@@ -844,6 +899,58 @@
                     }
                 },
             });
+
+            // --- Dropdown Navigator Logic ---
+            const slideNavigator = document.getElementById('slide-navigator');
+            const slideTitles = document.querySelectorAll('.swiper-slide .story-section h3');
+
+            // Add a disabled, selected placeholder option first
+            const placeholderOption = document.createElement('option');
+            placeholderOption.textContent = "Pick Your Poison";
+            placeholderOption.disabled = true;
+            placeholderOption.selected = true;
+            slideNavigator.appendChild(placeholderOption);
+
+            // Populate the dropdown with custom and original slide titles
+            slideTitles.forEach((title, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                
+                if (index === 0) {
+                    option.textContent = "Intro";
+                } else if (index === slideTitles.length - 1) {
+                    option.textContent = "Outro";
+                } else {
+                    option.textContent = title.innerText || title.textContent;
+                }
+                
+                slideNavigator.appendChild(option);
+            });
+
+            // Event listener for when the user selects a new slide
+            slideNavigator.addEventListener('change', (e) => {
+                const selectedIndex = parseInt(e.target.value, 10);
+                
+                // Go to the selected slide instantly
+                swiper.slideTo(selectedIndex, 0);
+                
+                // Use a small delay to ensure the slide transition completes before clicking play
+                setTimeout(() => {
+                    const activeSlide = swiper.slides[selectedIndex];
+                    if (activeSlide) {
+                        const playButton = activeSlide.querySelector('.play-button');
+                        if (playButton) {
+                            playButton.click(); // Trigger the existing play logic
+                        }
+                    }
+                }, 100); 
+            });
+
+            // Keep the dropdown in sync if the user navigates with arrows/keys
+            swiper.on('slideChange', function () {
+                slideNavigator.value = swiper.activeIndex;
+            });
+
 
             // Audio player logic
             storySections.forEach(section => {
