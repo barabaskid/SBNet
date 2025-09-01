@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>30 Days of Costumes</title>
+    <meta name="description" content="A gallery of commissioned work." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link href="../apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="../safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#b91d47" name="msapplication-TileColor" />
+    <meta content="#800000" name="theme-color" />
+    
+    <style>
+        /*
+        ==========================================================================
+        * TABLE OF CONTENTS
+        ==========================================================================
+        *
+        * 1.  VARIABLES & GLOBAL STYLES
+        * 2.  PRELOADER & CONTENT FADE-IN
+        * 3.  LAYOUT & STRUCTURE
+        * 4.  SIDEBAR STYLES
+        * 5.  MAIN CONTENT & PRESENTATION STYLES
+        * 6.  SLIDER STYLES
+        * 7.  MOBILE NAVIGATION
+        * 8.  RESPONSIVE DESIGN
+        *
+        ==========================================================================
+        */
+
+        /* ==========================================================================
+        * 1. VARIABLES & GLOBAL STYLES
+        ==========================================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100..700;1,100..700&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Vollkorn:ital,wght@0,400..900;1,400..900&display=swap');
+        :root {
+            --sidebar-width: 280px;
+            --mobile-header-height: 70px;
+            --main-bg-color: #2d2d2d;
+            --sidebar-bg-color: #0f0f0f;
+            --card-bg-color: #1e1e1e;
+            --text-color: #d1d1d1;
+            --text-color-light: #e6e6e6;
+            --active-color: #800000;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --font-main: "Vollkorn", serif;
+            --font-secondary: "Libre Caslon Text", serif;
+            --font-link: "Josefin Slab", serif;
+        }
+
+        body.light-mode {
+            --main-bg-color: #e1e1e1;
+            --sidebar-bg-color: #f0f0f0;
+            --card-bg-color: #f5f5f5;
+            --text-color: #121212;
+            --text-color-light: #191919;
+            --border-color: #e5e5e5;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-main);
+            margin: 0; padding: 0; display: flex; height: 100vh;
+            overflow: hidden; background-color: transparent;
+            color: var(--text-color); transition: color 0.3s ease;
+        }
+
+        body::after {
+            content: ''; position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(-45deg, var(--active-color), #2d2d2d, var(--active-color), #2d2d2d);
+            background-size: 400% 400%; animation: gradient 15s ease infinite;
+            transition: background 0.3s ease;
+        }
+
+        body.light-mode::after {
+            background: linear-gradient(-45deg, var(--active-color), #e1e1e1, var(--active-color), #e1e1e1);
+            background-size: 400% 400%;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; }
+        }
+        .hidden { display: none !important; }
+
+        /* ==========================================================================
+        * 2. PRELOADER & CONTENT FADE-IN
+        ==========================================================================
+        */
+        .preloader {
+            position: fixed; width: 100%; height: 100%; top: 0; left: 0;
+            background: #111111; z-index: 999999; display: flex;
+            justify-content: center; align-items: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+        .loader {
+            width: 60px; aspect-ratio: 2;
+            --_g: no-repeat radial-gradient(farthest-side, var(--active-color) 90%, #0000);
+            background: var(--_g) 0 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+            background-size: 25% 50%; animation: l12 1s infinite linear;
+        }
+        @keyframes l12 {
+            33% { background-position: 0 0, 50% 100%, 100% 0; }
+            66% { background-position: 50% 0, 0 100%, 100% 100%; }
+            100% { background-position: 50% 50%, 0 50%, 100% 50%; }
+        }
+        .preloader.hidden { opacity: 0; visibility: hidden; }
+
+        /* ==========================================================================
+        * 3. LAYOUT & STRUCTURE
+        ==========================================================================
+        */
+        .sidebar {
+            width: var(--sidebar-width); flex-shrink: 0; height: 100vh;
+            background-color: var(--sidebar-bg-color);
+            box-shadow: 7px 0px 25px -8px var(--shadow-color);
+            display: flex; flex-direction: column; z-index: 1000;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        .main-content {
+            flex-grow: 1; display: flex; overflow-x: scroll; overflow-y: hidden;
+            scroll-snap-type: x mandatory; scrollbar-width: none;
+            -ms-overflow-style: none; opacity: 0;
+            transition: opacity 1s ease 0.5s;
+        }
+        .main-content.loaded { opacity: 1; }
+        .main-content::-webkit-scrollbar { display: none; }
+        .content-section {
+            width: 100%; height: 100vh; flex-shrink: 0;
+            scroll-snap-align: start; display: flex; justify-content: center;
+            align-items: center; border-right: 1px solid var(--border-color);
+            transition: border-color 0.3s ease; padding: 0;
+        }
+        .content-section:last-child { border-right: none; }
+        .content-wrapper {
+            width: 100%; max-height: 100%; overflow-y: auto;
+            padding: 50px; box-sizing: border-box;
+        }
+
+        /* ==========================================================================
+        * 4. SIDEBAR STYLES
+        ==========================================================================
+        */
+        .sidebar-header { flex-shrink: 0; }
+        .logo-container { display: inline-block; padding: 40px 0; }
+        .logo-container img { width: 150px; height: 150px; object-fit: cover; margin: 0 auto; }
+        .logo-dark { display: block; } .logo-light { display: none; }
+        body.light-mode .logo-dark { display: none; } body.light-mode .logo-light { display: block; }
+        .sidebar .nav-container { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .sidebar .nav { flex-direction: column; padding: 0 20px; margin: 0; }
+        .sidebar .nav-item, .sidebar .nav-item-divider { list-style: none; }
+        .navdivider-line {
+            width: 70%; height: 2px; margin: 8px auto;
+            background: linear-gradient(to right, transparent 0%, var(--active-color) 20%, var(--active-color) 80%, transparent 100%);
+            opacity: 0.5;
+        }
+        .sidebar .nav-link {
+            font-family: var(--font-link); color: var(--text-color); font-size: 1.25rem;
+            font-weight: 600; padding: 5px; margin: 0; border-radius: 30px;
+            transition: color 0.4s ease-in-out, font-weight 0.4s ease-in-out;
+            display: inline-block; cursor: pointer; text-transform: uppercase; background-color: transparent;
+        }
+        .sidebar .nav-link.active, .sidebar .nav-link:active { color: var(--active-color); font-weight: 700; background-color: transparent; }
+        .sidebar-footer { flex-shrink: 0; padding-bottom: 30px; }
+        .style-switcher { margin-bottom: 15px; }
+        .style-switcher i {
+            color: var(--text-color); font-size: 1.5rem; cursor: pointer;
+            padding: 10px; border-radius: 50%; transition: all 0.3s ease;
+        }
+        .copyright { font-size: 0.75rem; color: var(--text-color); opacity: 0.85; }
+        
+        /* ==========================================================================
+        * 5. MAIN CONTENT & PRESENTATION STYLES
+        ==========================================================================
+        */
+        .content-card {
+            background-color: var(--card-bg-color); padding: 40px; border-radius: 12px;
+            box-shadow: 0 8px 25px -10px var(--shadow-color);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+        .story-section {
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 70vh;
+        }
+        .story-section h3 {
+            font-family: var(--font-secondary);
+            color: var(--text-color-light);
+            margin-bottom: 1.5rem;
+            padding: 0 40px; /* Add padding to prevent text from overlapping chevrons */
+            line-height: 1.4; /* Improve readability of two-line titles */
+        }
+        .story-controls {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+        .play-button {
+            background: transparent;
+            border: none;
+            color: var(--text-color);
+            font-size: 3.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+        .play-button.playing .fa-pause {
+            color: #fff;
+            animation: pulse-highlight 2s infinite ease-in-out;
+        }
+        @keyframes pulse-highlight {
+            0%, 100% { color: #fff; text-shadow: 0 0 4px #fff; }
+            50% { color: var(--active-color); text-shadow: 0 0 12px var(--active-color); }
+        }
+        .instructions-text {
+            font-size: 0.8rem;
+            color: var(--text-color);
+            margin-top: -5px;
+            font-style: italic;
+            line-height: 1.4;
+        }
+        .welcome-story h3 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .welcome-story .instructions-text {
+            font-size: 1rem;
+            margin-top: 0;
+        }
+        .prose-poem {
+            font-style: italic;
+            font-size: 1.1rem;
+            font-weight: normal;
+            margin-top: 1.5rem;
+        }
+        .costume-image {
+            max-width: 100%;
+            max-height: 40vh; /* This sets the maximum height relative to the screen */
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Ensures the whole image is visible without being cropped */
+            border-radius: 8px; /* Optional: adds slightly rounded corners */
+            margin-bottom: 1.5rem; /* Adds some space between the image and the title */
+            border: 2px solid var(--active-color); /* Added border as requested */
+        }
+
+        /* ==========================================================================
+        * 6. SLIDER STYLES
+        ==========================================================================
+        */
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #ffffff; /* Make chevrons white */
+            top: 85%; /* Adjust vertical position to align with title */
+            transform: translateY(-50%); /* Keep vertical centering relative to top value */
+        }
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 5.25rem; /* Adjust chevron icon size */
+            font-weight: 100; /* Make chevrons thinner */
+        }
+       
+        /* ==========================================================================
+        * 7. MOBILE NAVIGATION
+        ==========================================================================
+        */
+        .mobile-header, .mobile-nav-dropdown { display: none; }
+
+        /* ==========================================================================
+        * 8. RESPONSIVE DESIGN
+        ==========================================================================
+        */
+        @media (max-width: 768px) {
+            body { overflow-y: hidden; }
+            .sidebar { display: none; }
+            .main-content {
+                display: block; overflow: hidden; scroll-snap-type: none;
+                padding-top: 0; position: relative;
+            }
+            .content-section {
+                position: absolute; top: 0; left: 0; height: 100vh; width: 100%;
+                border-right: none; opacity: 0; visibility: hidden;
+                transition: opacity 0.5s ease-in-out, visibility 0s 0.5s;
+                padding-top: 90px;
+            }
+            .content-section.active-section {
+                opacity: 1; visibility: visible; transition: opacity 0.5s ease-in-out;
+            }
+            .content-wrapper { padding: 20px; }
+            .mobile-header {
+                display: flex; align-items: center; justify-content: space-between;
+                position: fixed; top: 0; left: 0; width: 100%;
+                height: var(--mobile-header-height); background-color: var(--sidebar-bg-color);
+                box-shadow: 0 8px 25px -8px var(--shadow-color); padding: 0 20px; z-index: 1010;
+            }
+            .mobile-header .logo-container img { width: 50px; height: 50px; }
+            .mobile-header .style-switcher { display: flex; align-items: center; justify-content: center; }
+            .mobile-header .style-switcher i { font-size: 1.2rem; }
+            .hamburger-btn {
+                width: 30px; height: 22px; position: relative; cursor: pointer; z-index: 1020;
+            }
+            .hamburger-btn span {
+                display: block; position: absolute; height: 2px; width: 100%;
+                background: var(--active-color); border-radius: 3px; opacity: 1; left: 0;
+                transform: rotate(0deg); transition: .25s ease-in-out;
+            }
+            .hamburger-btn span:nth-child(1) { top: 0px; }
+            .hamburger-btn span:nth-child(2), .hamburger-btn span:nth-child(3) { top: 9px; }
+            .hamburger-btn span:nth-child(4) { top: 18px; }
+            .hamburger-btn.is-open span:nth-child(1), .hamburger-btn.is-open span:nth-child(4) { top: 9px; width: 0%; left: 50%; }
+            .hamburger-btn.is-open span:nth-child(2) { transform: rotate(45deg); }
+            .hamburger-btn.is-open span:nth-child(3) { transform: rotate(-45deg); }
+            .mobile-nav-dropdown {
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background-color: var(--sidebar-bg-color); z-index: 1000;
+                display: flex; align-items: center; justify-content: center;
+                transform: translateY(-100%); visibility: hidden;
+                transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.5s;
+            }
+            .mobile-nav-dropdown.is-open { transform: translateY(0); visibility: visible; }
+            .mobile-nav-dropdown .nav { flex-direction: column; text-align: center; }
+            .mobile-nav-dropdown .nav-item-divider { display: block; }
+            .mobile-nav-dropdown .nav-link {
+                font-family: var(--font-secondary); color: var(--text-color); font-size: 1.5rem;
+                font-weight: 500; padding: 15px 20px; margin: 0; border-radius: 30px;
+                transition: color 0.4s ease-in-out, font-weight 0.4s ease-in-out;
+                display: inline-block; cursor: pointer; text-transform: uppercase; background-color: transparent;
+            }
+            .mobile-nav-dropdown .nav-link.active { color: var(--text-color); font-weight: 500; }
+            .style-switcher { margin-bottom: 0px !important; }
+            .content-card { padding: 25px; }
+            .story-section h3 { padding: 0 20px; font-size: 1.5rem; }
+            .welcome-story h3 {
+                font-size: 2rem;
+            }
+            .swiper-button-next, .swiper-button-prev { top: 85%; }
+            .swiper-button-next::after, .swiper-button-prev::after { 
+                font-size: 4.5rem; 
+                font-weight: 100; /* Make chevrons thinner */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <audio id="audio-costume-intro" src="/30costumes/intro.mp3" preload="auto"></audio>
+    <audio id="audio-costume-1" src="/30costumes/shipbottle.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-2" src="/30costumes/sb.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-3" src="/30costumes/snowglobe.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-4" src="/30costumes/pinata.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-5" src="/30costumes/nurse.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-6" src="/30costumes/jib.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-7" src="/30costumes/grandfatherclock.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-8" src="/30costumes/witch.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-9" src="/30costumes/schoolgirl.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-10" src="/30costumes/stormcloud.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-11" src="/30costumes/pirate.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-12" src="/30costumes/devil.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-13" src="/30costumes/cons.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-14" src="/30costumes/mermaid.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-15" src="/30costumes/forrestfire.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-16" src="/30costumes/po.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-17" src="/30costumes/qos.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-18" src="/30costumes/recordplayer.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-19" src="/30costumes/lavalamp.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-20" src="/30costumes/lrrh.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-21" src="/30costumes/wut.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-22" src="/30costumes/ror.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-23" src="/30costumes/superhero.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-24" src="/30costumes/sglass.mp3" preload="metadata"></audio>
+    <audio id="audio-costume-25" src="/30costumes/type.mp3" preload="metadata"></audio>
+    <audio id="audio-outro" src="/30costumes/outro.mp3" preload="metadata"></audio>
+
+    <div id="preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html#home" class="logo-container">
+                <img src="../lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
+                <img src="../lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
+            </a>
+        </div>
+        <div class="nav-container">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="../index.html#home"><span>Home</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#about"><span>About</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#resume"><span>Resume</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#contact"><span>Contact</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link active" href="#"><span>Commission</span></a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="style-switcher">
+                <i class="fas fa-moon" id="theme-toggle"></i>
+            </div>
+            <p class="copyright">&copy; <span id="copyright-year"></span> Samuel Butcher</p>
+        </div>
+    </nav>
+
+    <header class="mobile-header">
+        <a href="../index.html#home" class="logo-container">
+            <img src="../lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
+            <img src="../lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
+        </a>
+        <div class="style-switcher">
+            <i class="fas fa-moon" id="mobile-theme-toggle"></i>
+        </div>
+        <div class="hamburger-btn" id="hamburger-btn">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <div class="mobile-nav-dropdown" id="mobile-nav-dropdown">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="../index.html#home"><span>Home</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#about"><span>About</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#resume"><span>Resume</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#contact"><span>Contact</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link active" href="#"><span>Commission</span></a></li>
+        </ul>
+    </div>
+
+    <main id="com" class="main-content">
+         <section class="content-section active-section">
+            <div class="content-wrapper">
+                <div class="container">
+                    
+                    <div class="content-card">
+                        <div class="swiper">
+                            <div class="swiper-wrapper">
+                                <!-- Welcome Slide (No Image) -->
+                                <div class="swiper-slide">
+                                    <div class="story-section welcome-story">
+                                        <h3>Welcome, Lover</h3>
+                                        <div class="story-controls">
+                                            <button class="play-button" id="welcome-play-button" data-audio-id="audio-costume-intro"><i class="fas fa-play"></i></button>
+                                            <p class="instructions-text">Start Here and Let It Play<br>Or Jump Around. It's All For You.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Costume Slides with Images -->
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>1 - A Ship in a Bottle</b></h3>
+                                        <img src="/30costumes/shipbottle.jpg" alt="1 - A Ship in a Bottle" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-1"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>2 - Strawberry Bush</b></h3>
+                                        <img src="/30costumes/sb.jpg" alt="2 - A Strawberry Bush" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-2"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>3 - Snow Globe</b></h3>
+                                        <img src="/30costumes/snowglobe.jpg" alt="3 - A Snow Globe" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-3"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>4 - Pinata</b></h3>
+                                        <img src="/30costumes/pinata.jpg" alt="4 - Pinata" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-4"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>5 - Nurse</b></h3>
+                                        <img src="/30costumes/nurse.jpg" alt="5 - Nurse" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-5"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>6 - A Jack-in-the-Box</b></h3>
+                                        <img src="/30costumes/jib.jpg" alt="6 - A Jack-in-the-Box" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-6"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>7 - Grandfather Clock</b></h3>
+                                        <img src="/30costumes/grandfatherclock.jpg" alt="7 - A Grandfather Clock" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-7"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>8 - Witch</b></h3>
+                                        <img src="/30costumes/witch.jpg" alt="8 - Witch" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-8"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>9 - Schoolgirl</b></h3>
+                                        <img src="/30costumes/schoolgirl.jpg" alt="9 - Schoolgirl" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-9"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>10 - A Storm Cloud</b></h3>
+                                        <img src="/30costumes/stormcloud.jpg" alt="10 - A Storm Cloud" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-10"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>11 - Pirate</b></h3>
+                                        <img src="/30costumes/pirate.jpg" alt="11 - Pirate" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-11"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>12 - Devil</b></h3>
+                                        <img src="/30costumes/devil.jpg" alt="12 - Devil" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-12"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>13 - A Constellation</b></h3>
+                                        <img src="/30costumes/cons.jpg" alt="13 - A Constellation" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-13"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>14 - Mermaid</b></h3>
+                                        <img src="/30costumes/mermaid.jpg" alt="14 - Mermaid" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-14"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>15 - A Forest Fire</b></h3>
+                                        <img src="/30costumes/forrestfire.jpg" alt="15 - A Forest Fire" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-15"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>16 - Police Officer</b></h3>
+                                        <img src="/30costumes/po.jpg" alt="16 - Police Officer" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-16"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>17 - The Queen of Spades</b></h3>
+                                        <img src="/30costumes/qos.jpg" alt="17 - The Queen of Spades" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-17"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>18 - Record Player</b></h3>
+                                        <img src="/30costumes/recordplayer.jpg" alt="18 - A Record Player" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-18"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>19 - Lava Lamp</b></h3>
+                                        <img src="/30costumes/lavalamp.jpg" alt="19 - Lava Lamp" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-19"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>20 - Little Red Riding Hood</b></h3>
+                                        <img src="/30costumes/lrrh.jpg" alt="20 - Red Riding Hood" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-20"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>21 - Wind-Up Toy</b></h3>
+                                        <img src="/30costumes/wut.jpg" alt="21 - A Wind-Up Toy" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-21"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>22 - A Rorschach Test</b></h3>
+                                        <img src="/30costumes/ror.jpg" alt="22 - A Rorschach Test" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-22"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>23 - Superhero</b></h3>
+                                        <img src="/30costumes/superhero.jpg" alt="23 - Superhero" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-23"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>24 - Stained Glass Window</b></h3>
+                                        <img src="/30costumes/sglass.jpg" alt="24 - A Stained Glass Window" class="costume-image">
+                                        <p class="prose-poem">Poem</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-24"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section">
+                                        <h3><b>25 - A Typewriter</b></h3>
+                                        <img src="/30costumes/type.jpg" alt="25 - A Typewriter" class="costume-image">
+                                        <p class="prose-poem">Prose</p>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-costume-25"><i class="fas fa-play"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="swiper-slide">
+                                    <div class="story-section welcome-story">
+                                        <h3>For You, Always</h3>
+                                        <div class="story-controls">
+                                            <button class="play-button" data-audio-id="audio-outro"><i class="fas fa-play"></i></button>
+                                            <p class="instructions-text">The End... For Now.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-button-next"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mainContent = document.querySelector('.main-content');
+            
+            // --- Site-wide functions (Unchanged) ---
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                preloader.classList.add('hidden');
+                mainContent.classList.add('loaded');
+            });
+
+            document.getElementById('copyright-year').textContent = new Date().getFullYear();
+
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
+            themeToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    const isLightMode = document.body.classList.contains('light-mode');
+                    themeToggles.forEach(t => {
+                        t.classList.toggle('fa-sun', isLightMode);
+                        t.classList.toggle('fa-moon', !isLightMode);
+                    });
+                });
+            });
+            
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav-dropdown');
+            const mobileLinks = mobileNav.querySelectorAll('.nav-link');
+            const toggleMenu = () => {
+                hamburgerBtn.classList.toggle('is-open');
+                mobileNav.classList.toggle('is-open');
+            };
+            hamburgerBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileNav.classList.contains('is-open')) {
+                        toggleMenu();
+                    }
+                });
+            });
+
+            // --- Page-Specific Story Functions ---
+            const storySections = document.querySelectorAll('.story-section');
+            let currentAudio = null;
+            let currentPlayButton = null;
+
+            // Initialize Swiper
+            const swiper = new Swiper('.swiper', {
+                direction: 'horizontal',
+                loop: false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                keyboard: {
+                    enabled: true,
+                    onlyInViewport: false,
+                },
+                on: {
+                    slideChange: function () {
+                        if (currentAudio) {
+                            currentAudio.pause();
+                            currentAudio.currentTime = 0;
+                            if (currentPlayButton) {
+                                currentPlayButton.innerHTML = '<i class="fas fa-play"></i>';
+                                currentPlayButton.classList.remove('playing');
+                            }
+                            currentAudio = null;
+                            currentPlayButton = null;
+                        }
+                    },
+                },
+            });
+
+            // Audio player logic
+            storySections.forEach(section => {
+                const playButton = section.querySelector('.play-button');
+                if (!playButton) return;
+
+                const audioId = playButton.dataset.audioId;
+                const audio = document.getElementById(audioId);
+                
+                if (!audio) return;
+
+                playButton.addEventListener('click', () => {
+                    if (currentAudio && currentAudio !== audio) {
+                        currentAudio.pause();
+                        currentAudio.currentTime = 0;
+                        if(currentPlayButton) {
+                            currentPlayButton.innerHTML = '<i class="fas fa-play"></i>';
+                            currentPlayButton.classList.remove('playing');
+                        }
+                    }
+
+                    if (audio.paused) {
+                        audio.play();
+                        playButton.innerHTML = '<i class="fas fa-pause"></i>';
+                        playButton.classList.add('playing');
+                        currentAudio = audio;
+                        currentPlayButton = playButton;
+                    } else {
+                        audio.pause();
+                        playButton.innerHTML = '<i class="fas fa-play"></i>';
+                        playButton.classList.remove('playing');
+                        currentAudio = null;
+                        currentPlayButton = null;
+                    }
+                    
+                    if (playButton.id === 'welcome-play-button') {
+                        swiper.slideNext();
+                    }
+                });
+
+                audio.addEventListener('ended', () => {
+                    playButton.innerHTML = '<i class="fas fa-play"></i>';
+                    playButton.classList.remove('playing');
+                    currentAudio = null;
+                    currentPlayButton = null;
+
+                    if (!swiper.isEnd) {
+                        swiper.slideNext();
+                    }
+                });
+            });
+
+            // --- SEQUENTIAL AUDIO PRELOADING ---
+            const introAudio = document.getElementById('audio-costume-intro');
+            if (introAudio) {
+                // When the intro audio starts playing, trigger the download for the rest.
+                // { once: true } ensures this only ever happens one time.
+                introAudio.addEventListener('play', () => {
+                    console.log('Intro track playing, preloading subsequent tracks...');
+                    for (let i = 1; i <= 25; i++) {
+                        const nextAudio = document.getElementById(`audio-costume-${i}`);
+                        if (nextAudio) {
+                            nextAudio.load();
+                        }
+                    }
+                }, { once: true });
+            }
+        });
+    </script>
+    
+</body>
+</html>
+
