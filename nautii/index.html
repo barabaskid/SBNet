@@ -3,299 +3,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Miami Musician - Vibrant Hip-Hop/Dance Artist</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- fullPage.js CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullpage.js@4.0.37/dist/fullpage.min.css">
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Custom CSS -->
+    <title>nautii | Official Website</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" xintegrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Lato:wght@300;400;700&family=Lobster&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
-        body {
-            font-family: 'Lato', sans-serif;
-            color: #fff;
+        html, body {margin: 0; padding: 0; overflow: hidden;}
+        main {height: 100vh; width: 100%; overflow-y: scroll; scroll-behavior: auto; position: relative;}
+        body{background:#fff;width:100%;font-family:'Lato',sans-serif;font-size:14px;line-height:26px;color:#333;}
+        .section .container {padding-right: 65px;}
+        h1,h2,h3,h4,h5,h6{font-family:'Lobster',cursive;color:#FF007F;}
+        .section{height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; padding: 60px 0; text-align:center; box-sizing: border-box;}
+        #home.section{padding:0; overflow: hidden; height: 87.5vh;}
+        .section-title h1{font-size:60px;margin-bottom:30px;}
+        .section-title h2{color:#666; font-family:'Lato', sans-serif;}
+        a{color:#FF007F;text-decoration:none;}
+        a:hover,a:active,a:focus{color:#E60073;outline:none;transition:all .5s;}
+        .btn-secondary{background:0 0;border:2px solid #FF007F;padding:10px 40px;font-family:'Lobster',cursive;color:#FF007F;font-size:25px;border-radius:0;margin-bottom:20px;}
+        .btn-secondary:hover{background:#FF007F;color:#fff;border:2px solid #FF007F;}
+        .form-control{background:0 0;border:0;box-shadow:none;border-bottom:2px solid #f5f5f5;border-radius:0;font-size:14px;}
+        
+        /* New Animated Desktop Navigation */
+        body::before{content:"";visibility:hidden;position:fixed;display:block;width:100%;height:100%;left:0;top:0;transition:all .5s cubic-bezier(.6,0,.5,1);opacity:0;background:rgba(0,0,0,.9);z-index:10;}
+        body.navHover::before{visibility:visible;opacity:1;}
+        .navigation-wrapper{position:fixed;width:65px;height:100%;right:0;top:0;font-family:'Abril Fatface',cursive;font-weight:400;text-transform:uppercase;font-size:14px;line-height:14px;background:#000;z-index:15;box-shadow:-5px 0 15px rgba(0,0,0,0.3);display:flex;}
+        .navigation-wrapper nav{width:100%; margin: auto;}
+        .navigation-wrapper nav ul{padding:0;list-style:none; margin: 0;}
+        .navigation-wrapper nav ul li{display:block;padding:0;}
+        .navigation-wrapper nav ul li a{position:relative;display:block;margin:0 auto;padding:15px 13px;color:#ccc;cursor:pointer;}
+        .navigation-wrapper nav ul li.active a,.navigation-wrapper nav ul li a:hover{color:#FF007F;}
+        .navigation-wrapper nav ul li a div{transform:rotate(360deg);transition:all .5s cubic-bezier(.6,0,.5,1);writing-mode:vertical-lr;margin:auto;}
+        .navigation-wrapper nav ul li a:hover div{transform:translateX(45px) rotate(360deg);opacity:0;}
+        .navigation-wrapper nav ul li a::after{content:attr(data-text);position:absolute;right:100%;top:50%;color:#ccc;transform:translateY(-50%) translateX(100%);transition:all .5s cubic-bezier(.6,0,.5,1);font-size:80px;line-height:60px;letter-spacing:-.01em;font-family:'Abril Fatface',cursive;pointer-events:none;opacity:0;white-space:nowrap;}
+        .navigation-wrapper nav ul li a:hover::after{transform:translateY(-50%) translateX(0);opacity:1;}
+        
+        /* Swiper Slider */
+        .swiper, .swiper-slide {width:100%;height:100%;}
+        .swiper-slide{text-align:center;color:white;position:relative;background-size:cover;background-position:center;}
+        .slide-content{display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;position:relative;z-index:2; padding-right: 65px;}
+        .slide-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;}
+        .slide-overlay.dark{background:rgba(0,0,0,0.6);}
+        .slide-overlay.light{background:rgba(255,255,255,0.2);}
+        #home .display-1{font-size:5rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);}
+        .social-icons-slider a{color:white;font-size:2.5rem;margin:0 15px;transition: transform 0.3s ease;}
+        .social-icons-slider a:hover{transform: scale(1.2); color: #FF007F;}
+        #slide3 #bg-video{position:absolute;top:50%;left:50%;min-width:100%;min-height:100%;width:auto;height:auto;z-index:0;transform:translateX(-50%) translateY(-50%);}
+
+        #music{background:linear-gradient(to right,rgba(0,0,0,.8),rgba(0,0,0,.8)),url(https://placehold.co/1920x1080/222/FFF?text=Stage+Background) no-repeat;background-size:cover;background-position:center;color:#fff;}
+        #contact{background:#1a1a1a;}
+        #contact .form-control{border-bottom:2px solid #333;color:#fff;}
+        #contact .form-control::placeholder{color:#888;}
+        #contact .form-control:focus{background:0 0;border-bottom-color:#FF007F;color:#fff;}
+        #site-footer {height: auto; background-color:#111; color:#666;}
+        #site-footer .social-links a{color:#fff;font-size:20px;margin:0 10px;}
+        #site-footer .social-links a:hover{color:#FF007F;}
+
+        .preloader{position:fixed;top:0;left:0;right:0;bottom:0;background-color:#000;z-index:9999999;display:flex;justify-content:center;align-items:center;}
+        .equalizer-container{display:flex;justify-content:center;align-items:flex-end;height:60px;}
+        .equalizer-bar{width:8px;height:100%;margin:0 4px;background-color:#FF007F;animation:equalize 1.2s infinite ease-in-out;}
+        .equalizer-bar:nth-child(2){animation-delay:-1.0s;}
+        .equalizer-bar:nth-child(3){animation-delay:-.8s;}
+        .equalizer-bar:nth-child(4){animation-delay:-.6s;}
+        .equalizer-bar:nth-child(5){animation-delay:-.4s;}
+        @keyframes equalize{0%,100%{transform:scaleY(.1)}50%{transform:scaleY(1)}}
+
+        /* Music Player Bar */
+        .music-player-bar {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 12.5vh; /* 1 of 8 vertical rows */
             background-color: #000;
-        }
-        h1, h2 {
-            font-family: 'Abril Fatface', cursive;
-        }
-        .section {
-            height: 100vh;
+            z-index: 14;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 0 85px 0 20px; /* Make room for sidebar on the right */
+            box-sizing: border-box;
         }
-        #menu {
-            position: fixed;
-            top: 50%;
-            right: 20px;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-        #menu ul {
-            list-style: none;
-            padding: 0;
-        }
-        #menu li {
-            margin: 10px 0;
-        }
-        #menu a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-        #menu a:hover {
-            color: #ff00ff; /* Neon pink for vibrant feel */
-        }
-        .swiper-slide {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-size: cover;
-            background-position: center;
-        }
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
+
+        .music-player-bar audio {
             width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-        .content {
-            position: relative;
-            z-index: 2;
-            max-width: 80%;
-        }
-        .bg-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 0;
-        }
-        /* Vibrant colors: neon gradients */
-        .neon-bg {
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-        }
-        /* Gallery grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .gallery-img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        /* Form styling */
-        form {
             max-width: 500px;
-            margin: 0 auto;
+            height: 40px;
+        }
+        
+        @media (max-width:991.98px){
+            body {padding-right:0;padding-top:56px;}
+            main {height: auto; overflow-y: auto;}
+            .section {height: auto; min-height: calc(100vh - 56px); } /* Adjust for mobile header */
+            #home.section { min-height: 0; height: calc(100vh - 56px); }
+            .section .container {padding-right: 0;}
+            .slide-content {padding-right: 0;}
+            #site-footer {min-height: auto;}
+            .music-player-bar { display: none; } /* Hide player on mobile for now */
         }
     </style>
 </head>
 <body>
-
-    <!-- Navigation Menu -->
-    <nav id="menu">
-        <ul>
-            <li data-menuanchor="home"><a href="#home">Home</a></li>
-            <li data-menuanchor="about"><a href="#about">About</a></li>
-            <li data-menuanchor="music"><a href="#music">Music</a></li>
-            <li data-menuanchor="gallery"><a href="#gallery">Gallery</a></li>
-            <li data-menuanchor="contact"><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-
-    <!-- Fullpage Sections -->
-    <div id="fullpage">
-
-        <!-- Home Section: Full-screen Swiper Slider -->
-        <div class="section" data-anchor="home">
-            <div class="swiper mySwiper">
-                <div class="swiper-wrapper">
-                    <!-- Slide 1: Welcome (Black opacity overlay) -->
-                    <div class="swiper-slide neon-bg">
-                        <div class="overlay bg-dark opacity-50"></div>
-                        <div class="content">
-                            <h1 class="display-1">Welcome to Mia Vibes</h1>
-                            <p class="lead">Your Miami-based hip-hop/dance sensation. Get ready to groove!</p>
-                        </div>
-                    </div>
-                    <!-- Slide 2: Follow on Social (White opacity overlay) -->
-                    <div class="swiper-slide neon-bg">
-                        <div class="overlay bg-white opacity-50"></div>
-                        <div class="content text-dark"> <!-- Text dark for white overlay -->
-                            <h2 class="display-4">Follow Me on Social Media</h2>
-                            <p>Join the party and stay updated!</p>
-                            <div class="social-icons">
-                                <a href="#" class="mx-2"><i class="fab fa-instagram fa-3x"></i></a>
-                                <a href="#" class="mx-2"><i class="fab fa-tiktok fa-3x"></i></a>
-                                <a href="#" class="mx-2"><i class="fab fa-spotify fa-3x"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 3: Listen to New Single (Black opacity, background video) -->
-                    <div class="swiper-slide">
-                        <video autoplay muted loop class="bg-video">
-                            <source src="new-single-video.mp4" type="video/mp4">
-                        </video>
-                        <div class="overlay bg-dark opacity-50"></div>
-                        <div class="content">
-                            <h2 class="display-4">Listen to My New Single</h2>
-                            <p>"Miami Heat" - Turn up the volume!</p>
-                            <button class="btn btn-lg btn-primary">Play Now</button> <!-- Could add audio player -->
-                        </div>
-                    </div>
-                    <!-- Slide 4: Next Events (White opacity overlay) -->
-                    <div class="swiper-slide neon-bg">
-                        <div class="overlay bg-white opacity-50"></div>
-                        <div class="content text-dark">
-                            <h2 class="display-4">Catch Me Next</h2>
-                            <p>Live at Club Miami - September 15, 2025</p>
-                            <button class="btn btn-lg btn-secondary">Get Tickets</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="preloader">
+        <div class="equalizer-container">
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
+            <div class="equalizer-bar"></div>
         </div>
-
-        <!-- About Section -->
-        <div class="section neon-bg" data-anchor="about">
-            <div class="container text-center">
-                <h2 class="display-4">About Mia Vibes</h2>
-                <p class="lead">Young, vibrant, and playfully seductive Miami musician blending hip-hop, dance, and club beats. Bringing the heat to the dance floor with infectious energy and sultry vibes.</p>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-            </div>
-        </div>
-
-        <!-- Music Section -->
-        <div class="section" data-anchor="music">
-            <div class="container text-center">
-                <h2 class="display-4">My Music</h2>
-                <div class="row justify-content-center">
-                    <div class="col-md-4">
-                        <div class="card bg-dark text-white">
-                            <div class="card-body">
-                                <h5 class="card-title">Miami Heat</h5>
-                                <p class="card-text">Lead Single - Hip-Hop/Dance</p>
-                                <a href="#" class="btn btn-primary">Listen</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-dark text-white">
-                            <div class="card-body">
-                                <h5 class="card-title">Night Vibes</h5>
-                                <p class="card-text">Club Anthem</p>
-                                <a href="#" class="btn btn-primary">Listen</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card bg-dark text-white">
-                            <div class="card-body">
-                                <h5 class="card-title">Seductive Beats</h5>
-                                <p class="card-text">Playful Track</p>
-                                <a href="#" class="btn btn-primary">Listen</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Gallery Section (Replaced with image grid) -->
-        <div class="section neon-bg" data-anchor="gallery">
-            <div class="container text-center">
-                <h2 class="display-4">Gallery</h2>
-                <div class="gallery-grid">
-                    <img src="photo1.jpg" alt="Photo 1" class="gallery-img">
-                    <img src="photo2.jpg" alt="Photo 2" class="gallery-img">
-                    <img src="photo3.jpg" alt="Photo 3" class="gallery-img">
-                    <img src="photo4.jpg" alt="Photo 4" class="gallery-img">
-                    <img src="photo5.jpg" alt="Photo 5" class="gallery-img">
-                    <img src="photo6.jpg" alt="Photo 6" class="gallery-img">
-                </div>
-            </div>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section" data-anchor="contact">
-            <div class="container text-center">
-                <h2 class="display-4">Get In Touch</h2>
-                <form>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Your Name">
-                    </div>
-                    <div class="mb-3">
-                        <input type="email" class="form-control" placeholder="Your Email">
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" rows="3" placeholder="Message"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-lg btn-primary">Send Message</button>
-                </form>
-                <div class="mt-4">
-                    <p><i class="fas fa-phone"></i> +1 305-123-4567</p>
-                    <p><i class="fas fa-envelope"></i> mia@vibes.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Miami, FL, USA</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Scripts -->
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <!-- fullPage.js -->
-    <script src="https://cdn.jsdelivr.net/npm/fullpage.js@4.0.37/dist/fullpage.min.js"></script>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <!-- Initialize -->
-    <script>
-        // Initialize fullPage.js
-        new fullpage('#fullpage', {
-            autoScrolling: true,
-            scrollHorizontally: true,
-            anchors: ['home', 'about', 'music', 'gallery', 'contact'],
-            menu: '#menu'
-        });
+    <header id="mobile-header" class="navbar navbar-dark bg-dark fixed-top d-lg-none">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#home" style="font-family: 'Lobster', cursive;">nautii</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#music">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
 
-        // Initialize Swiper
-        const swiper = new Swiper('.mySwiper', {
-            loop: true,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
+    <div class="navigation-wrapper d-none d-lg-block">
+        <nav>
+            <ul id="desktopNav">
+                <li><a data-text="Home" href="#home"><div>Home</div></a></li>
+                <li><a data-text="About" href="#about"><div>About</div></a></li>
+                <li><a data-text="Music" href="#music"><div>Music</div></a></li>
+                <li><a data-text="Gallery" href="#gallery"><div>Gallery</div></a></li>
+                <li><a data-text="Contact" href="#contact"><div>Contact</div></a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <main id="main-container">
+        <section class="section" id="home">
+            <div class="swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" id="slide1" style="background-image: url(https://placehold.co/1920x1080/111/FFF?text=Image+1)">
+                        <div class="slide-overlay dark"></div>
+                        <div class="slide-content">
+                            <h1 class="display-1 text-white">nautii</h1>
+                            <h2 class="text-white-50">Welcome to the Vibe</h2>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" id="slide2" style="background-image: url(https://placehold.co/1920x1080/EEE/333?text=Image+2)">
+                        <div class="slide-overlay light"></div>
+                        <div class="slide-content">
+                             <h1 class="display-3">Connect</h1>
+                             <p class="lead mb-4">Follow the journey on social media</p>
+                             <div class="social-icons-slider">
+                                <a href="#"><i class="fab fa-tiktok"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-spotify"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-soundcloud"></i></a>
+                             </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" id="slide3">
+                         <video playsinline autoplay muted loop id="bg-video">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-in-a-floral-dress-dances-in-a-field-of-flowers-4818-large.mp4" type="video/mp4">
+                        </video>
+                        <div class="slide-overlay dark"></div>
+                        <div class="slide-content">
+                            <h1 class="display-3">New Single</h1>
+                            <h2 class="text-white-50 mb-4">"Miami Nights"</h2>
+                            <a href="#music" class="btn btn-secondary">Listen Now</a>
+                        </div>
+                    </div>
+                    <div class="swiper-slide" id="slide4" style="background-image: url(https://placehold.co/1920x1080/DDD/333?text=Image+4)">
+                         <div class="slide-overlay light"></div>
+                        <div class="slide-content">
+                             <h1 class="display-3">Next Show</h1>
+                             <p class="lead">Catch the vibe live</p>
+                             <h3>Club Space, Miami, FL</h3>
+                             <p>October 19th</p>
+                             <a href="#contact" class="btn btn-secondary">Get Tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> <div class="music-player-bar">
+            <audio controls>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+
+        <section class="section" id="about">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="https://placehold.co/600x700/DDD/31343C?text=nautii" alt="Photo of nautii" class="img-fluid rounded shadow">
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="section-title">
+                            <h2>The Vibe</h2>
+                            <h1>About nautii</h1>
+                        </div>
+                        <p>Fusing the relentless energy of house and dance with the raw storytelling of hip-hop, nautii is the new sound of Miami's vibrant nightlife. Her music is a playful, sensual invitation to the dance floor.</p>
+                        <p>From late-night studio sessions to commanding the stage at the city's hottest clubs, nautii's journey is one of pure passion and dedication to the beat.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="music">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 section-title">
+                        <h2>Stream Now</h2>
+                        <h1>Music</h1>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="https://placehold.co/300x300/FF007F/FFF?text=Single+Art" alt="Single Cover Art 1" class="img-fluid rounded">
+                                <h3><a href="#">Miami Nights</a></h3>
+                                <p>Latest Single</p>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="https://placehold.co/300x300/E60073/FFF?text=Single+Art" alt="Single Cover Art 2" class="img-fluid rounded">
+                                <h3><a href="#">Ocean Drive</a></h3>
+                                <p>Debut Single</p>
+                            </div>
+                            <div class="col-md-4">
+                                <img src="https://placehold.co/300x300/FF007F/FFF?text=Remix" alt="Remix Cover Art" class="img-fluid rounded">
+                                <h3><a href="#">Vibe Check (Remix)</a></h3>
+                                <p>Club Mix</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section bg-light" id="gallery">
+            <div class="container text-center">
+                <div class="section-title mx-auto">
+                     <h2>Visuals</h2>
+                     <h1>Gallery</h1>
+                </div>
+                 <p class="lead">New photos coming soon!</p>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <div class="container">
+                <div class="main-content">
+                    <div class="row align-items-center w-100">
+                        <div class="col-lg-3 section-title">
+                            <h2>Connect</h2>
+                            <h1>Contact</h1>
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h3>Send a Message</h3>
+                                    <form class="contact-form">
+                                        <div class="mb-3"><input type="text" class="form-control" name="name" placeholder="Enter your name *" required></div>
+                                        <div class="mb-3"><input type="email" class="form-control" name="email" placeholder="Enter your email *" required></div>
+                                        <div class="mb-3"><textarea class="form-control" name="message" rows="4" placeholder="Leave a message *" required></textarea></div>
+                                        <button type="submit" class="btn btn-secondary">Send</button>
+                                    </form>
+                                </div>
+                                <div class="col-md-4">
+                                    <h3>Info</h3>
+                                    <div class="contact-info">
+                                        <p><strong>Booking:</strong><br>booking@nautii.com</p>
+                                        <p><strong>Press &amp; Features:</strong><br>press@nautii.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="site-footer">
+             <footer>
+                <div class="social-links mb-3">
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-spotify"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-soundcloud"></i></a>
+                </div>
+                <p class="mb-0">&copy; 2025 nautii. All Rights Reserved.</p>
+            </footer>
+        </section>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" xintegrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        !function($){"use strict";var preloader=$(".preloader");$(window).on("load",function(){preloader.fadeOut(1000)})}(jQuery);
+        $(document).ready(function(){
+            new Swiper('.swiper',{loop:!0,autoplay:{delay:5e3,disableOnInteraction:!1}});
+            
+            $('.navigation-wrapper').on('mouseenter',function(){$('body').addClass('navHover')}).on('mouseleave',function(){$('body').removeClass('navHover')});
+            
+            function scrollToTarget(targetY, duration = 700) {
+                const container = document.getElementById('main-container');
+                if (!container) return;
+                const startY = container.scrollTop;
+                const distanceY = targetY - startY;
+                let startTime = null;
+
+                const easeOutBack = (t) => {
+                    const c1 = 1.70158;
+                    const c3 = c1 + 1;
+                    return 1 + c3 * Math.pow(t - 1, 3) + c1 * Math.pow(t - 1, 2);
+                };
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const progress = Math.min(timeElapsed / duration, 1);
+                    const easedProgress = easeOutBack(progress);
+
+                    container.scrollTop = startY + distanceY * easedProgress;
+
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    } else {
+                        container.scrollTop = targetY;
+                    }
+                }
+                requestAnimationFrame(animation);
+            }
+
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                const targetId = $(this).attr('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    // Adjust scroll target to account for sticky player
+                    const playerHeight = document.querySelector('.music-player-bar')?.offsetHeight || 0;
+                    // For home, scroll to top. For others, account for player bar.
+                    const targetOffset = targetId === '#home' ? targetElement.offsetTop : targetElement.offsetTop - playerHeight;
+                    scrollToTarget(targetOffset);
+                }
+
+                $('body').removeClass('navHover');
+
+                if ($(window).width() < 992) {
+                    var navbarCollapse = bootstrap.Collapse.getInstance($('#navbarContent'));
+                    if (navbarCollapse) { navbarCollapse.hide(); }
+                }
+            });
+
+             const sections = document.querySelectorAll('.section');
+             const navLinks = document.querySelectorAll('#desktopNav a');
+             const observerOptions = { root: document.querySelector('#main-container'), threshold: 0.5 };
+             const observer = new IntersectionObserver((entries) => {
+                 entries.forEach(entry => {
+                     if (entry.isIntersecting) {
+                         const id = entry.target.getAttribute('id');
+                         navLinks.forEach(link => { link.parentElement.classList.remove('active'); });
+                         const activeNavLink = document.querySelector(`#desktopNav a[href="#${id}"]`);
+                         if (activeNavLink) { activeNavLink.parentElement.classList.add('active'); }
+                     }
+                 });
+             }, observerOptions);
+             sections.forEach(section => { observer.observe(section); });
         });
     </script>
-
 </body>
 </html>
