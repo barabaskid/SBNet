@@ -766,10 +766,10 @@ body.navHover::before {
 }
 .astrodivider i {
     position: absolute;
-    top: 4px;
-    bottom: 4px;
-    left: 4px;
-    right: 4px;
+	top: 0px;
+    bottom: 6px;
+	right: 4px;
+	left: 4px;
     border-radius: 100%;
     border: 1px dashed var(--primary-color);
     display: flex;
@@ -1117,7 +1117,7 @@ body.loaded main {
         transform: scale(1.05);
         text-shadow: 0 0 5px #f8f8f8, 0 0 15px #f8f8f8, 0 0 30px var(--primary-color), 0 0 60px var(--primary-color), 0 0 100px var(--primary-color);
     }
-}@media (max-width:767.98px){.gallery-item{width:calc(100% - 20px)}}.navbar-toggler{border:none!important;background:0 0!important;box-shadow:none!important}.navbar-toggler:focus{box-shadow:none!important}.nav-2{width:30px;height:21px;position:relative}.nav-2 i{display:block;width:100%;height:3px;border-radius:3px;background:var(--primary-color);position:absolute;transition:all .5s cubic-bezier(.23,1,.32,1)}.nav-2 i:first-child{top:0}.nav-2 i:nth-child(2){top:50%;transform:translateY(-50%)}.nav-2 i:nth-child(3){bottom:0}.navbar-toggler.active .nav-2 i:first-child{transform:translateY(9px) rotate(45deg)}.navbar-toggler.active .nav-2 i:nth-child(2){transform:scaleX(0)}.navbar-toggler.active .nav-2 i:nth-child(3){transform:translateY(-9px) rotate(-45deg)}.navigation-wrapper,header#mobile-header{border:none}.navigation-wrapper{background:0 0;transform:translateZ(0)}.navigation-wrapper::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;animation:dance-club-lights-vertical 10s ease infinite;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 2000px rgba(10,10,10,.9);z-index:1}.navigation-wrapper nav{position:relative;z-index:2;height:100%}header#mobile-header{overflow:hidden;z-index:9999}header#mobile-header::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(10,10,10,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:2}header#mobile-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;z-index:1;animation:dance-club-lights-horizontal 12s ease infinite}header#mobile-header .container-fluid{position:relative;z-index:3}@keyframes dance-club-lights-horizontal{0%{background-position:0 50%}50%{background-position:100% 50%}to{background-position:0 50%}}@keyframes dance-club-lights-vertical{0%{background-position:50% 0}50%{background-position:50% 100%}to{background-position:50% 0}}
+}@media (max-width:767.98px){.gallery-item{width:calc(100% - 20px)}}.navbar-toggler{border:none!important;background:0 0!important;box-shadow:none!important}.navbar-toggler:focus{box-shadow:none!important}.nav-2{width:30px;height:21px;position:relative}.nav-2 i{display:block;width:100%;height:3px;border-radius:3px;background:var(--primary-color);position:absolute;transition:all .5s cubic-bezier(.23,1,.32,1)}.nav-2 i:first-child{top:0}.nav-2 i:nth-child(2){top:50%;transform:translateY(-50%)}.nav-2 i:nth-child(3){bottom:0}.navbar-toggler.active .nav-2 i:first-child{transform:translateY(9px) rotate(45deg)}.navbar-toggler.active .nav-2 i:nth-child(2){transform:scaleX(0)}.navbar-toggler.active .nav-2 i:nth-child(3){transform:translateY(-9px) rotate(-45deg)}.navigation-wrapper,header#mobile-header{border:none}.navigation-wrapper{background:0 0;transform:translateZ(0)}.navigation-wrapper::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;animation:dance-club-lights-vertical 10s ease infinite;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 2000px rgba(10,10,10,.9);z-index:1}.navigation-wrapper nav{position:relative;z-index:2;height:100%}header#mobile-header{overflow:hidden;z-index:9999}header#mobile-header::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(10,10,10,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:2}header#mobile-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;z-index:1;animation:dance-club-lights-horizontal 12s ease infinite}header#mobile-header .container-fluid{position:relative;z-index:3}@keyframes dance-club-lights-horizontal{0%{background-position:0 50%}50%{background-position:100% 50%}to{background-position:0 50%}}@keyframes dance-club-lights-vertical{0%{background-position:50% 0}50%{background-position:50% 100%}to{background-position:50% 0}.astrodivider {display:none}
     </style>
 </head>
 <body>
@@ -1204,7 +1204,7 @@ body.loaded main {
         </section>
 
         <section class="section bg-alt cta-adjacent-top" id="music">
-            <div class="astrodivider"><div class="astrodividermask"></div><span><i>*</i></span></div>
+            <div class="astrodivider"><div class="astrodividermask"></div><span><i></i></span></div>
             <h2 class="section-background-title">Melodías</h2>
             <div class="container">
                  <div class="section-title text-center"><h1 class="reveal-effect"><span class="reveal-content">Feel the Pulse</span></h1></div>
@@ -1274,7 +1274,7 @@ body.loaded main {
         </section>
 
         <section class="section gallery-section cta-adjacent-bottom" id="gallery">
-            <div class="astrodivider alt fade-in-on-scroll"><div class="astrodividermask"></div><span><i>*</i></span></div>
+            <div class="astrodivider alt fade-in-on-scroll"><div class="astrodividermask"></div><span><i></i></span></div>
             <h2 class="section-background-title">Visuales</h2>
             <div class="container text-center">
                 <div class="section-title mx-auto"><h1 class="reveal-effect"><span class="reveal-content">Gallery</span></h1></div>
@@ -1290,7 +1290,7 @@ body.loaded main {
         </section>
 
         <section class="section bg-alt" id="contact">
-            <div class="astrodivider"><div class="astrodividermask"></div><span><i>*</i></span></div>
+            <div class="astrodivider"><div class="astrodividermask"></div><span><i></i></span></div>
             <h2 class="section-background-title">Conectar</h2>
             <div class="container">
                  <div class="section-title text-center"><h1 class="reveal-effect"><span class="reveal-content">Get in Touch...</span></h1></div>
