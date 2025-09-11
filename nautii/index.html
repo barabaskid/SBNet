@@ -1343,6 +1343,19 @@ body.loaded main {
             $('body').addClass('loaded'); 
             preloader.addClass('fade-out'); 
 
+            // --- START: AUTOPLAY LOGIC ---
+            // Preloader fade-out is 1.2s, plus a 1.5s delay totals 2.7s
+            setTimeout(function() {
+                // Attempts to play the correct player for the current device.
+                if (playerDesktop) {
+                    playerDesktop.play().catch(error => console.warn("Desktop audio autoplay blocked by browser.", error));
+                }
+                if (audioMobile) {
+                    audioMobile.play().catch(error => console.warn("Mobile audio autoplay blocked by browser.", error));
+                }
+            }, 2700); // 1200ms for fade + 1500ms delay = 2700ms
+            // --- END: AUTOPLAY LOGIC ---
+
             var $grid = $('.gallery-grid').imagesLoaded( function() {
               $grid.masonry({
                 itemSelector: '.gallery-item',
