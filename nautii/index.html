@@ -11,1114 +11,12 @@
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comforter&family=Poiret+One&family=Protest+Guerrilla&family=Protest+Strike&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Poiret+One&family=Protest+Guerrilla&family=Protest+Strike&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
-    
-    <style>
-/* --- Root Variables & General Styles --- */
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-:root {
-    --primary-color: #bf00ff;
-    --primary-hover: #a100d9;
-    --neon-blue: #00f0ff;
-    --text-primary: #1e1e1e;
-    --text-secondary: #666;
-    --background-primary: #ebe8e9;
-    --background-secondary: #e8ebea;
-    --background-cta: #fff;
-    --background-dark: #1a1a1a;
-    --background-footer: #111;
-    --nav-text: #ccc;
-    --form-border: #f5f5f5;
-    --form-border-dark: #333;
-    --transition-speed: 0.3s;
-    --font-main-title: "Protest Strike", sans-serif;
-    --font-headings: "Poiret One", sans-serif;
-    --font-body: "Poiret One", sans-serif;
-}
-html,
-body {
-    margin: 0;
-    padding: 0;
-    transition: background-color var(--transition-speed), color var(--transition-speed);
-    overflow-x: hidden;
-}
-body {
-    background: var(--background-primary);
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 26px;
-    color: var(--text-primary);
-}
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-}
-a:active,
-a:focus,
-a:hover {
-    color: var(--primary-hover);
-    outline: 0;
-    transition: all 0.5s;
-}
-
-/* --- Typography --- */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: var(--font-headings);
-    color: var(--primary-color);
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1), 2px 2px 0 rgba(0, 0, 0, 0.05);
-}
-.col-lg-6 p,
-.col-lg-8 p,
-.gallery-section .section-title p,
-.cta-container p {
-    font-size: 1.25rem;
-    line-height: 1.5;
-    font-weight: 400;
-}
-.section-title {
-    margin-bottom: 30px;
-}
-.section-title h1 {
-    font-family: var(--font-main-title);
-    font-size: 75px;
-    margin-bottom: 0;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1), 2px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-@keyframes lights{0%{color:#b7bee0;text-shadow:   0 0 1em hsla(320,100%,50%,.2),   0 0 .125em hsla(320,100%,60%,.3),   -1em -.125em .5em hsla(40,100%,60%,0),   1em .125em .5em hsla(200,100%,60%,0)}30%{color:#d1d7f9;text-shadow:   0 0 1em hsla(320,100%,50%,.5),   0 0 .125em hsla(320,100%,60%,.5),   -.5em -.125em .25em hsla(40,100%,60%,.2),   .5em .125em .25em hsla(200,100%,60%,.4)}40%{color:#e5e9ff;text-shadow:   0 0 1em hsla(320,100%,50%,.5),   0 0 .125em hsla(320,100%,90%,.5),   -.25em -.125em .125em hsla(40,100%,60%,.2),   .25em .125em .125em hsla(200,100%,60%,.4)}70%{color:#d1d7f9;text-shadow:   0 0 1em hsla(320,100%,50%,.5),   0 0 .125em hsla(320,100%,60%,.5),   .5em -.125em .25em hsla(40,100%,60%,.2),   -.5em .125em .25em hsla(200,100%,60%,.4)}100%{color:#b7bee0;text-shadow:   0 0 1em hsla(320,100%,50%,.2),   0 0 .125em hsla(320,100%,60%,.3),   1em -.125em .5em hsla(40,100%,60%,0),   -1em .125em .5em hsla(200,100%,60%,0)}}
-.section-title h2 {
-    font-family: var(--font-headings);
-    color: var(--text-secondary);
-}
-.section-background-title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 18vw;
-    line-height: 0.8;
-    font-family: "Protest Guerrilla", sans-serif;
-    text-transform: uppercase;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    z-index: 0;
-    width: 100%;
-    color: #dcdcdc;
-    text-shadow: none;
-    letter-spacing: 0.1em;
-    padding: 0 40px;
-    filter: blur(4px);
-    white-space: nowrap;
-}
-
-/* --- Layout & Sections --- */
-main {
-    height: 100vh;
-    width: calc(100% - 60px);
-    overflow-y: scroll;
-    scroll-behavior: auto;
-    position: relative;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    margin-left: 0;
-}
-main::-webkit-scrollbar {
-    display: none;
-}
-.section {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 60px 0;
-    text-align: center;
-    box-sizing: border-box;
-    transition: background-color var(--transition-speed);
-    position: relative;
-}
-.section .container {
-    position: relative;
-    z-index: 1;
-}
-
-/* --- Navigation --- */
-body::before {
-    content: "";
-    visibility: hidden;
-    position: fixed;
-    display: block;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    transition: all 0.5s cubic-bezier(0.6, 0, 0.5, 1);
-    opacity: 0;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 9998;
-}
-body.navHover::before {
-    visibility: visible;
-    opacity: 1;
-}
-.navigation-wrapper {
-    position: fixed;
-    width: 60px;
-    height: 100%;
-    right: 0;
-    top: 0;
-    font-family: var(--font-headings);
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: 22px;
-    line-height: 22px;
-    z-index: 9999;
-}
-.navigation-wrapper nav {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-.navigation-wrapper nav ul {
-    padding: 0;
-    list-style: none;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-}
-.navigation-wrapper nav ul li {
-    display: block;
-    padding: 0;
-    padding-left: 200px;
-    margin-left: -200px;
-}
-.navigation-wrapper nav ul li a {
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    padding: 15px 13px;
-    color: var(--nav-text);
-    cursor: pointer;
-}
-.navigation-wrapper nav ul li.active > a,
-.navigation-wrapper nav ul li:hover > a {
-    color: var(--primary-color);
-}
-.navigation-wrapper nav ul li a div {
-    transform: rotate(360deg);
-    transition: all 0.5s cubic-bezier(0.6, 0, 0.5, 1);
-    writing-mode: vertical-lr;
-    margin: auto;
-}
-.navigation-wrapper nav ul li:hover > a div {
-    transform: translateX(45px) rotate(360deg);
-    opacity: 0;
-}
-.navigation-wrapper nav ul li a::after {
-    content: attr(data-text);
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    color: var(--nav-text);
-    transform: translateY(-50%) translateX(100%);
-    transition: all 0.5s cubic-bezier(0.6, 0, 0.5, 1);
-    font-size: 80px;
-    line-height: 60px;
-    letter-spacing: -0.01em;
-    font-family: var(--font-headings);
-    opacity: 0;
-    white-space: nowrap;
-    z-index: 10000;
-}
-.navigation-wrapper nav ul li:hover > a::after {
-    transform: translateY(-50%) translateX(0);
-    opacity: 1;
-    font-size: 160px;
-    font-weight: 700;
-    color: #f8f8f8;
-    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px var(--primary-color), 0 0 40px var(--primary-color), 0 0 80px var(--primary-color);
-}
-
-/* --- Home Section --- */
-#home.section {
-    padding: 0;
-    height: calc(100vh - 60px);
-    min-height: 0;
-    justify-content: flex-start;
-    z-index: 10;
-    overflow: hidden;
-}
-#home-bg-video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 0;
-    object-fit: cover;
-}
-.slide-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    padding: 0 15px;
-    width: 100%;
-    flex-grow: 1;
-}
-#home .slide-content h2 {
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-	padding: 0px 10%;
-}
-.slide-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-}
-.slide-overlay.dark {
-    background: rgba(0, 0, 0, 0.6);
-}
-.slide-overlay.light {
-    background: rgba(255, 255, 255, 0.2);
-}
-#home .display-1 {
-    font-family: "Comforter", cursive;
-    font-size: 7rem;
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.4), 2px 2px 0 rgba(0, 0, 0, 0.3), 4px 4px 8px rgba(0, 0, 0, 0.7);
-		animation: lights 5s 750ms linear infinite;
-}
-
-/* --- About Section --- */
-#about {
-    background-color: var(--background-primary);
-}
-#about-image-container {
-    height: 467px;
-    max-width: 400px;
-    margin: auto;
-    padding: 0;
-    border-radius: 8px;
-    transform-style: preserve-3d;
-    transform: perspective(1000px);
-    position: relative;
-}
-#about-image-container .reveal-content {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transform: translateZ(30px);
-}
-.signature-container {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 200px;
-    text-align: center;
-}
-.signature {
-    font-family: "Comforter", cursive;
-    font-size: 3.5rem;
-    color: var(--primary-color);
-    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1), 2px 2px 0 rgba(0, 0, 0, 0.05);
-}
-.border-line {
-    position: absolute;
-    z-index: 2;
-    opacity: 0.8;
-    pointer-events: none;
-}
-.line-top,
-.line-bottom {
-    background: var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue);
-    width: 100%;
-    height: 3px;
-}
-.line-left,
-.line-right {
-    background: var(--primary-color);
-    box-shadow: 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
-    width: 3px;
-    height: 100%;
-}
-.line-top {
-    top: 0;
-    left: 0;
-    animation: anim-streak-right 1.5s linear infinite alternate;
-}
-.line-bottom {
-    bottom: 0;
-    right: 0;
-    animation: anim-streak-left 1.5s linear infinite alternate;
-}
-.line-right {
-    top: 0;
-    right: 0;
-    animation: anim-streak-down 1.5s linear infinite alternate;
-    animation-delay: 0.75s;
-}
-.line-left {
-    bottom: 0;
-    left: 0;
-    animation: anim-streak-up 1.5s linear infinite alternate;
-    animation-delay: 0.75s;
-}
-
-/* --- Music Section --- */
-#music {
-    background-color: var(--background-secondary);
-    color: var(--text-primary);
-}
-#music h1,
-#music h3,
-#music h3 a,
-#music p {
-    color: var(--text-primary);
-}
-#music h3 a:hover {
-    color: var(--primary-hover);
-}
-#music .section-title h1 {
-    color: var(--primary-color);
-}
-
-/* --- Gallery Section --- */
-.gallery-section {
-    background-color: var(--background-primary);
-    height: auto;
-    min-height: 100vh;
-    padding-left: 150px;
-    padding-right: 150px;
-}
-.gallery-grid {
-    margin: 0 auto;
-}
-.gallery-item {
-    position: relative;
-    width: calc(33.333% - 20px);
-    margin: 10px;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-.gallery-item:hover {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    z-index: 10;
-}
-.gallery-item a {
-    display: block;
-    position: relative;
-    overflow: hidden;
-}
-.gallery-item img {
-    display: block;
-    width: 100%;
-    transition: transform 0.35s ease-out;
-}
-.gallery-item a:hover img {
-    transform: scale(1.1);
-}
-.gallery-item .gallery-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    padding: 20px;
-    background-color: var(--primary-color);
-    opacity: 0;
-    transition: opacity 0.35s ease-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    pointer-events: none;
-}
-.gallery-item a:hover .gallery-overlay {
-    opacity: 0.7;
-}
-.gallery-item .gallery-overlay .gallery-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-}
-.gallery-item .gallery-overlay h5 {
-    margin: 0;
-    font-family: var(--font-headings);
-    color: #fff;
-    font-size: 1.75rem;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transition-delay: 0.1s;
-}
-.gallery-item a:hover .gallery-overlay h5 {
-    opacity: 1;
-    transform: translateY(0);
-}
-.gallery-item .gallery-overlay i {
-    font-size: 1.5rem;
-    color: #fff;
-    margin-top: 10px;
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transition-delay: 0.15s;
-}
-.gallery-item a:hover .gallery-overlay i {
-    opacity: 1;
-    transform: scale(1);
-}
-.gallery-item .gallery-overlay .gallery-border {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    width: 80%;
-    height: 80%;
-    border: 1px solid var(--neon-blue);
-    box-shadow: 0 0 10px var(--neon-blue), inset 0 0 10px var(--neon-blue);
-    opacity: 0;
-    transform: scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transition-delay: 0.2s;
-}
-.gallery-item a:hover .gallery-overlay .gallery-border {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* --- Contact & Footer --- */
-#contact {
-    background-color: var(--background-secondary);
-}
-#contact .form-control {
-    border-bottom: 2px solid var(--form-border-dark);
-    color: var(--text-primary);
-}
-#contact .form-control::-moz-placeholder {
-    color: var(--text-secondary);
-}
-#contact .form-control::placeholder {
-    color: var(--text-secondary);
-}
-#contact .form-control:focus {
-    background: 0 0;
-    border-bottom-color: var(--neon-blue);
-    color: var(--text-primary);
-}
-#site-footer {
-    height: auto;
-    background-color: var(--background-footer);
-    color: var(--text-secondary);
-}
-#site-footer.section {
-    min-height: auto;
-    padding: 80px 0;
-}
-.footer-extras {
-    padding: 20px 0;
-}
-.footer-extras a {
-    color: var(--nav-text);
-    text-decoration: underline;
-}
-.footer-extras a:hover {
-    color: #fff;
-}
-
-/* --- Components (Buttons, Forms, Dividers, Socials, CTAs) --- */
-.btn-secondary {
-    background: 0 0;
-    border: 2px solid var(--primary-color);
-    padding: 10px 40px;
-    font-family: var(--font-headings);
-    color: var(--primary-color);
-    font-size: 25px;
-    border-radius: 0;
-    margin-bottom: 20px;
-    transition: all 0.3s ease;
-}
-.btn-secondary:hover {
-    background: var(--primary-color);
-    color: #fff;
-    border: 2px solid var(--primary-color);
-    box-shadow: 0 0 15px var(--neon-blue);
-}
-.form-control {
-    background: 0 0;
-    border: 0;
-    box-shadow: none;
-    border-bottom: 2px solid var(--form-border);
-    border-radius: 0;
-    font-size: 14px;
-    color: var(--text-primary);
-}
-.mailing-list-form {
-    display: flex;
-    justify-content: center;
-    margin-top: 15px;
-    max-width: 400px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.mailing-list-form .form-control {
-    background: 0 0;
-    border: 1px solid #444;
-    color: #fff;
-    border-radius: 0;
-}
-.mailing-list-form .btn {
-    background: var(--primary-color);
-    color: #fff;
-    border-radius: 0;
-    border: 1px solid var(--primary-color);
-}
-.social-links a {
-    color: #fff;
-    transition: all 0.3s ease;
-    margin: 0 10px;
-}
-.social-links a:hover i {
-    animation: fa-beat 1s ease-in-out infinite;
-    text-shadow: 0 0 15px var(--neon-blue);
-}
-.social-links a:hover .fa-instagram {
-    color: #c32aa3;
-}
-.social-links a:hover .fa-soundcloud {
-    color: #ff5500;
-}
-.social-links a:hover .fa-spotify {
-    color: #1ed760;
-}
-.social-links a:hover .fa-tiktok {
-    color: #69c9d0;
-}
-.social-links a:hover .fa-youtube {
-    color: red;
-}
-.social-icon-list {
-    display: flex;
-    position: relative;
-    gap: 25px;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-    list-style: none;
-    margin: 0;
-}
-.social-icon-list li {
-    position: relative;
-    list-style: none;
-    width: 80px;
-    height: 80px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 80px;
-    cursor: pointer;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-.social-icon-list li:hover {
-    width: 200px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    border-color: transparent;
-}
-.social-icon-list li a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    border-radius: 80px;
-}
-.social-icon-list li::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 80px;
-    background: linear-gradient(45deg, var(--i), var(--j));
-    opacity: 0;
-    transition: 0.5s;
-}
-.social-icon-list li:hover::before {
-    opacity: 1;
-}
-.social-icon-list li::after {
-    content: attr(data-text);
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-family: "Outfit", sans-serif;
-    font-size: 1.1em;
-    font-weight: 500;
-    opacity: 0;
-    transition: 0.5s;
-    transform: scale(0);
-    pointer-events: none;
-}
-.social-icon-list li:hover::after {
-    opacity: 1;
-    transform: scale(1);
-    transition-delay: 0.2s;
-}
-.social-icon-list li .icon {
-    position: relative;
-    font-size: 2em;
-    color: var(--primary-color);
-    transition: 0.5s;
-    transition-delay: 0.2s;
-}
-.social-icon-list .fa-instagram {
-    color: #e4405f;
-}
-.social-icon-list .fa-soundcloud {
-    color: #ff5500;
-}
-.social-icon-list .fa-spotify {
-    color: #1db954;
-}
-.social-icon-list .fa-tiktok {
-    color: #00f2ea;
-}
-.social-icon-list .fa-x-twitter {
-    color: #000;
-}
-.social-icon-list .fa-youtube {
-    color: red;
-}
-.social-icon-list li:hover .icon {
-    transform: scale(0);
-    color: #fff;
-    transition-delay: 0s;
-}
-.astrodivider {
-    position: absolute;
-    top: 9px;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 400px;
-    max-width: 90%;
-    z-index: 15;
-    padding: 0;
-    margin: 0;
-}
-.astrodividermask {
-    overflow: hidden;
-    height: 20px;
-}
-.astrodividermask:after {
-    content: "";
-    display: block;
-    margin: -25px auto 0;
-    width: 100%;
-    height: 25px;
-    border-radius: 125px/12px;
-    box-shadow: 0 0 8px var(--primary-color);
-}
-.astrodivider span {
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    bottom: 100%;
-    margin-bottom: -25px;
-    left: 50%;
-    margin-left: -25px;
-    border-radius: 100%;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(to bottom, var(--background-primary) 50%, var(--background-secondary) 50%);
-}
-.astrodivider.alt span {
-    background: linear-gradient(to bottom, var(--background-secondary) 50%, var(--background-primary) 50%);
-}
-.astrodivider i {
-    position: absolute;
-	top: 0px;
-    bottom: 6px;
-	right: 4px;
-	left: 4px;
-    border-radius: 100%;
-    border: 1px dashed var(--primary-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    font-style: normal;
-    font-family: "Comforter", cursive;
-    font-size: 38px;
-    color: var(--neon-blue);
-    transform: translateY(3px); /* Center the star */
-}
-.cta-section {
-    padding: 0;
-    position: relative;
-    z-index: 10;
-}
-#cta {
-    margin-top: -155px;
-    margin-bottom: -135px;
-}
-.cta-adjacent-top {
-    padding-bottom: 175px !important;
-}
-.cta-adjacent-bottom {
-    padding-top: 175px !important;
-}
-
-#social-cta {
-    margin-top: -135px;
-    margin-bottom: -135px;
-    z-index: 20; 
-}
-.cta-container {
-    background-color: var(--background-cta, #fff);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    position: relative;
-    z-index: 2;
-}
-.fixed-ui{position:fixed;z-index:1000;display:flex;align-items:center;justify-content:center;border-radius:50%;cursor:pointer;transition:transform .3s,opacity .3s,background-color .3s}#scroll-to-top{bottom:20px;left:12px;opacity:0;visibility:hidden;width:auto;height:auto;background-color:transparent;color:var(--primary-color);font-size:2rem;box-shadow:none;z-index:10000}#scroll-to-top:hover{transform:translateY(-5px)}#scroll-to-top.visible{opacity:1;visibility:visible}
-.toast {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 99999;
-    background-color: #222;
-    color: #fff;
-    border: 1px solid var(--primary-color);
-    box-shadow: 0 0 15px var(--primary-color);
-}
-.toast-header {
-    background-color: #333;
-    color: #fff;
-    border-bottom: 1px solid #444;
-}
-.toast-header .btn-close {
-    background: none;
-    color: #fff;
-    font-size: 1.2rem;
-    opacity: 0.7;
-    text-shadow: none;
-}
-.toast-header .btn-close:hover {
-    opacity: 1;
-}
-.toast-body {
-    font-family: var(--font-body);
-}
-.toast-body strong {
-    color: var(--primary-color);
-}
-.toast-body i {
-    color: var(--neon-blue);
-    margin-right: 10px;
-}
-.music-player-bar {
-    position: sticky;
-    top: 0;
-    width: 100%;
-    height: 60px;
-    z-index: 25;
-    display: flex;
-    align-items: center;
-    background-color: #000;
-    padding: 0 30px;
-    flex-shrink: 0;
-}
-.player-center {
-    flex-grow: 1;
-    display: flex;
-    justify-content: center;
-}
-:root {
-    --plyr-color-main: var(--primary-color);
-    --plyr-control-radius: 10px;
-    --plyr-audio-controls-background: transparent;
-    --plyr-audio-control-color: var(--nav-text);
-    --plyr-audio-control-color-hover: var(--primary-color);
-}
-.plyr--audio .plyr__controls button.plyr__control:hover {
-    background: 0 0 !important;
-}
-.plyr--audio .plyr__controls {
-    padding: 10px;
-    border: none;
-}
-.plyr__control[data-plyr="settings"] {
-    display: none;
-}
-
-/* --- Animations & Effects --- */
-@keyframes anim-streak-right {
-    0% {
-        transform: translateX(-10%);
-    }
-    100% {
-        transform: translateX(10%);
-    }
-}
-@keyframes anim-streak-down {
-    0% {
-        transform: translateY(-10%);
-    }
-    100% {
-        transform: translateY(10%);
-    }
-}
-@keyframes anim-streak-left {
-    0% {
-        transform: translateX(10%);
-    }
-    100% {
-        transform: translateX(-10%);
-    }
-}
-@keyframes anim-streak-up {
-    0% {
-        transform: translateY(10%);
-    }
-    100% {
-        transform: translateY(-10%);
-    }
-}
-@keyframes fa-beat {
-    0%,
-    to {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.15);
-    }
-}
-@keyframes erratic-spacing {
-    0%,
-    to {
-        letter-spacing: -1px;
-    }
-    50% {
-        letter-spacing: 2px;
-    }
-}
-.reveal-effect {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-}
-.reveal-effect .reveal-content {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(0);
-    transition: opacity 0.75s ease-in-out;
-}
-.reveal-effect::before {
-    content: "";
-    position: absolute;
-    top: 33.33%;
-    left: 0;
-    width: 100%;
-    height: 33.33%;
-    background-color: var(--neon-blue);
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.2'/%3E%3C/svg%3E");
-    z-index: 1;
-    transform: translateX(-101%);
-    transition: transform 0.75s cubic-bezier(0.77, 0, 0.175, 1);
-    filter: blur(8px);
-    opacity: 0.9;
-}
-.reveal-effect.is-visible::before {
-    transform: translateX(110%);
-}
-.reveal-effect.is-visible .reveal-content {
-    opacity: 1;
-    transform: translateY(0);
-    padding: 5px;
-}
-.reveal-effect.reveal-from-right::before {
-    transform: translateX(110%);
-}
-.reveal-effect.reveal-from-right.is-visible::before {
-    transform: translateX(-110%);
-}
-.fade-in-on-scroll {
-    opacity: 0;
-    transform: scale(0.95);
-    filter: blur(5px);
-    transition: opacity 1s ease-out, transform 1s ease-out, filter 1s ease-out;
-}
-.fade-in-on-scroll.is-visible {
-    opacity: 1;
-    transform: scale(1);
-    filter: blur(0);
-}
-
-/* --- Preloader & Loaders --- */
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #000;
-    z-index: 9999999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
-}
-.preloader.fade-out {
-    opacity: 0;
-    visibility: hidden;
-}
-.equalizer-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    height: 60px;
-}
-.equalizer-bar {
-    width: 8px;
-    height: 100%;
-    margin: 0 4px;
-    background-color: var(--primary-color);
-    animation: equalize 1.2s infinite ease-in-out;
-    border-radius: 2px;
-    box-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color), 0 0 15px var(--primary-color);
-}
-.equalizer-bar:nth-child(2) {
-    animation-delay: -1s;
-}
-.equalizer-bar:nth-child(3) {
-    animation-delay: -0.8s;
-}
-.equalizer-bar:nth-child(4) {
-    animation-delay: -0.6s;
-}
-.equalizer-bar:nth-child(5) {
-    animation-delay: -0.4s;
-}
-.equalizer-bar:nth-child(even) {
-    background-color: var(--neon-blue);
-    box-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue);
-}
-@keyframes equalize {
-    0%,
-    to {
-        transform: scaleY(0.1);
-    }
-    50% {
-        transform: scaleY(1);
-    }
-}
-.navigation-wrapper,
-main {
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
-}
-body.loaded .music-player-bar,
-body.loaded .navigation-wrapper,
-body.loaded main {
-    opacity: 1;
-}
-
-/* --- Misc & Complex Animations --- */
-@keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}to{background-position:0 50%}}
-#cta .card,#cta .container{display:flex;align-items:center}#cta .card{width:1280px;height:720px;margin:0;justify-content:center}#cta .container-full,#cta .content{width:1000px;height:562px;box-shadow:0 15px 40px -10px rgba(191,0,255,.5)}#cta .backgroundImage{position:absolute;width:1000px}#cta .boyImage{position:absolute;width:1000px;z-index:2;animation:200s linear infinite blur}#cta .content{border-radius:40px;animation:200s linear infinite brightness}#cta .container{justify-content:center}#cta .container-full,#cta .face{display:flex;align-items:center;overflow:hidden}#cta .container-full{margin:0;justify-content:center;transform:scale(1);animation:200s linear infinite zoom-in}#cta .cube,#cta .face{width:870px;height:190px}#cta .cube{position:relative;transform-style:preserve-3d;perspective:480px;perspective-origin:51% 70%}#cta .face,#cta .hue{position:absolute}#cta .face{background:0 0;border:0 solid #000;opacity:.5}#cta .bottom,#cta .top{width:870px;height:870px}#cta p{white-space:nowrap;overflow:hidden;font-family:"Bebas Neue",sans-serif;font-weight:400;font-size:calc(6em + 19px*.7);padding-top:20px;color:#fff}#cta span{color:red}#cta .front{transform:translateZ(435px);display:none}#cta .back{transform:translateZ(-435px) rotateY(180deg) scaleX(-1)}#cta .left{transform:translateX(-435px) rotateY(-90deg) scaleX(-1)}#cta .right{transform:translateX(435px) rotateY(90deg) scaleX(-1)}#cta .top{transform:translateY(-435px) rotateX(90deg) scaleY(-1)}#cta .bottom{transform:translateY(-245px) rotateX(-90deg) scaleY(-1)}#cta .left p{margin-left:480px;animation:200s linear infinite left}#cta .back p{margin-left:-390px;animation:200s linear infinite back}#cta .right p{margin-left:-1260px;animation:200s linear infinite right}@keyframes left{to{margin-left:-54000px}}@keyframes back{to{margin-left:-54870px}}@keyframes right{to{margin-left:-55740px}}#cta .hue{top:0;left:0;z-index:3;width:100%;height:100%;mix-blend-mode:overlay;background:#1e5799;background:radial-gradient(ellipse at center,#1e5799 0,#7db9e8 100%);opacity:1}#cta .hue.animated{animation:8s infinite filter-animation}@keyframes filter-animation{0%,to{filter:hue-rotate(0deg)}50%{filter:hue-rotate(100deg)}}#cta .container-reflect{position:absolute;display:flex;align-items:center;justify-content:center;margin-top:380px;filter:blur(10px)}#cta .container-reflect .cube{perspective-origin:51% -30%}#cta .container-reflect .back{transform:translateZ(-435px) rotateY(180deg) scaleX(-1) scaleY(-1)}#cta .container-reflect .left{transform:translateX(-435px) rotateY(-90deg) scaleX(-1) scaleY(-1)}#cta .container-reflect .right{transform:translateX(435px) rotateY(90deg) scaleX(-1) scaleY(-1)}#cta .container-reflect p{transform:scaleY(.7)}@keyframes zoom-in{0%{transform:scale(1)}to{transform:scale(2.5)}}@keyframes blur{0%{filter:blur(0)}to{filter:blur(3px)}}@keyframes brightness{0%{filter:brightness(1) contrast(1)}to{filter:brightness(.8) contrast(1.3)}}
-
-/* --- Media Queries --- */
-@media (max-width:991.98px){html,body{overflow-y:auto;overflow-x:hidden;scroll-behavior:smooth}main{width:100%;height:auto;margin-left:0}.section{height:auto;min-height:calc(100vh - 42px)}#home.section{min-height:0;height:auto;padding-top:42px;justify-content:space-between}#site-footer{min-height:auto}
-    .gallery-section { padding-left: 20px; padding-right: 20px; }
-    .gallery-item{width:calc(50% - 20px)}.section-background-title{font-size:25vw}#about-image-container{height:auto;max-height:400px;width:100%;max-width:400px}#scroll-to-top{right:5px;bottom:15px;width:auto;height:auto;font-size:2rem}.cta-section{margin:0;padding:50px 0}#cta,#social-cta{display:none}.cta-adjacent-top{padding-bottom:120px!important}.cta-adjacent-bottom{padding-top:120px!important}
-    .mobile-player-controls {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-    }
-    .player-btn {
-        background: transparent;
-        border: none;
-        padding: 0;
-        color: #fff;
-        font-size: 1.2rem;
-        line-height: 1;
-    }
-    header#mobile-header .container-fluid {
-        align-items: center;
-    }
-    header#mobile-header .navbar-brand {
-        font-family: 'Comforter', cursive;
-        font-weight: 400;
-        line-height: 1;
-        font-size: 2.5rem;
-        color: var(--primary-color);
-    }
-    #navbarContent.collapse.show,
-    #navbarContent.collapsing {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-    }
-    #navbarContent .navbar-nav {
-        width: 100%;
-    }
-    #navbarContent .navbar-nav .nav-item .nav-link {
-        font-family: var(--font-headings);
-        font-size: 50px; 
-        font-weight: 700;
-        color: #f8f8f8;
-        text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px var(--primary-color), 0 0 40px var(--primary-color);
-        padding: 8px 0;
-        margin: 5px 0;
-        text-transform: uppercase;
-        line-height: 1.2;
-        transition: all 0.3s ease;
-    }
-    #navbarContent .navbar-nav .nav-item .nav-link:hover,
-    #navbarContent .navbar-nav .nav-item .nav-link:focus {
-        color: #fff;
-        transform: scale(1.05);
-        text-shadow: 0 0 5px #f8f8f8, 0 0 15px #f8f8f8, 0 0 30px var(--primary-color), 0 0 60px var(--primary-color), 0 0 100px var(--primary-color);
-    }
-}@media (max-width:767.98px){.gallery-item{width:calc(100% - 20px)}}.navbar-toggler{border:none!important;background:0 0!important;box-shadow:none!important}.navbar-toggler:focus{box-shadow:none!important}.nav-2{width:30px;height:21px;position:relative}.nav-2 i{display:block;width:100%;height:3px;border-radius:3px;background:var(--primary-color);position:absolute;transition:all .5s cubic-bezier(.23,1,.32,1)}.nav-2 i:first-child{top:0}.nav-2 i:nth-child(2){top:50%;transform:translateY(-50%)}.nav-2 i:nth-child(3){bottom:0}.navbar-toggler.active .nav-2 i:first-child{transform:translateY(9px) rotate(45deg)}.navbar-toggler.active .nav-2 i:nth-child(2){transform:scaleX(0)}.navbar-toggler.active .nav-2 i:nth-child(3){transform:translateY(-9px) rotate(-45deg)}.navigation-wrapper,header#mobile-header{border:none}.navigation-wrapper{background:0 0;transform:translateZ(0)}.navigation-wrapper::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;animation:dance-club-lights-vertical 10s ease infinite;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:inset 0 0 0 2000px rgba(10,10,10,.9);z-index:1}.navigation-wrapper nav{position:relative;z-index:2;height:100%}header#mobile-header{overflow:hidden;z-index:9999}header#mobile-header::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background-color:rgba(10,10,10,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);z-index:2}header#mobile-header::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,var(--primary-color),var(--neon-blue),var(--primary-color));background-size:400% 400%;z-index:1;animation:dance-club-lights-horizontal 12s ease infinite}header#mobile-header .container-fluid{position:relative;z-index:3}@keyframes dance-club-lights-horizontal{0%{background-position:0 50%}50%{background-position:100% 50%}to{background-position:0 50%}}@keyframes dance-club-lights-vertical{0%{background-position:50% 0}50%{background-position:50% 100%}to{background-position:50% 0}.astrodivider {display:none}
-    </style>
+    <link rel="stylesheet" href="../nautii/lib/style.css">
 </head>
 <body>
 
@@ -1134,21 +32,28 @@ body.loaded main {
     
     <header id="mobile-header" class="navbar navbar-dark fixed-top d-lg-none">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#home">N</a>
+            <div class="d-flex align-items-center">
+                 <a class="navbar-brand" href="#home">N</a>
+            </div>
             <div class="mobile-player-controls">
+                <button class="player-btn cart-icon" aria-label="View Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter">0</span>
+                </button>
                 <audio id="audio-player-mobile" preload="metadata"></audio>
                 <button id="play-pause-btn" class="player-btn"><i class="fas fa-play"></i></button>
                 <button id="volume-btn" class="player-btn"><i class="fas fa-volume-up"></i></button>
+                <button id="theme-switcher-mobile" class="player-btn"><i class="fas fa-moon"></i></button>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
                 <div class="nav-2"><i></i><i></i><i></i></div>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
                 <ul class="navbar-nav mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#music">Music</a></li>
                     <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#merch">Merch</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
@@ -1158,10 +63,10 @@ body.loaded main {
     <div class="navigation-wrapper d-none d-lg-block">
         <nav>
             <ul id="desktopNav">
-                <li><a data-text="Home" href="#home"><div>Home</div></a></li>
                 <li><a data-text="About" href="#about"><div>About</div></a></li>
                 <li><a data-text="Music" href="#music"><div>Music</div></a></li>
                 <li><a data-text="Gallery" href="#gallery"><div>Gallery</div></a></li>
+                <li><a data-text="Merch" href="#merch"><div>Merch</div></a></li>
                 <li><a data-text="Contact" href="#contact"><div>Contact</div></a></li>
             </ul>
         </nav>
@@ -1171,16 +76,30 @@ body.loaded main {
         
         <section class="section" id="home">
             <video playsinline autoplay muted loop id="home-bg-video">
-                <source src="../nautii/lib/bg.mp4" type="video/mp4">
+                <source src="https://nautii.com/lib/bg.mp4" type="video/mp4">
             </video>
             <div class="slide-overlay dark" style="background: rgba(0,0,0,0.7);"></div>
             <div class="slide-content">
-                <h1 class="display-1 text-white">nautii</h1>
+                <h1 class="display-1">nautii</h1>
                 <h2 class="text-white my-3">self-recorded. self-produced. self-engineered.<br>genre?<br><br>whatever feels alive.<br><br><br>made for mirror dances and full-body ego trips.<br>designed for the parts of you that want to let go,<br>not behave.</h2>
+                <a href="#" class="play-button-accented" data-bs-toggle="modal" data-bs-target="#videoModal">
+                    <i class="fas fa-play"></i>
+                </a>
             </div>
         </section> 
 
-        <div class="music-player-bar d-none d-lg-flex"><div class="player-center"><audio id="audio-player-desktop" controls></audio></div></div>
+        <div class="music-player-bar d-none d-lg-flex">
+             <div class="player-left">
+                <button class="cart-icon" aria-label="View Shopping Cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter">0</span>
+                </button>
+            </div>
+            <div class="player-center"><audio id="audio-player-desktop" controls></audio></div>
+            <div class="player-right">
+                <button id="theme-switcher" class="player-btn"><i class="fas fa-moon"></i></button>
+            </div>
+        </div>
 
         <section class="section" id="about">
             <h2 class="section-background-title">acerca de</h2>
@@ -1191,7 +110,7 @@ body.loaded main {
                         <span class="border-line line-right"></span>
                         <span class="border-line line-bottom"></span>
                         <span class="border-line line-left"></span>
-                        <img src="../nautii/lib/1.jpg" alt="nautii portrait" class="img-fluid rounded reveal-content">
+                        <img src="https://nautii.com/lib/1.jpg" alt="nautii portrait" class="img-fluid rounded reveal-content">
                     </div>
                     <div class="col-lg-6 text-start position-relative pb-5 fade-in-on-scroll order-1 order-lg-2">
                         <div class="section-title text-center"><h1 class="reveal-effect"><span class="reveal-content">About nautii</span></h1></div>
@@ -1215,14 +134,14 @@ body.loaded main {
                         <div class="row justify-content-center text-center gy-4">
                             <div class="col-md-5">
                                 <div class="music-item">
-                                    <img src="../nautii/lib/febreeze.jpg" alt="Febreeze" class="img-fluid rounded mb-2">
+                                    <img src="https://nautii.com/lib/febreeze.jpg" alt="Febreeze" class="img-fluid rounded mb-2">
                                     <h3><a href="#">Febreeze</a></h3>
                                     <p>Latest Single</p>
                                 </div>
                             </div>
                             <div class="col-md-5">
                                 <div class="music-item">
-                                     <img src="../nautii/lib/thesignal.jpg" alt="The Signal" class="img-fluid rounded mb-2">
+                                     <img src="https://nautii.com/lib/thesignal.jpg" alt="The Signal" class="img-fluid rounded mb-2">
                                      <h3><a href="#">The Signal</a></h3>
                                      <p>Debut Single</p>
                                 </div>
@@ -1278,17 +197,55 @@ body.loaded main {
             <h2 class="section-background-title">Visuales</h2>
             <div class="container text-center">
                 <div class="section-title mx-auto"><h1 class="reveal-effect"><span class="reveal-content">Gallery</span></h1></div>
-                <div class="gallery-grid fade-in-on-scroll">
-                    <div class="gallery-item"><a href="../nautii/lib/2.jpg" data-fancybox="gallery" data-caption="One"><img src="../nautii/lib/2.jpg" alt="One" class="img-fluid"></a></div>
-                    <div class="gallery-item"><a href="../nautii/lib/3.jpg" data-fancybox="gallery" data-caption="Two"><img src="../nautii/lib/3.jpg" alt="Two" class="img-fluid"></a></div>
-                    <div class="gallery-item"><a href="../nautii/lib/4.jpg" data-fancybox="gallery" data-caption="Three"><img src="../nautii/lib/4.jpg" alt="Three" class="img-fluid"></a></div>
-                    <div class="gallery-item"><a href="../nautii/lib/5.jpg" data-fancybox="gallery" data-caption="Four"><img src="../nautii/lib/5.jpg" alt="Four" class="img-fluid"></a></div>
-                    <div class="gallery-item"><a href="../nautii/lib/6.jpg" data-fancybox="gallery" data-caption="Five"><img src="../nautii/lib/6.jpg" alt="Five" class="img-fluid"></a></div>
-                    <div class="gallery-item"><a href="../nautii/lib/7.jpg" data-fancybox="gallery" data-caption="Six"><img src="../nautii/lib/7.jpg" alt="Six" class="img-fluid"></a></div>
+                <div class="gallery-grid">
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/2.jpg" data-fancybox="gallery" data-caption="One"><img src="https://nautii.com/lib/2.jpg" alt="One" class="img-fluid"></a></div>
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/3.jpg" data-fancybox="gallery" data-caption="Two"><img src="https://nautii.com/lib/3.jpg" alt="Two" class="img-fluid"></a></div>
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/4.jpg" data-fancybox="gallery" data-caption="Three"><img src="https://nautii.com/lib/4.jpg" alt="Three" class="img-fluid"></a></div>
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/5.jpg" data-fancybox="gallery" data-caption="Four"><img src="https://nautii.com/lib/5.jpg" alt="Four" class="img-fluid"></a></div>
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/6.jpg" data-fancybox="gallery" data-caption="Five"><img src="https://nautii.com/lib/6.jpg" alt="Five" class="img-fluid"></a></div>
+                    <div class="gallery-item fade-in-on-scroll"><a href="https://nautii.com/lib/7.jpg" data-fancybox="gallery" data-caption="Six"><img src="https://nautii.com/lib/7.jpg" alt="Six" class="img-fluid"></a></div>
                 </div>
             </div>
         </section>
 
+        <section class="section" id="merch">
+            <div class="astrodivider"><div class="astrodividermask"></div><span><i></i></span></div>
+            <h2 class="section-background-title">Productos</h2>
+            <div class="container">
+                <div class="section-title text-center"><h1 class="reveal-effect"><span class="reveal-content">Merch</span></h1></div>
+                <div id="merch-filters" class="fade-in-on-scroll">
+                    <button class="btn active" data-filter="*">All</button>
+                    <button class="btn" data-filter="apparel">Apparel</button>
+                    <button class="btn" data-filter="accessories">Accessories</button>
+                </div>
+                <div class="merch-grid">
+                    <div class="merch-item fade-in-on-scroll" data-category="apparel" data-id="1">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/1a1a1a/bf00ff?text=nautii+Tee" class="merch-card-img" alt="Nautii Tee"><div class="merch-card-body"><h5>'After Hours' Tee</h5><p class="price">$30.00</p><select class="form-select size-select"><option selected>Select Size</option><option>S</option><option>M</option><option>L</option><option>XL</option></select><p class="description d-none">Premium black cotton tee with a neon front graphic. Perfect for those late-night vibes. Unisex sizing.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="apparel" data-id="2">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/1a1a1a/00f0ff?text=nautii+Hoodie" class="merch-card-img" alt="Nautii Hoodie"><div class="merch-card-body"><h5>'305 Pulse' Hoodie</h5><p class="price">$65.00</p><select class="form-select size-select"><option selected>Select Size</option><option>S</option><option>M</option><option>L</option><option>XL</option></select><p class="description d-none">Ultra-soft fleece hoodie. Features an embroidered signature on the chest and a large back print inspired by the Miami skyline.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="accessories" data-id="3">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/1a1a1a/ffffff?text=nautii+Cap" class="merch-card-img" alt="Nautii Cap"><div class="merch-card-body"><h5>Neon Signature Cap</h5><p class="price">$25.00</p><p class="description d-none">Classic dad cap with the 'nautii' signature embroidered in neon thread. Adjustable strap for a perfect fit.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="accessories" data-id="4">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/222222/bf00ff?text=Tote+Bag" class="merch-card-img" alt="Nautii Tote Bag"><div class="merch-card-body"><h5>'Ego Trip' Tote</h5><p class="price">$22.00</p><p class="description d-none">Durable canvas tote bag, perfect for carrying your essentials. Features a bold, screen-printed design.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="apparel" data-id="5">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/1a1a1a/00f0ff?text=Tank+Top" class="merch-card-img" alt="Nautii Tank Top"><div class="merch-card-body"><h5>'Sultry Pulse' Tank</h5><p class="price">$28.00</p><select class="form-select size-select"><option selected>Select Size</option><option>S</option><option>M</option><option>L</option><option>XL</option></select><p class="description d-none">A lightweight, breathable tank top with a relaxed fit. Ideal for Miami's sticky summer nights.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="accessories" data-id="6">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/222222/ffffff?text=Phone+Case" class="merch-card-img" alt="Nautii Phone Case"><div class="merch-card-body"><h5>Mirror Dance Phone Case</h5><p class="price">$20.00</p><p class="description d-none">A sleek, protective phone case with a high-gloss finish. Available for most popular models.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="accessories" data-id="7">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/1a1a1a/bf00ff?text=Poster" class="merch-card-img" alt="Nautii Poster"><div class="merch-card-body"><h5>'Febreeze' Art Poster</h5><p class="price">$18.00</p><p class="description d-none">A vibrant 18x24 inch poster featuring the artwork from the latest single, 'Febreeze'. Printed on high-quality matte paper.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                    <div class="merch-item fade-in-on-scroll" data-category="apparel" data-id="8">
+                        <div class="merch-card"><img src="https://placehold.co/600x400/222222/00f0ff?text=Long+Sleeve" class="merch-card-img" alt="Nautii Long Sleeve"><div class="merch-card-body"><h5>'The Signal' Long Sleeve</h5><p class="price">$40.00</p><select class="form-select size-select"><option selected>Select Size</option><option>S</option><option>M</option><option>L</option><option>XL</option></select><p class="description d-none">Comfortable long-sleeve shirt with graphics on the chest and down both sleeves, inspired by 'The Signal'.</p></div><div class="merch-card-footer d-flex justify-content-between"><button class="btn btn-get-it">Get It</button><button class="btn btn-more">More</button></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section bg-alt" id="contact">
             <div class="astrodivider"><div class="astrodividermask"></div><span><i></i></span></div>
             <h2 class="section-background-title">Conectar</h2>
@@ -1323,7 +280,68 @@ body.loaded main {
                 <i class="fas fa-music"></i> <span id="toast-song-info"></span>
             </div>
         </div>
+        <div id="cart-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+            <div class="toast-header">
+                <strong class="me-auto">Shopping Cart</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <i class="fas fa-check-circle"></i> <span id="toast-cart-info"></span>
+            </div>
+        </div>
     </div>
+
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+                    <video controls playsinline preload="metadata" id="modalVideoPlayer">
+                         <source src="https://nautii.com/lib/bg.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="merchModal" tabindex="-1" aria-labelledby="merchModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="merchModalLabel">Item Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fas fa-times"></i></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="" class="img-fluid" id="merchModalImage" alt="Merch Item Image">
+                </div>
+                <div class="col-md-6">
+                    <h3 id="merchModalTitle"></h3>
+                    <p class="price" id="merchModalPrice"></p>
+                    <div id="merchModalSizeContainer" class="mb-3"></div>
+                    <p id="merchModalDescription"></p>
+                    <button class="btn btn-secondary btn-add-to-cart w-100">Add to Cart</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="cartOffcanvasLabel">Your Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i class="fas fa-chevron-left"></i></button>
+      </div>
+      <div class="offcanvas-body" id="cart-items-container">
+        </div>
+      <div class="offcanvas-footer">
+          <div id="cart-total" class="cart-total">Total: $0.00</div>
+          <a href="#" class="btn btn-secondary">Pay</a>
+      </div>
+    </div>
+
 
     <div id="scroll-to-top" class="fixed-ui"><i class="fas fa-arrow-alt-circle-up"></i></div>
 
@@ -1337,233 +355,6 @@ body.loaded main {
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     
-    <script>
-        $(window).on('load', function() {
-            var preloader = $(".preloader");
-            $('body').addClass('loaded'); 
-            preloader.addClass('fade-out'); 
-
-            // --- START: AUTOPLAY LOGIC ---
-            // Preloader fade-out is 1.2s, plus a 1.5s delay totals 2.7s
-            setTimeout(function() {
-                // Attempts to play the correct player for the current device.
-                if (playerDesktop) {
-                    playerDesktop.play().catch(error => console.warn("Desktop audio autoplay blocked by browser.", error));
-                }
-                if (audioMobile) {
-                    audioMobile.play().catch(error => console.warn("Mobile audio autoplay blocked by browser.", error));
-                }
-            }, 2700); // 1200ms for fade + 1500ms delay = 2700ms
-            // --- END: AUTOPLAY LOGIC ---
-
-            var $grid = $('.gallery-grid').imagesLoaded( function() {
-              $grid.masonry({
-                itemSelector: '.gallery-item',
-                percentPosition: true,
-                columnWidth: '.gallery-item'
-              });
-            });
-        });
-
-        $(document).ready(function(){
-            
-            // --- DESKTOP NAV HOVER LOGIC ---
-            var navTimeout;
-            $('.navigation-wrapper').on('mouseenter', function() {
-                clearTimeout(navTimeout);
-                $('body').addClass('navHover');
-            }).on('mouseleave', function() {
-                navTimeout = setTimeout(function() {
-                    $('body').removeClass('navHover');
-                }, 250);
-            });
-            
-            if(document.querySelector('#about-image-container')) {
-                VanillaTilt.init(document.querySelector("#about-image-container"), {
-                    max: 15, speed: 400, glare: true, "max-glare": 0.4
-                });
-            }
-
-            $('.gallery-item a').each(function() {
-                var captionText = $(this).data('caption') || 'View Image';
-                var overlayHtml = `
-                    <div class="gallery-overlay">
-                        <div class="gallery-border"></div>
-                        <div class="gallery-content">
-                            <h5>${captionText}</h5>
-                            <i class="fas fa-expand-alt"></i>
-                        </div>
-                    </div>
-                `;
-                $(this).append(overlayHtml);
-            });
-
-            const mainContainer = $('#main-container');
-            const isMobile = () => $(window).width() < 992;
-
-            const mobileNavToggler = document.querySelector('#mobile-header .navbar-toggler');
-            const navbarContent = document.getElementById('navbarContent');
-            if(navbarContent) { 
-                navbarContent.addEventListener('show.bs.collapse', () => mobileNavToggler.classList.add('active'));
-                navbarContent.addEventListener('hide.bs.collapse', () => mobileNavToggler.classList.remove('active'));
-            }
-            
-            // --- TOAST NOTIFICATION INIT ---
-            const songToastEl = document.getElementById('song-toast');
-            const songToast = new bootstrap.Toast(songToastEl);
-            const toastSongInfo = document.getElementById('toast-song-info');
-
-            // --- NAVIGATION CLICK HANDLER ---
-            $('#desktopNav a, #navbarContent .nav-link, .navbar-brand[href="#home"]').on('click', function(event) {
-                event.preventDefault();
-                var targetId = $(this).attr('href');
-                var targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    if (isMobile()) {
-                        let headerOffset = $('#mobile-header').outerHeight() || 60;
-                        let elementPosition = targetElement.getBoundingClientRect().top;
-                        let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                        if (targetId === '#home') {
-                            offsetPosition = 0;
-                        }
-                        
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: "smooth"
-                        });
-                        
-                        if ($('#navbarContent').hasClass('show')) {
-                            var bsCollapse = new bootstrap.Collapse(navbarContent, {toggle: false});
-                            bsCollapse.hide();
-                        }
-                    } else {
-                        let headerOffset = 0;
-                        if (targetId !== '#home') {
-                            headerOffset = $('.music-player-bar').outerHeight() || 60;
-                        }
-                        let scrollPosition = targetElement.offsetTop - headerOffset;
-                        mainContainer.animate({ scrollTop: scrollPosition }, 800);
-                        $('body').removeClass('navHover');
-                    }
-                }
-            });
-            
-            // --- PLAYLIST & PLAYER LOGIC ---
-            const playlist = [
-                { title: 'Febreeze', artist: 'nautii', src: '../nautii/lib/NAUTII-Febreze.mp3' },
-                     { title: 'The Signal', artist: 'nautii', src: '../nautii/lib/NAUTII-The Signal.mp3' }
-            ];
-            let currentTrackIndex = 0;
-            
-            const audioMobile = document.getElementById('audio-player-mobile');
-            const playerDesktop = new Plyr('#audio-player-desktop');
-
-            function loadTrack(index) {
-                const track = playlist[index];
-                // Update desktop player source
-                playerDesktop.source = {
-                    type: 'audio',
-                    sources: [{ src: track.src, type: 'audio/mp3' }]
-                };
-                // Update mobile player source
-                audioMobile.src = track.src;
-                audioMobile.load();
-            }
-
-            function playNextTrack() {
-                currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
-                loadTrack(currentTrackIndex);
-                // Autoplay next track on both devices
-                playerDesktop.play();
-                if (audioMobile) audioMobile.play();
-            }
-            
-            function updateToast(track) {
-                toastSongInfo.innerHTML = `<strong>${track.title}</strong> by ${track.artist}`;
-                songToast.show();
-            }
-
-            // --- DESKTOP PLAYER EVENTS ---
-            if (playerDesktop) { 
-                playerDesktop.on('play', () => {
-                    updateToast(playlist[currentTrackIndex]);
-                });
-                playerDesktop.on('ended', () => {
-                    playNextTrack();
-                });
-            }
-
-            // --- MOBILE PLAYER EVENTS ---
-            if (audioMobile) {
-                const playPauseBtn = document.getElementById('play-pause-btn');
-                const volumeBtn = document.getElementById('volume-btn');
-                const volumeIcon = volumeBtn.querySelector('i');
-
-                playPauseBtn.addEventListener('click', () => { 
-                    if (audioMobile.paused) { 
-                        audioMobile.play();
-                    } else { 
-                        audioMobile.pause(); 
-                    } 
-                });
-
-                audioMobile.addEventListener('play', () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                    updateToast(playlist[currentTrackIndex]);
-                });
-                audioMobile.addEventListener('pause', () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                });
-                audioMobile.addEventListener('ended', () => {
-                    playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-                    playNextTrack(); // Autoplay next song
-                });
-                
-                volumeBtn.addEventListener('click', () => {
-                    audioMobile.muted = !audioMobile.muted;
-                });
-                
-                audioMobile.addEventListener('volumechange', () => {
-                    volumeIcon.className = (audioMobile.muted || audioMobile.volume === 0) ? 'fas fa-volume-mute' : 'fas fa-volume-up';
-                });
-            }
-            
-            // Load the initial track
-            loadTrack(currentTrackIndex);
-             
-            // --- INTERSECTION OBSERVERS ---
-            const sections = document.querySelectorAll('.section');
-            const navLinks = document.querySelectorAll('#desktopNav a');
-            const navObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => { if (entry.isIntersecting) { const id = entry.target.getAttribute('id'); navLinks.forEach(link => { link.parentElement.classList.toggle('active', link.getAttribute('href') === `#${id}`); }); } });
-            }, { root: isMobile() ? null : mainContainer[0], threshold: 0.5 });
-            sections.forEach(section => { navObserver.observe(section); });
-
-            const animatedElements = document.querySelectorAll('.reveal-effect, .fade-in-on-scroll');
-            const animationObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); observer.unobserve(entry.target); } });
-            }, { root: isMobile() ? null : mainContainer[0], threshold: 0.2 });
-            animatedElements.forEach(el => { animationObserver.observe(el); });
-
-            // --- SCROLL TO TOP LOGIC ---
-            const scrollToTopBtn = $('#scroll-to-top');
-            const scrollElement = isMobile() ? $(window) : mainContainer;
-            
-            scrollElement.on('scroll', () => {
-                scrollToTopBtn.toggleClass('visible', scrollElement.scrollTop() > 300);
-            });
-
-            scrollToTopBtn.on('click', () => {
-                if(isMobile()) {
-                     window.scrollTo({ top: 0, behavior: 'smooth' });
-                } else {
-                    mainContainer.animate({ scrollTop: 0 }, 800);
-                }
-            });
-
-        });
-	</script>
+    <script src="../nautii/lib/script.js"></script>
 </body>
 </html>
