@@ -5,16 +5,7 @@ $(window).on("load", function() {
     var preloader = $(".preloader");
     $('body').addClass('loaded');
     preloader.addClass('fade-out');
-
     // Autoplay is disabled per request
-
-    var $galleryGrid = $('.gallery-grid').imagesLoaded(function() {
-        $galleryGrid.masonry({
-            itemSelector: '.gallery-item',
-            percentPosition: true,
-            columnWidth: '.gallery-item'
-        });
-    });
 });
 
 $(document).ready(function() {
@@ -107,11 +98,11 @@ $(document).ready(function() {
     const playlist = [{
         title: "Febreeze",
         artist: "nautii",
-        src: "https://nautii.com/lib/NAUTII-Febreze.mp3"
+        src: "../nautii/lib/NAUTII-Febreze.mp3"
     }, {
         title: "The Signal",
         artist: "nautii",
-        src: "https://nautii.com/lib/NAUTII-The Signal.mp3"
+        src: "../nautii/lib/NAUTII-The Signal.mp3"
     }];
     let currentTrackIndex = 0;
     
@@ -204,6 +195,8 @@ $(document).ready(function() {
     const animationObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                const itemIndex = Array.from(entry.target.parentElement.children).indexOf(entry.target);
+                entry.target.style.transitionDelay = `${itemIndex * 0.1}s`;
                 entry.target.classList.add("is-visible");
                 observer.unobserve(entry.target);
             }
@@ -215,6 +208,7 @@ $(document).ready(function() {
     animatedElements.forEach(el => {
         animationObserver.observe(el);
     });
+
 
     const scrollToTopBtn = $("#scroll-to-top");
     const scrollElement = isMobile() ? $(window) : mainContainer;
@@ -246,10 +240,10 @@ $(document).ready(function() {
     // Video Modal Logic
     const videoModal = document.getElementById('videoModal');
     const modalVideoPlayer = document.getElementById('modalVideoPlayer');
-    videoModal.addEventListener('show.bs.modal', function () {
+    videoModal.addEventListener('show.bs.modal', function() {
         modalVideoPlayer.play();
     });
-    videoModal.addEventListener('hide.bs.modal', function () {
+    videoModal.addEventListener('hide.bs.modal', function() {
         modalVideoPlayer.pause();
         modalVideoPlayer.currentTime = 0;
     });
@@ -274,7 +268,7 @@ $(document).ready(function() {
             $("#cart-total").text("Total: $0.00");
             return;
         }
-        $(cart.forEach((item, index) => {
+        cart.forEach((item, index) => {
             total += parseFloat(item.price.replace("$", "")) * item.quantity;
             let itemHtml = `
                 <div class="cart-item" data-id="${item.id}">
@@ -294,7 +288,7 @@ $(document).ready(function() {
                 </div>
             `;
             container.append(itemHtml);
-        }));
+        });
         $("#cart-total").text(`Total: $${total.toFixed(2)}`);
     }
 
@@ -390,6 +384,108 @@ $(document).ready(function() {
         updateCartCounter();
         renderCart();
     });
+    
+    // --- Style Customizer Logic ---
+    const customizerBody = $('#customizer-body');
+    const root = document.documentElement;
 
+    const customizableProperties = {
+        'Colors': [
+            { label: 'Primary', var: '--primary-color' },
+            { label: 'Primary Hover', var: '--primary-hover' },
+            { label: 'Neon Blue', var: '--neon-blue' },
+            { label: 'Text', var: '--text-primary' },
+            { label: 'Background', var: '--background-primary' }
+        ],
+        'Fonts': [
+            { label: 'Main Title', var: '--font-main-title' },
+            { label: 'Headings', var: '--font-headings' },
+            { label: 'Body', var: '--font-body' }
+        ]
+    };
+
+    function buildCustomizer() {
+        // Build Colors Section
+        let colorsHtml = '<h3>Colors</h3>';
+        customizableProperties.Colors.forEach(prop => {
+            const currentColor = getComputedStyle(root).getPropertyValue(prop.var).trim();
+            colorsHtml += `
+                <div>
+                    <label for="${prop.var}" class="form-label">${prop.label}</label>
+                    <input type="color" class="form-control" id="${prop.var}" value="${currentColor}" data-var="${prop.var}">
+                </div>
+            `;
+        });
+        customizerBody.append(colorsHtml);
+
+        // Build Fonts Section
+        let fontsHtml = '<h3 class="mt-4">Fonts</h3>';
+        customizableProperties.Fonts.forEach(prop => {
+            const currentFont = getComputedStyle(root).getPropertyValue(prop.var).trim().split(',')[0].replace(/"/g, '');
+            fontsHtml += `
+                <div>
+                    <label for="${prop.var}" class="form-label">${prop.label}</label>
+                    <input type="text" class="form-control" id="${prop.var}" value="${currentFont}" data-var="${prop.var}">
+                </div>
+            `;
+        });
+        customizerBody.append(fontsHtml);
+        
+        // Build Google Font Importer
+        let importerHtml = `
+            <h3 class="mt-4">Add Google Font</h3>
+            <div class="d-flex">
+                <input type="text" id="google-font-name" class="form-control" placeholder="e.g., Roboto">
+                <button class="btn btn-secondary ms-2" id="load-font-btn">Load</button>
+            </div>
+        `;
+        customizerBody.append(importerHtml);
+
+        // Add event listeners
+        $('#customizerOffcanvas').on('input', 'input[type="color"]', function() {
+            root.style.setProperty($(this).data('var'), $(this).val());
+        });
+        $('#customizerOffcanvas').on('input', 'input[type="text"]', function() {
+            const fontStack = `'${$(this).val()}', sans-serif`;
+            root.style.setProperty($(this).data('var'), fontStack);
+        });
+    }
+
+    $('#customizer-body').on('click', '#load-font-btn', function() {
+        const fontName = $('#google-font-name').val().trim();
+        if (fontName) {
+            const formattedFontName = fontName.replace(/ /g, '+');
+            const link = document.createElement('link');
+            link.href = `https://fonts.googleapis.com/css2?family=${formattedFontName}:wght@400;700&display=swap`;
+            link.rel = 'stylesheet';
+            document.head.appendChild(link);
+            toastCartInfo.text(`Font "${fontName}" loaded.`);
+            cartToast.show();
+        }
+    });
+
+    $('#export-css-btn').on('click', function() {
+        let cssText = ':root {\n';
+        customizableProperties.Colors.forEach(prop => {
+            const value = getComputedStyle(root).getPropertyValue(prop.var).trim();
+            cssText += `  ${prop.var}: ${value};\n`;
+        });
+        customizableProperties.Fonts.forEach(prop => {
+             const value = getComputedStyle(root).getPropertyValue(prop.var).trim();
+            cssText += `  ${prop.var}: ${value};\n`;
+        });
+        cssText += '}';
+
+        navigator.clipboard.writeText(cssText).then(() => {
+            toastCartInfo.text('CSS copied to clipboard!');
+            cartToast.show();
+        }, () => {
+            toastCartInfo.text('Failed to copy CSS.');
+            cartToast.show();
+        });
+    });
+
+    buildCustomizer();
     updateCartCounter();
 });
+
