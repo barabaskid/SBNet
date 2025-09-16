@@ -1,15 +1,53 @@
-// Declare variables in a higher scope
+// --- 1. Global Variables & Initial Setup --- //
 let playerDesktop, audioMobile;
+const isMobile = () => $(window).width() < 992;
+let navTimeout; // Make navTimeout globally accessible within the script
 
+// --- 2. Page Load Logic --- //
 $(window).on("load", function() {
-    var preloader = $(".preloader");
+    // Fade out preloader
     $('body').addClass('loaded');
-    preloader.addClass('fade-out');
-    // Autoplay is disabled per request
+    $(".preloader").addClass('fade-out');
+
+    // --- 4. Sticky Music Player Bar --- //
+    // This logic depends on the final height of the slider, so it runs on window.load
+    if (!isMobile()) {
+        const musicBar = $('.music-player-bar');
+        const sliderHeight = $('#home-slider').outerHeight();
+        
+        $(window).on('scroll', function() {
+            if ($(window).scrollTop() >= sliderHeight - musicBar.outerHeight()) {
+                musicBar.addClass('sticky-top');
+            } else {
+                musicBar.removeClass('sticky-top');
+            }
+        });
+    }
+
+    // --- 12. Swiper Slider Initialization --- //
+    // This must run on window.load to ensure all elements have correct dimensions
+    new Swiper('#home-slider', {
+        loop: true,
+        effect: 'fade',
+        keyboard: {
+            enabled: true,
+        },
+        navigation: {
+            nextEl: '#home-slider .swiper-button-next',
+            prevEl: '#home-slider .swiper-button-prev',
+        },
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false, // Allows autoplay to restart after manual navigation
+            pauseOnMouseEnter: true,   // Pauses autoplay on hover
+        },
+    });
 });
 
+
 $(document).ready(function() {
-    var navTimeout;
+
+    // --- 3. Desktop Navigation Hover Effect --- //
     $('.navigation-wrapper').on('mouseenter', function() {
         clearTimeout(navTimeout);
         $('body').addClass('navHover');
@@ -19,18 +57,10 @@ $(document).ready(function() {
         }, 250);
     });
 
-    if (document.querySelector("#about-image-container")) {
-        VanillaTilt.init(document.querySelector("#about-image-container"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.4
-        });
-    }
-
+    // --- 5. Gallery Item Overlay --- //
     $('.gallery-item a').each(function() {
-        var captionText = $(this).data('caption') || "View Image";
-        var overlayHtml = `
+        const captionText = $(this).data('caption') || "View Image";
+        const overlayHtml = `
             <div class="gallery-overlay">
                 <div class="gallery-border"></div>
                 <div class="gallery-content">
@@ -42,9 +72,39 @@ $(document).ready(function() {
         $(this).append(overlayHtml);
     });
 
-    const mainContainer = $("#main-container");
-    const isMobile = () => $(window).width() < 992;
+    // --- 6. Dynamic Scroll Animations --- //
+    $('[data-animate-left], [data-animate-right]').each(function() {
+        if(isMobile()) {
+            $(this).addClass('fade-in-on-scroll');
+        } else {
+            if ($(this).is('[data-animate-left]')) {
+                $(this).addClass('fade-in-from-left');
+            } else {
+                $(this).addClass('fade-in-from-right');
+            }
+        }
+    });
 
+    $('.gallery-item').each(function(index) {
+        if (isMobile()) {
+            $(this).addClass('fade-in-on-scroll');
+        } else {
+            if (index % 3 === 0) $(this).addClass('fade-in-from-left');
+            else if (index % 3 === 1) $(this).addClass('fade-in-on-scroll');
+            else $(this).addClass('fade-in-from-right');
+        }
+    });
+
+    $('.merch-item').each(function(index) {
+        if (isMobile()) {
+            $(this).addClass('fade-in-on-scroll');
+        } else {
+            if (index % 2 === 0) $(this).addClass('fade-in-from-left');
+            else $(this).addClass('fade-in-from-right');
+        }
+    });
+
+    // --- 7. Navigation & Smooth Scrolling --- //
     const mobileMenu = document.getElementById('navbarContent');
     const bsMobileMenu = new bootstrap.Collapse(mobileMenu, { toggle: false });
     const mobileNavToggler = document.querySelector("#mobile-header .navbar-toggler");
@@ -54,47 +114,34 @@ $(document).ready(function() {
         mobileMenu.addEventListener('hide.bs.collapse', () => mobileNavToggler.classList.remove('active'));
     }
 
-    const songToastEl = document.getElementById('song-toast');
-    const songToast = new bootstrap.Toast(songToastEl);
-    const toastSongInfo = document.getElementById('toast-song-info');
-    const cartToastEl = document.getElementById('cart-toast');
-    const cartToast = new bootstrap.Toast(cartToastEl);
-    const toastCartInfo = document.getElementById('toast-cart-info');
-
     $("#desktopNav a, #navbarContent .nav-link, .navbar-brand[href=\"#home\"]").on("click", function(event) {
         event.preventDefault();
-        var targetId = this.getAttribute("href");
-        var targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-            if (isMobile()) {
-                let headerOffset = $('#mobile-header').outerHeight() || 60;
-                let elementPosition = targetElement.getBoundingClientRect().top;
-                let offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                if (targetId === '#home') {
-                    offsetPosition = 0;
-                }
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: "smooth"
-                });
-                if (mobileMenu.classList.contains('show')) {
-                   bsMobileMenu.hide();
-                }
-            } else {
-                let headerOffset = 0;
-                if (targetId !== '#home') {
-                    headerOffset = $('.music-player-bar').outerHeight() || 60;
-                }
-                let scrollPosition = targetElement.offsetTop - headerOffset;
-                mainContainer.animate({
-                    scrollTop: scrollPosition
-                }, 800);
-                $('body').removeClass('navHover');
-            }
+        const targetId = this.getAttribute("href");
+        const targetElement = $(targetId);
+        
+        if (targetId === '#home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (targetElement.length) {
+            let headerOffset = isMobile() ? ($('#mobile-header').outerHeight() || 60) : ($('.music-player-bar').outerHeight() || 60);
+            const scrollPosition = targetElement.offset().top - headerOffset;
+            window.scrollTo({ top: scrollPosition, behavior: 'smooth' });
+        }
+        
+        clearTimeout(navTimeout);
+        if (isMobile() && mobileMenu.classList.contains('show')) {
+           bsMobileMenu.hide();
+        }
+        if (!isMobile()) {
+            $('body').removeClass('navHover');
         }
     });
 
+    // --- 8. Music Player Logic (Plyr) --- //
+    const songToastEl = document.getElementById('song-toast');
+    const songToast = new bootstrap.Toast(songToastEl);
+    const toastSongInfo = document.getElementById('toast-song-info');
+    let firstPlay = true;
+    
     const playlist = [{
         title: "Febreeze",
         artist: "nautii",
@@ -106,7 +153,6 @@ $(document).ready(function() {
     }];
     let currentTrackIndex = 0;
     
-    // Assign to variables in higher scope
     audioMobile = document.getElementById("audio-player-mobile");
     playerDesktop = new Plyr("#audio-player-desktop");
 
@@ -114,13 +160,12 @@ $(document).ready(function() {
         const track = playlist[index];
         playerDesktop.source = {
             type: "audio",
-            sources: [{
-                src: track.src,
-                type: "audio/mp3"
-            }]
+            sources: [{ src: track.src, type: "audio/mp3" }]
         };
-        audioMobile.src = track.src;
-        audioMobile.load();
+        if(audioMobile) {
+            audioMobile.src = track.src;
+            audioMobile.load();
+        }
     }
 
     function playNextTrack() {
@@ -130,49 +175,53 @@ $(document).ready(function() {
         if (audioMobile) audioMobile.play();
     }
 
-    function updateToast(track) {
+    function updateSongToast(track) {
+        if(firstPlay) return;
         toastSongInfo.innerHTML = `<strong>${track.title}</strong> by ${track.artist}`;
         songToast.show();
     }
 
+    function handleFirstPlay() {
+        if(firstPlay) {
+            firstPlay = false;
+            updateSongToast(playlist[currentTrackIndex]);
+        }
+    }
+
     if (playerDesktop) {
         playerDesktop.on("play", () => {
-            updateToast(playlist[currentTrackIndex]);
+            handleFirstPlay();
+            updateSongToast(playlist[currentTrackIndex]);
         });
-        playerDesktop.on("ended", () => {
-            playNextTrack();
-        });
+        playerDesktop.on("ended", playNextTrack);
     }
 
     if (audioMobile) {
-        const playPauseBtn = document.getElementById("play-pause-btn");
-        const volumeBtn = document.getElementById("volume-btn");
+        const playPauseBtn = document.getElementById("play-pause-btn-mobile");
+        const volumeBtn = document.getElementById("volume-btn-mobile");
         const volumeIcon = volumeBtn.querySelector("i");
-        playPauseBtn.addEventListener("click", () => {
-            audioMobile.paused ? audioMobile.play() : audioMobile.pause();
-        });
+        
+        playPauseBtn.addEventListener("click", () => audioMobile.paused ? audioMobile.play() : audioMobile.pause());
         audioMobile.addEventListener("play", () => {
             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-            updateToast(playlist[currentTrackIndex]);
+            handleFirstPlay();
+            updateSongToast(playlist[currentTrackIndex]);
         });
-        audioMobile.addEventListener("pause", () => {
-            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-        });
+        audioMobile.addEventListener("pause", () => playPauseBtn.innerHTML = '<i class="fas fa-play"></i>');
         audioMobile.addEventListener("ended", () => {
             playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
             playNextTrack();
         });
-        volumeBtn.addEventListener("click", () => {
-            audioMobile.muted = !audioMobile.muted;
-        });
+        volumeBtn.addEventListener("click", () => audioMobile.muted = !audioMobile.muted);
         audioMobile.addEventListener("volumechange", () => {
             volumeIcon.className = audioMobile.muted || audioMobile.volume === 0 ? "fas fa-volume-mute" : "fas fa-volume-up";
         });
     }
-
     loadTrack(currentTrackIndex);
 
-    const sections = document.querySelectorAll(".section");
+
+    // --- 9. Intersection Observers (Nav Highlighting & Scroll Animations) --- //
+    const sections = document.querySelectorAll("#main-container .section");
     const navLinks = document.querySelectorAll("#desktopNav a");
     const navObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
@@ -183,15 +232,10 @@ $(document).ready(function() {
                 });
             }
         });
-    }, {
-        root: isMobile() ? null : mainContainer[0],
-        threshold: 0.5
-    });
-    sections.forEach(section => {
-        navObserver.observe(section);
-    });
+    }, { root: null, threshold: 0.5 });
+    sections.forEach(section => navObserver.observe(section));
 
-    const animatedElements = document.querySelectorAll(".fade-in-on-scroll");
+    const animatedElements = document.querySelectorAll(".fade-in-on-scroll, .fade-in-from-left, .fade-in-from-right, .unblur-on-scroll, .reveal-effect, .fade-in-up");
     const animationObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -201,27 +245,16 @@ $(document).ready(function() {
                 observer.unobserve(entry.target);
             }
         });
-    }, {
-        root: isMobile() ? null : mainContainer[0],
-        threshold: 0.1
-    });
-    animatedElements.forEach(el => {
-        animationObserver.observe(el);
-    });
+    }, { root: null, threshold: 0.1 });
+    animatedElements.forEach(el => animationObserver.observe(el));
 
-
+    // --- 10. UI Components (Scroll-to-Top, Theme Switcher, Modals) --- //
     const scrollToTopBtn = $("#scroll-to-top");
-    const scrollElement = isMobile() ? $(window) : mainContainer;
-    scrollElement.on("scroll", () => {
-        scrollToTopBtn.toggleClass("visible", scrollElement.scrollTop() > 300);
+    $(window).on("scroll", () => {
+        scrollToTopBtn.toggleClass("visible", $(window).scrollTop() > 300);
     });
     scrollToTopBtn.on("click", () => {
-        isMobile() ? window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        }) : mainContainer.animate({
-            scrollTop: 0
-        }, 800);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
     const themeSwitcher = $("#theme-switcher, #theme-switcher-mobile");
@@ -237,255 +270,126 @@ $(document).ready(function() {
     });
     applyTheme();
     
-    // Video Modal Logic
-    const videoModal = document.getElementById('videoModal');
-    const modalVideoPlayer = document.getElementById('modalVideoPlayer');
-    videoModal.addEventListener('show.bs.modal', function() {
-        modalVideoPlayer.play();
-    });
-    videoModal.addEventListener('hide.bs.modal', function() {
-        modalVideoPlayer.pause();
-        modalVideoPlayer.currentTime = 0;
-    });
+    // --- 11. Glitch Modal Logic --- //
+    const glitchModalEl = document.getElementById('glitchModal');
+    if (glitchModalEl) {
+        const glitchModal = new bootstrap.Modal(glitchModalEl);
+        const ttlEl = document.getElementById('ttl');
+        const textToType = `╔════════════════════════════════╗
+║ * * Copyright  (c)  Nautii * * ║
+╚════════════════════════════════╝
 
+SYNCING... RHYTHM_MODULE
+CALIBRATING... BASS_THUMPER
+UPLOADING... SUBCONSCIOUS_MELODY
+DECODING... LATE_NIGHT_GROOVE
+HARMONICS... STABILIZED_SENSUAL
+SIGNATURE VERIFIED: <span class="primary">nautii</span>
 
-    let cart = [];
-    const merchModal = new bootstrap.Modal(document.getElementById("merchModal"));
-    const cartOffcanvas = new bootstrap.Offcanvas(document.getElementById("cartOffcanvas"));
+               Play <span data-action="y">Y</span>/<span data-action="n">N</span>`;
 
-    function updateCartCounter() {
-        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-        $(".cart-counter").text(totalItems);
-        totalItems > 0 ? $(".cart-counter").css("display", "flex") : $(".cart-counter").hide();
-    }
-
-    function renderCart() {
-        let total = 0;
-        const container = $("#cart-items-container");
-        container.empty();
-        if (cart.length === 0) {
-            container.html("<p>Your cart is empty.</p>");
-            $("#cart-total").text("Total: $0.00");
-            return;
-        }
-        cart.forEach((item, index) => {
-            total += parseFloat(item.price.replace("$", "")) * item.quantity;
-            let itemHtml = `
-                <div class="cart-item" data-id="${item.id}">
-                    <img src="${item.img}" class="cart-item-img" alt="${item.name}">
-                    <div class="cart-item-details">
-                        <h6>${item.name}</h6>
-                        <div class="item-meta">
-                            ${item.size ? `Size: ${item.size}<br>` : ""}
-                            <span class="price">${item.price}</span>
-                        </div>
-                    </div>
-                    <div class="quantity-controls">
-                        <button class="btn-quantity-change" data-index="${index}" data-change="-1">-</button>
-                        <span>${item.quantity}</span>
-                        <button class="btn-quantity-change" data-index="${index}" data-change="1">+</button>
-                    </div>
-                </div>
-            `;
-            container.append(itemHtml);
-        });
-        $("#cart-total").text(`Total: $${total.toFixed(2)}`);
-    }
-
-    $("#merch-filters .btn").on("click", function() {
-        $("#merch-filters .btn").removeClass("active");
-        $(this).addClass("active");
-        const filter = $(this).data("filter");
-        if (filter === "*") {
-            $(".merch-item").fadeIn("fast");
-        } else {
-            $(".merch-item").fadeOut(0);
-            $(".merch-item").filter(function() {
-                return $(this).data("category") === filter;
-            }).fadeIn("fast");
-        }
-    });
-
-    $(".merch-grid").on("click", ".btn-more", function(e) {
-        e.preventDefault();
-        const card = $(this).closest(".merch-item");
-        const name = card.find("h5").text();
-        const price = card.find(".price").text();
-        const img = card.find(".merch-card-img").attr("src");
-        const desc = card.find(".description").text();
-        const sizeSelector = card.find(".size-select");
-
-        $("#merchModalTitle").text(name);
-        $("#merchModalPrice").text(price);
-        $("#merchModalImage").attr("src", img);
-        $("#merchModalDescription").text(desc);
-        $("#merchModalSizeContainer").empty();
-        if (sizeSelector.length > 0) {
-            $("#merchModalSizeContainer").append(sizeSelector.clone());
-        }
-        $("#merchModal .btn-add-to-cart").data("item-id", card.data("id"));
-        merchModal.show();
-    });
-
-    const addToCart = function(event) {
-        event.preventDefault();
-        const sourceElement = $(this).closest(".merch-item, .modal-content");
-        const sizeSelector = sourceElement.find(".size-select");
-        const selectedSize = sizeSelector.length ? sizeSelector.val() : null;
-
-        if (sizeSelector.length && selectedSize === "Select Size") {
-            toastCartInfo.text("Please select a size.");
-            cartToast.show();
-            return;
+        function typeWriter(element, text, i, callback) {
+            if (!element || !glitchModalEl.classList.contains('show')) {
+                return; // Stop if element is gone or modal is closed
+            }
+            if (i < text.length) {
+                const char = text.charAt(i);
+                if (char === '<') {
+                    const tagEndIndex = text.indexOf('>', i);
+                    element.innerHTML += text.substring(i, tagEndIndex + 1);
+                    setTimeout(() => typeWriter(element, text, tagEndIndex + 1, callback), 30);
+                } else {
+                    element.innerHTML += char;
+                    setTimeout(() => typeWriter(element, text, i + 1, callback), 30);
+                }
+            } else if (callback) {
+                callback();
+            }
         }
 
-        const baseId = sourceElement.data("id") || $("#merchModal .btn-add-to-cart").data("item-id");
-        const itemData = {
-            baseId: baseId,
-            name: sourceElement.find("h5, #merchModalTitle").text(),
-            price: sourceElement.find(".price, #merchModalPrice").text(),
-            img: sourceElement.find(".merch-card-img, #merchModalImage").attr("src"),
-            size: selectedSize,
-            quantity: 1
+        const handleModalKeydown = (event) => {
+            const key = event.key.toLowerCase();
+            if (key === 'y') {
+                window.open('room.html', '_blank');
+                glitchModal.hide();
+            } else if (key === 'n') {
+                glitchModal.hide();
+            }
         };
-        const cartItemId = selectedSize ? `${baseId}-${selectedSize}` : baseId;
-        const existingItemIndex = cart.findIndex(item => item.id === cartItemId);
 
-        if (existingItemIndex > -1) {
-            cart[existingItemIndex].quantity++;
-        } else {
-            cart.push({
-                id: cartItemId,
-                ...itemData
+        const handleModalClick = (event) => {
+            const action = event.target.dataset.action;
+            if (action === 'y') {
+                window.open('room.html', '_blank');
+                glitchModal.hide();
+            } else if (action === 'n') {
+                glitchModal.hide();
+            }
+        };
+
+        // Use 'shown.bs.modal' which fires after the modal is fully visible
+        glitchModalEl.addEventListener('shown.bs.modal', () => {
+            ttlEl.innerHTML = ''; // Always load fresh
+            typeWriter(ttlEl, textToType, 0, () => {
+                if (ttlEl) ttlEl.innerHTML += '<span class="cursor">█</span>';
             });
-        }
-        updateCartCounter();
-        toastCartInfo.innerHTML = `<strong>${itemData.name} ${itemData.size ? `(${itemData.size})` : ""}</strong> added to cart!`;
-        cartToast.show();
-        merchModal.hide();
-    };
-
-    $(".merch-grid").on("click", ".btn-get-it", addToCart);
-    $("#merchModal").on("click", ".btn-add-to-cart", addToCart);
-
-    $(document).on("click", ".cart-icon", function(e) {
-        e.preventDefault();
-        renderCart();
-        cartOffcanvas.show();
-    });
-
-    $("#cart-items-container").on("click", ".btn-quantity-change", function() {
-        const index = parseInt($(this).data("index"));
-        const change = parseInt($(this).data("change"));
-        cart[index].quantity += change;
-        if (cart[index].quantity <= 0) {
-            cart.splice(index, 1);
-        }
-        updateCartCounter();
-        renderCart();
-    });
-    
-    // --- Style Customizer Logic ---
-    const customizerBody = $('#customizer-body');
-    const root = document.documentElement;
-
-    const customizableProperties = {
-        'Colors': [
-            { label: 'Primary', var: '--primary-color' },
-            { label: 'Primary Hover', var: '--primary-hover' },
-            { label: 'Neon Blue', var: '--neon-blue' },
-            { label: 'Text', var: '--text-primary' },
-            { label: 'Background', var: '--background-primary' }
-        ],
-        'Fonts': [
-            { label: 'Main Title', var: '--font-main-title' },
-            { label: 'Headings', var: '--font-headings' },
-            { label: 'Body', var: '--font-body' }
-        ]
-    };
-
-    function buildCustomizer() {
-        // Build Colors Section
-        let colorsHtml = '<h3>Colors</h3>';
-        customizableProperties.Colors.forEach(prop => {
-            const currentColor = getComputedStyle(root).getPropertyValue(prop.var).trim();
-            colorsHtml += `
-                <div>
-                    <label for="${prop.var}" class="form-label">${prop.label}</label>
-                    <input type="color" class="form-control" id="${prop.var}" value="${currentColor}" data-var="${prop.var}">
-                </div>
-            `;
+            document.addEventListener('keydown', handleModalKeydown);
+            ttlEl.addEventListener('click', handleModalClick);
         });
-        customizerBody.append(colorsHtml);
 
-        // Build Fonts Section
-        let fontsHtml = '<h3 class="mt-4">Fonts</h3>';
-        customizableProperties.Fonts.forEach(prop => {
-            const currentFont = getComputedStyle(root).getPropertyValue(prop.var).trim().split(',')[0].replace(/"/g, '');
-            fontsHtml += `
-                <div>
-                    <label for="${prop.var}" class="form-label">${prop.label}</label>
-                    <input type="text" class="form-control" id="${prop.var}" value="${currentFont}" data-var="${prop.var}">
-                </div>
-            `;
+        glitchModalEl.addEventListener('hide.bs.modal', () => {
+            document.removeEventListener('keydown', handleModalKeydown);
+            if (ttlEl) ttlEl.removeEventListener('click', handleModalClick);
         });
-        customizerBody.append(fontsHtml);
-        
-        // Build Google Font Importer
-        let importerHtml = `
-            <h3 class="mt-4">Add Google Font</h3>
-            <div class="d-flex">
-                <input type="text" id="google-font-name" class="form-control" placeholder="e.g., Roboto">
-                <button class="btn btn-secondary ms-2" id="load-font-btn">Load</button>
-            </div>
-        `;
-        customizerBody.append(importerHtml);
 
-        // Add event listeners
-        $('#customizerOffcanvas').on('input', 'input[type="color"]', function() {
-            root.style.setProperty($(this).data('var'), $(this).val());
-        });
-        $('#customizerOffcanvas').on('input', 'input[type="text"]', function() {
-            const fontStack = `'${$(this).val()}', sans-serif`;
-            root.style.setProperty($(this).data('var'), fontStack);
+        $('.dont-click-me').on('click', function() {
+            glitchModal.show();
         });
     }
+    
+    // --- 13. VHS Slide JS --- //
+    if (document.querySelector('.vhs-slide')) {
+        Splitting();
 
-    $('#customizer-body').on('click', '#load-font-btn', function() {
-        const fontName = $('#google-font-name').val().trim();
-        if (fontName) {
-            const formattedFontName = fontName.replace(/ /g, '+');
-            const link = document.createElement('link');
-            link.href = `https://fonts.googleapis.com/css2?family=${formattedFontName}:wght@400;700&display=swap`;
-            link.rel = 'stylesheet';
-            document.head.appendChild(link);
-            toastCartInfo.text(`Font "${fontName}" loaded.`);
-            cartToast.show();
+        let vhsSeconds = 0;
+        const secondsEl = document.getElementById("vhs-seconds");
+        const minutesEl = document.getElementById("vhs-minutes");
+        const counterEl = document.querySelector(".vhs-counter");
+
+        function pad(val) {
+            return val.toString().padStart(2, '0');
         }
-    });
 
-    $('#export-css-btn').on('click', function() {
-        let cssText = ':root {\n';
-        customizableProperties.Colors.forEach(prop => {
-            const value = getComputedStyle(root).getPropertyValue(prop.var).trim();
-            cssText += `  ${prop.var}: ${value};\n`;
-        });
-        customizableProperties.Fonts.forEach(prop => {
-             const value = getComputedStyle(root).getPropertyValue(prop.var).trim();
-            cssText += `  ${prop.var}: ${value};\n`;
-        });
-        cssText += '}';
+        // Update the clock every second
+        setInterval(() => {
+            vhsSeconds++;
+            if (counterEl && !counterEl.classList.contains('vhs-glitch')) {
+                minutesEl.innerHTML = pad(Math.floor(vhsSeconds / 60));
+                secondsEl.innerHTML = pad(vhsSeconds % 60);
+            }
+        }, 1000);
 
-        navigator.clipboard.writeText(cssText).then(() => {
-            toastCartInfo.text('CSS copied to clipboard!');
-            cartToast.show();
-        }, () => {
-            toastCartInfo.text('Failed to copy CSS.');
-            cartToast.show();
-        });
-    });
+        // Function to trigger a visual glitch
+        function triggerGlitch() {
+            if (counterEl) {
+                const glitchMinutes = pad(Math.floor(Math.random() * 99));
+                const glitchSeconds = pad(Math.floor(Math.random() * 99));
+                
+                minutesEl.innerHTML = glitchMinutes;
+                secondsEl.innerHTML = glitchSeconds;
+                counterEl.classList.add('vhs-glitch');
 
-    buildCustomizer();
-    updateCartCounter();
+                setTimeout(() => {
+                    counterEl.classList.remove('vhs-glitch');
+                    minutesEl.innerHTML = pad(Math.floor(vhsSeconds / 60));
+                    secondsEl.innerHTML = pad(vhsSeconds % 60);
+                }, 300);
+            }
+            const randomDelay = Math.random() * 3000 + 2000; // 2-5 seconds
+            setTimeout(triggerGlitch, randomDelay);
+        }
+        
+        // Start the glitch loop after an initial random delay
+        setTimeout(triggerGlitch, Math.random() * 3000 + 2000);
+    }
 });
-
