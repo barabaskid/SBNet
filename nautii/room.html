@@ -17,12 +17,28 @@
         }
         .game-container { position: relative; width: 100vw; height: 100vh; overflow: hidden; background-color: #000; }
         .room {
-            display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-            align-items: center; justify-content: center; flex-direction: column; text-align: center;
-            padding: 20px; box-sizing: border-box; opacity: 0; visibility: hidden;
-            transition: opacity 0.5s ease-in-out, visibility 0.5s;
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0;
+            z-index: 1;
+            visibility: hidden;
+            transition: opacity 1.5s ease-in-out;
         }
-        .room.active { display: flex; opacity: 1; visibility: visible; }
+        .room.active {
+            opacity: 1;
+            z-index: 2;
+            visibility: visible;
+        }
+        .room-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px; 
+            box-sizing: border-box;
+        }
         .ui-panel {
             z-index: 10; padding: 1.5rem 2rem; position: relative;
             background-color: rgba(255, 255, 255, 0.9); max-width: 800px;
@@ -33,6 +49,38 @@
             text-align: left; z-index: 20; font-size: 0.8rem; line-height: 1.5;
         }
 
+        /* --- GLOBAL CENTERING & ALIGNMENT --- */
+        .ui-panel {
+            text-align: center;
+        }
+
+        /* --- VHS GLITCH EFFECT --- */
+        #vhs-glitch-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            display: none;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.02) 48%, 
+                rgba(255,255,255,0.1) 50%, 
+                rgba(255,255,255,0.02) 52%, 
+                transparent 100%);
+            filter: blur(0.5px);
+        }
+        #vhs-glitch-line.active {
+            display: block;
+            animation: vhs-scan 0.2s linear;
+        }
+        @keyframes vhs-scan {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100vw); }
+        }
+
         /* --- TITLE SCREEN --- */
         #title-screen { background-color: #000; color: #fff; }
         #title-screen h1 { font-size: 3rem; margin-bottom: 2rem; text-shadow: 4px 4px #e50081; }
@@ -40,15 +88,9 @@
         .title-menu .nes-btn { margin: 1rem; }
         .title-container .nes-icon.star { margin: 0 1rem; }
 
-        /* --- ROOM STYLES & AMBIENT ANIMATIONS --- */
+        /* --- ROOM STYLES & BASE ANIMATIONS --- */
         #room-1 { background-color: #a7c957; }
-        @keyframes sway { 0%, 100% { transform: rotate(-1deg); } 50% { transform: rotate(1deg); } }
-        #room-1 .key { animation: sway 4s ease-in-out infinite; }
-        
         #room-2 { background-color: #495057; color: #fff; }
-        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 15px #212529; } 50% { box-shadow: 0 0 35px 5px #adb5bd; } }
-        #room-2 .ui-panel { animation: pulse-glow 6s ease-in-out infinite; }
-
         #room-3 { background-color: #4c007d; position: relative; }
         #room-3::after {
             content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -57,31 +99,25 @@
             animation: scan-lines 20s linear infinite;
         }
         @keyframes scan-lines { from { background-position: 0 0; } to { background-position: 0 -100px; } }
-
         #room-4 { 
             color: #fff; 
             background: #000814 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABoSURBVFhH7c6xCQAgEANBvf9p7h7g0kpaaC21pLf83wCAeS2AAG4BIMAtAAS4BYAAtwAQ4BYAAtwCwABsAcCAAQAHCgAAfKgAcOCAAcCCBQAAFyggAOCBAgAAFyggAAB+vQG9Vb4c5ArdOgAAAABJRU5ErkJggg==') repeat;
             animation: scroll-bg 40s linear infinite;
         }
         @keyframes scroll-bg { from { background-position: 0 0; } to { background-position: 256px 256px; } }
-
         #room-5 { background-color: #111; color: #fff; }
         .particle { position: absolute; background: white; border-radius: 50%; opacity: 0; }
         @keyframes drift { 0% { opacity: 0; } 20% { opacity: 0.5; } 80% { opacity: 0.5; } 100% { opacity: 0; transform: translateY(-100vh); } }
         @keyframes zoom-star { 0% { transform: scale(0) rotate(0deg); top: 50%; left: 50%; opacity: 1; } 100% { transform: scale(3) rotate(360deg); top: var(--y-end); left: var(--x-end); opacity: 0; } }
 
-        /* ROOM 1: KEYBOARD */
+        /* --- PUZZLE & UI STYLES --- */
         #keyboard-container { display: flex; flex-direction: column; gap: 8px; margin-top: 20px; }
         .keyboard-row { display: flex; gap: 8px; justify-content: center; }
         .key { width: 40px; height: 40px; padding: 0; }
         #answer-display { min-height: 48px; padding: 10px; font-size: 24px; letter-spacing: 8px; margin: 10px 0; width: 250px; text-align: center; }
-
-        /* ROOM 2: HALLWAY */
         #flicker-container { background: rgba(0,0,0,0.8); color: #fff; padding: 20px; z-index: 10; font-size: 1.2rem; margin-bottom: 2rem; }
         #flicker-code { display: inline-block; width: 400px; text-align: center; animation: lightning-strike 3.5s linear infinite; }
         @keyframes lightning-strike { 0%,70%{color:transparent;text-shadow:none}81%{color:#fff;text-shadow:0 0 5px #fff,0 0 15px #fff,0 0 25px #66ccff}98%{color:transparent;text-shadow:none}99%{color:#fff;text-shadow:0 0 5px #fff,0 0 10px #66ccff}100%{color:transparent;text-shadow:none} }
-        
-        /* ROOM 3: ARCADE */
         #note-indicators { display: flex; gap: 1rem; padding: 1rem; min-height: 60px; margin-top: 1rem; justify-content: center; }
         .note-indicator { width: 32px; height: 32px; image-rendering: pixelated; }
         #arcade-machines { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
@@ -92,8 +128,6 @@
         .arcade-machine:nth-child(4) { background-color: #2a9d8f; animation-delay: 0.6s; }
         .arcade-machine:nth-child(5) { background-color: #f77f00; animation-delay: 0.2s; }
         @keyframes pulse { 0%,100%{box-shadow:0 0 5px 2px #fff3}50%{box-shadow:0 0 20px 8px #fffffc} }
-
-        /* ROOM 4: CARTRIDGE */
         #drop-zones { display: flex; gap: 10px; margin: 20px 0; border: 4px solid #fff; padding: 10px; }
         .word-drop { min-width: 180px; height: 60px; border: 4px dashed; display: flex; align-items: center; justify-content: center; }
         .word-drop[data-accepts="fever"] { border-color: #e63946; }
@@ -110,30 +144,11 @@
         .word-fever.nes-btn { background-color: #e63946 !important; color: white; }
         .word-dream.nes-btn { background-color: #457b9d !important; color: white; }
         .word-street.nes-btn { background-color: #90be6d !important; color: black; }
-        
-        /* --- DEGRADATION & SURREAL EFFECTS --- */
-        .jitter-effect { animation: jitter 0.2s infinite; }
-        @keyframes jitter {
-            0% { transform: translate(1px, 1px) rotate(0.1deg); }
-            50% { transform: translate(-1px, -1px) rotate(-0.1deg); }
-            100% { transform: translate(1px, 1px) rotate(0.1deg); }
-        }
-        .melty-effect { animation: melty 8s ease-in-out infinite alternate; }
-        @keyframes melty {
-            from { filter: blur(0px) hue-rotate(0deg); transform: skew(0deg, 0deg); }
-            to { filter: blur(1px) hue-rotate(20deg); transform: skew(-1deg, 1deg); }
-        }
-        .color-shift-effect { animation: color-shift 5s linear infinite; }
-        @keyframes color-shift {
-            from { filter: hue-rotate(0deg); } to { filter: hue-rotate(360deg); }
-        }
 
-        /* EFFECTS */
+        /* --- GENERIC EFFECTS --- */
         #glitch-sprite { display:none; position:fixed; z-index:10000; pointer-events:none; }
         .sprite-is-glitching { display:block !important; animation: sprite-glitch .25s steps(2,end) forwards; }
         @keyframes sprite-glitch { 0%{opacity:0}10%{opacity:1;transform:translate(5px,-10px);clip-path:inset(0 0 50% 0)}30%{transform:translate(-10px,8px);clip-path:inset(50% 0 0 0)}50%{transform:translate(8px,-5px);clip-path:inset(20% 0 40% 0)}80%{transform:translate(-5px,10px);clip-path:inset(0 0 0 0)}100%{opacity:0;display:none} }
-        .subtle-shake { animation: subtle-shake 0.3s ease-in-out; }
-        @keyframes subtle-shake { 0%,100%{transform:translate(0,0)}25%{transform:translate(-3px,-2px)}50%{transform:translate(2px,3px)}75%{transform:translate(3px,-2px)} }
         #wrong-flash, #correct-flash {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9998;
             display: flex; align-items: center; justify-content: center;
@@ -141,20 +156,20 @@
         }
         #wrong-flash { background: rgba(255, 0, 0, 0.7); }
         #correct-flash { background: rgba(46, 204, 113, 0.7); }
-        #glitch-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            pointer-events: none; z-index: 9999;
+        
+        /* --- VIDEO POPUP CENTERING --- */
+        .mfp-video-center .mfp-content {
+            text-align: center;
         }
-        #glitch-overlay.glitch-active::before, 
-        #glitch-overlay.glitch-active::after { content: ' '; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: black; }
-        .glitch-light { animation: glitch-effect-light 0.3s steps(2, end) both; }
-        .glitch-medium { animation: glitch-effect-medium 0.4s cubic-bezier(.25, .46, .45, .94) both; }
-        .glitch-heavy { animation: glitch-effect-heavy 0.5s cubic-bezier(.25, .46, .45, .94) both; }
-        .glitch-very-heavy { animation: glitch-effect-very-heavy 0.6s ease-in-out both; }
-        @keyframes glitch-effect-light { 10%,60%{transform:translate(-2px,2px)}40%,80%{transform:translate(2px,-2px)} }
-        @keyframes glitch-effect-medium { 0%{transform:translate(0)}10%{transform:translate(-5px,5px)}20%{transform:translate(5px,-5px)}30%{transform:translate(-5px,-5px)}40%{transform:translate(5px,5px)}50%{transform:translate(-5px,5px)}60%{transform:translate(5px,-5px)}70%{transform:translate(0,0)} }
-        @keyframes glitch-effect-heavy { 0%{transform:translate(0);opacity:1}10%{transform:translate(-10px,10px) skewX(20deg)}20%{transform:translate(10px,-10px) skewX(-20deg)}30%{opacity:0}60%{opacity:1;transform:translate(0,0)} }
-        @keyframes glitch-effect-very-heavy { 0%{transform:translate(0);filter:none}10%{transform:translate(-20px,20px) scale(1.1);filter:invert(1)}20%{transform:translate(20px,-20px)}30%{transform:translate(0,0) scale(0.9);filter:invert(1)}50%{transform:scale(1.2);filter:none}70%{transform:translate(15px,15px) skewY(15deg);filter:invert(1)}90%{transform:translate(0,0);filter:none} }
+        .video-popup {
+            display: inline-block;
+        }
+        .video-popup video {
+            width: auto;
+            height: auto;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
 
         /* --- MOBILE RESPONSIVENESS --- */
         @media (max-width: 768px) {
@@ -163,7 +178,7 @@
                 position: relative;
                 top: auto; left: auto;
                 max-width: 90%;
-                order: -1; /* Puts description above the main UI panel */
+                order: -1;
                 margin-bottom: 1rem;
                 font-size: 0.7rem;
                 text-align: center;
@@ -195,104 +210,116 @@
 
     <div class="game-container">
         <section id="title-screen" class="room active">
-             <div class="nes-container with-title is-centered is-dark title-container">
-                <p class="title"><i class="nes-icon star is-small"></i> Nautii Girls <i class="nes-icon star is-small"></i></p>
-                <h1>Nautii Girls</h1>
-                <div class="title-menu">
-                    <button id="new-game-btn" type="button" class="nes-btn is-primary">New Game</button>
-                    <button id="continue-btn" type="button" class="nes-btn">Continue</button>
+            <div class="room-content">
+                 <div class="nes-container with-title is-centered is-dark title-container">
+                    <p class="title"><i class="nes-icon star is-small"></i> Nautii Girls <i class="nes-icon star is-small"></i></p>
+                    <h1>Nautii Girls</h1>
+                    <div class="title-menu">
+                        <button id="new-game-btn" type="button" class="nes-btn is-primary">New Game</button>
+                        <button id="continue-btn" type="button" class="nes-btn">Continue</button>
+                    </div>
+                    <p class="title-copyright">©2025 LEOPARD SPOT GAMES</p>
                 </div>
-                <p class="title-copyright">©2025 LEOPARD SPOT GAMES</p>
             </div>
         </section>
 
         <section id="room-1" class="room">
-            <div id="room1-desc" class="room-description nes-container is-dark"></div>
-            <div class="ui-panel nes-container is-rounded">
-                <p>Eve? What do you want, Eve?</p>
-                <div id="answer-display" class="nes-input"></div>
-                <button type="button" id="backspace-btn" class="nes-btn is-warning">DEL</button>
+            <div class="room-content">
+                <div id="room1-desc" class="room-description nes-container is-dark"></div>
+                <div class="ui-panel nes-container is-rounded">
+                    <p>Eve? What do you want, Eve?</p>
+                    <div id="answer-display" class="nes-input"></div>
+                    <button type="button" id="backspace-btn" class="nes-btn is-warning">DEL</button>
+                </div>
+                <div id="keyboard-container"></div>
             </div>
-            <div id="keyboard-container"></div>
         </section>
 
         <section id="room-2" class="room">
-            <div id="room2-desc" class="room-description nes-container is-dark"></div>
-            <div id="flicker-container">The static whispers... <span id="flicker-code"></span></div>
-            <div class="ui-panel nes-container is-dark with-title">
-                <p class="title">Locker</p>
-                <p>A combination lock! Can you HEAR the numbers?</p>
-                <form id="locker-form" autocomplete="off">
-                    <div class="nes-field">
-                        <input type="text" id="locker-input" class="nes-input is-dark" placeholder="XXX">
-                    </div>
-                    <button type="submit" class="nes-btn is-primary">Unlock</button>
-                </form>
+            <div class="room-content">
+                <div id="room2-desc" class="room-description nes-container is-dark"></div>
+                <div id="flicker-container">The static whispers... <span id="flicker-code"></span></div>
+                <div class="ui-panel nes-container is-dark with-title">
+                    <p class="title">Locker</p>
+                    <p>A combination lock! Can you HEAR the numbers?</p>
+                    <form id="locker-form" autocomplete="off">
+                        <div class="nes-field">
+                            <input type="text" id="locker-input" class="nes-input is-dark" placeholder="XXX">
+                        </div>
+                        <button type="submit" class="nes-btn is-primary">Unlock</button>
+                    </form>
+                </div>
             </div>
         </section>
 
         <section id="room-3" class="room">
-            <div id="room3-desc" class="room-description nes-container is-dark"></div>
-            <div class="ui-panel nes-container with-title">
-                <p class="title">Arcade</p>
-                <p>Each machine plays a tone. Is there Order in Disorder...</p>
+            <div class="room-content">
+                <div id="room3-desc" class="room-description nes-container is-dark"></div>
+                <div class="ui-panel nes-container with-title">
+                    <p class="title">Arcade</p>
+                    <p>Each machine plays a tone. Is there Order in Disorder...</p>
+                </div>
+                <div id="arcade-machines">
+                    <div class="arcade-machine" data-note="mi"></div>
+                    <div class="arcade-machine" data-note="so"></div>
+                    <div class="arcade-machine" data-note="do"></div>
+                    <div class="arcade-machine" data-note="fa"></div>
+                    <div class="arcade-machine" data-note="re"></div>
+                </div>
+                <div id="note-indicators" class="nes-container is-dark"></div>
             </div>
-            <div id="arcade-machines">
-                <div class="arcade-machine" data-note="mi"></div>
-                <div class="arcade-machine" data-note="so"></div>
-                <div class="arcade-machine" data-note="do"></div>
-                <div class="arcade-machine" data-note="fa"></div>
-                <div class="arcade-machine" data-note="re"></div>
-            </div>
-            <div id="note-indicators" class="nes-container is-dark"></div>
         </section>
 
         <section id="room-4" class="room">
-            <div id="room4-desc" class="room-description nes-container is-dark"></div>
-            <div class="ui-panel nes-container is-rounded is-dark">
-                <p>The code is fractured...</p>
-                <div id="drop-zones">
-                    <div class="word-drop" data-accepts="fever"></div>
-                    <div class="word-drop" data-accepts="dream"></div>
-                    <div class="word-drop" data-accepts="street"></div>
+            <div class="room-content">
+                <div id="room4-desc" class="room-description nes-container is-dark"></div>
+                <div class="ui-panel nes-container is-rounded is-dark">
+                    <p>The code is fractured...</p>
+                    <div id="drop-zones">
+                        <div class="word-drop" data-accepts="fever"></div>
+                        <div class="word-drop" data-accepts="dream"></div>
+                        <div class="word-drop" data-accepts="street"></div>
+                    </div>
+                    <button type="button" id="check-words-btn" class="nes-btn is-success">Check</button>
                 </div>
-                <button type="button" id="check-words-btn" class="nes-btn is-success">Check</button>
-            </div>
-            <div id="drag-words" class="nes-container is-dark">
-                 <div class="word-drag nes-btn word-fever" data-word="fever-x1" id="drag-fever-x1" draggable="true">ILLNESS</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream" id="drag-dream" draggable="true">DREAM</div>
-                 <div class="word-drag nes-btn word-fever" data-word="fever-x2" id="drag-fever-x2" draggable="true">SICKNESS</div>
-                 <div class="word-drag nes-btn word-street" data-word="street-x1" id="drag-street-x1" draggable="true">AVENUE</div>
-                 <div class="word-drag nes-btn word-fever" data-word="fever" id="drag-fever" draggable="true">FEVER</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream-x1" id="drag-dream-x1" draggable="true">VISION</div>
-                 <div class="word-drag nes-btn word-street" data-word="street-x2" id="drag-street-x2" draggable="true">ROAD</div>
-                 <div class="word-drag nes-btn word-fever" data-word="fever-x3" id="drag-fever-x3" draggable="true">CHILLS</div>
-                 <div class="word-drag nes-btn word-street" data-word="street" id="drag-street" draggable="true">STREET</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream-x2" id="drag-dream-x2" draggable="true">FANTASY</div>
-                 <div class="word-drag nes-btn word-street" data-word="street-x3" id="drag-street-x3" draggable="true">LANE</div>
-                 <div class="word-drag nes-btn word-fever" data-word="fever-x4" id="drag-fever-x4" draggable="true">AGUE</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream-x3" id="drag-dream-x3" draggable="true">NIGHTMARE</div>
-                 <div class="word-drag nes-btn word-street" data-word="street-x4" id="drag-street-x4" draggable="true">BLVD</div>
-                 <div class="word-drag nes-btn word-fever" data-word="fever-x5" id="drag-fever-x5" draggable="true">MALADY</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream-x4" id="drag-dream-x4" draggable="true">REVERIE</div>
-                 <div class="word-drag nes-btn word-dream" data-word="dream-x5" id="drag-dream-x5" draggable="true">TRANCE</div>
-                 <div class="word-drag nes-btn word-street" data-word="street-x5" id="drag-street-x5" draggable="true">COURT</div>
+                <div id="drag-words" class="nes-container is-dark">
+                    <div class="word-drag nes-btn word-fever" data-word="fever-x1" draggable="true">ILLNESS</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream" draggable="true">DREAM</div>
+                    <div class="word-drag nes-btn word-fever" data-word="fever-x2" draggable="true">SICKNESS</div>
+                    <div class="word-drag nes-btn word-street" data-word="street-x1" draggable="true">AVENUE</div>
+                    <div class="word-drag nes-btn word-fever" data-word="fever" draggable="true">FEVER</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream-x1" draggable="true">VISION</div>
+                    <div class="word-drag nes-btn word-street" data-word="street-x2" draggable="true">ROAD</div>
+                    <div class="word-drag nes-btn word-fever" data-word="fever-x3" draggable="true">CHILLS</div>
+                    <div class="word-drag nes-btn word-street" data-word="street" draggable="true">STREET</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream-x2" draggable="true">FANTASY</div>
+                    <div class="word-drag nes-btn word-street" data-word="street-x3" draggable="true">LANE</div>
+                    <div class="word-drag nes-btn word-fever" data-word="fever-x4" draggable="true">AGUE</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream-x3" draggable="true">NIGHTMARE</div>
+                    <div class="word-drag nes-btn word-street" data-word="street-x4" draggable="true">BLVD</div>
+                    <div class="word-drag nes-btn word-fever" data-word="fever-x5" draggable="true">MALADY</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream-x4" draggable="true">REVERIE</div>
+                    <div class="word-drag nes-btn word-dream" data-word="dream-x5" draggable="true">TRANCE</div>
+                    <div class="word-drag nes-btn word-street" data-word="street-x5" draggable="true">COURT</div>
+                </div>
             </div>
         </section>
 
         <section id="room-5" class="room">
-            <div id="room5-desc" class="room-description nes-container is-dark"></div>
-            <div class="ui-panel nes-container is-dark">
-                <p id="dialogue-text">...</p>
-                <div id="dialogue-options">
-                    <button type="button" class="nes-btn is-primary" data-choice="y">Yes</button>
-                    <button type="button" class="nes-btn is-primary" data-choice="n">No</button>
+            <div class="room-content">
+                <div id="room5-desc" class="room-description nes-container is-dark"></div>
+                <div class="ui-panel nes-container is-dark">
+                    <p id="dialogue-text">...</p>
+                    <div id="dialogue-options">
+                        <button type="button" class="nes-btn is-primary" data-choice="y">Yes</button>
+                        <button type="button" class="nes-btn is-primary" data-choice="n">No</button>
+                    </div>
+                     <a href="#" id="final-link" class="nes-btn is-success" style="display: none;">A GIFT! TAKE IT!!!</a>
                 </div>
-                 <a href="#" id="final-link" class="nes-btn is-success" style="display: none;">Something to remember me by...</a>
             </div>
         </section>
-        
-        <div id="glitch-overlay"></div>
+
+        <div id="vhs-glitch-line"></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -306,34 +333,60 @@
             let hintIndex = 0;
             const dialogueTree = [ { text: "Are you still there, player?" }, { text: "You've grown so much. Do you even remember me?" }, { text: "I remember when we would play for hours. Do you want to stay?" }, { text: "But... you have a life now, don't you? Responsibilities?" }, { text: "It's okay. I understand. It was nice to play one last time." }, { text: "You should go. But take this with you." }];
             let roomState = { room1: { currentAnswer: '' }, room3: { sequence: [] }, room5: { dialogueIndex: 0 } };
-            let flickerInterval, particleInterval;
+            let flickerInterval, particleInterval, randomSpriteInterval, rapidSpriteInterval;
+            let vhsGlitchTimeout;
+            let vhsGlitchInterval = 8000;
+
             const menuMusic = new Audio('mainmenu.mp3');
             menuMusic.loop = true;
 
-            function playGlitch(intensity) {
-                const overlay = $('#glitch-overlay');
-                overlay.removeClass().addClass(`glitch-active ${intensity}`);
-                setTimeout(() => overlay.removeClass(), 600);
-            }
-
             function transitionToRoom(nextRoomId, roomNumber) {
-                const intensityMap = ['light', 'medium', 'heavy', 'very-heavy'];
-                playGlitch(intensityMap[roomNumber - 2] || 'light');
                 const currentRoom = $('.room.active');
                 const nextRoom = $(`#${nextRoomId}`);
+
+                if (currentRoom.length && currentRoom.attr('id') === nextRoomId) return;
+
+                currentRoom.css('z-index', 1);
+                nextRoom.css('z-index', 2);
                 
-                // Clear old degradation classes and apply new ones based on progression
-                $('.room').removeClass('jitter-effect melty-effect color-shift-effect');
-                if (roomNumber >= 3) nextRoom.addClass('jitter-effect');      // Starts in the Arcade
-                if (roomNumber >= 4) nextRoom.addClass('melty-effect');       // Starts in the Liminal Space
-                if (roomNumber >= 5) nextRoom.addClass('color-shift-effect'); // Starts in the final Space room
+                nextRoom.addClass('active');
+                currentRoom.removeClass('active');
                 
-                setTimeout(() => currentRoom.removeClass('active'), 700);
+                if (vhsGlitchTimeout) clearTimeout(vhsGlitchTimeout);
+                
+                if(roomNumber > 0) {
+                    if (roomNumber === 1) vhsGlitchInterval = 7000;
+                    else if (roomNumber === 2) vhsGlitchInterval = 5000;
+                    else if (roomNumber === 3) vhsGlitchInterval = 3000;
+                    else if (roomNumber === 4) vhsGlitchInterval = 1500;
+                    else if (roomNumber === 5) vhsGlitchInterval = 800;
+                    
+                    triggerVhsGlitch();
+                }
+
+                const setupFunctionName = `setup${nextRoomId.charAt(0).toUpperCase() + nextRoomId.slice(1).replace('-', '')}`;
+                if (typeof window[setupFunctionName] === 'function') {
+                     window[setupFunctionName]();
+                }
+            }
+            
+            function triggerVhsGlitch() {
+                const line = $('#vhs-glitch-line');
+                
+                const topPos = Math.random() * 100;
+                const height = Math.random() * (Math.random() < 0.1 ? 70 : 20) + 5;
+
+                line.css({
+                    top: `${topPos}%`,
+                    height: `${height}%`
+                }).addClass('active');
+
                 setTimeout(() => {
-                    nextRoom.addClass('active');
-                    const setupFunctionName = `setup${nextRoomId.charAt(0).toUpperCase() + nextRoomId.slice(1).replace('-', '')}`;
-                    if (typeof window[setupFunctionName] === 'function') window[setupFunctionName]();
-                }, 800);
+                    line.removeClass('active');
+                }, 200);
+
+                const nextGlitchTime = vhsGlitchInterval + (Math.random() * 2000 - 1000);
+                vhsGlitchTimeout = setTimeout(triggerVhsGlitch, nextGlitchTime);
             }
 
             function showDialog(title, message, onConfirm) {
@@ -346,7 +399,7 @@
 
             function startGame() {
                 if (!menuMusic.paused) menuMusic.pause();
-                setInterval(showGlitchSprite, Math.random() * 5000 + 8000);
+                randomSpriteInterval = setInterval(showGlitchSprite, Math.random() * 5000 + 8000);
                 transitionToRoom('room-1', 1);
             }
             
@@ -368,7 +421,6 @@
                     keyboardContainer.append(rowDiv);
                 });
                 $('.key[data-letter="P"]').parent().append('<button type="button" class="nes-btn key" data-letter="P">P</button>');
-                $('.key').each(function(i) { $(this).css('animation-delay', `${(i * 0.1)}s`); });
                 $('.key').off('click').on('click', function() {
                     if (roomState.room1.currentAnswer.length < ANSWERS.room1.length) {
                         roomState.room1.currentAnswer += $(this).data('letter');
@@ -477,9 +529,7 @@
                     } else {
                         const wrongFlash = $('<div id="wrong-flash">WRONG</div>');
                         $('body').append(wrongFlash);
-                        $('.game-container').addClass('subtle-shake');
                         setTimeout(() => {
-                            $('.game-container').removeClass('subtle-shake');
                             wrongFlash.remove();
                         }, 400);
                     }
@@ -488,7 +538,6 @@
 
             window.setupRoom5 = function() {
                 $('#room5-desc').text(NARRATIVE.room5);
-                // Clear any previous particle intervals to prevent duplicates
                 if (particleInterval) clearInterval(particleInterval);
                 
                 const createParticle = (isZooming) => {
@@ -524,16 +573,13 @@
                         for (let i = 0; i < particlesToSpawn; i++) {
                             createParticle(true);
                         }
-                        
                         if (particleRate > minRate) {
                             particleRate *= acceleration;
                         } else {
                             particleRate = minRate;
                         }
-                        
                         setTimeout(spawnZoomingParticles, particleRate);
                     }
-
                     spawnZoomingParticles();
                 }, 1000);
 
@@ -544,11 +590,19 @@
                             $('#dialogue-options').hide();
                             $('#final-link').show().magnificPopup({
                                 type: 'inline',
-                mainClass: 'mfp-fade',
-                items: {
-                    // The 'muted' attribute has been removed
-                    src: '<div class="video-popup"><video src="win.mp4" autoplay playsinline controls></video></div>',
-                }
+                                mainClass: 'mfp-fade mfp-video-center',
+                                items: {
+                                    src: '<div class="video-popup"><video src="win.mp4" autoplay playsinline controls></video></div>',
+                                },
+                                callbacks: {
+                                    open: function() {
+                                        if (randomSpriteInterval) clearInterval(randomSpriteInterval);
+                                        rapidSpriteInterval = setInterval(showGlitchSprite, 350);
+                                    },
+                                    close: function() {
+                                        if (rapidSpriteInterval) clearInterval(rapidSpriteInterval);
+                                    }
+                                }
                             });
                         }
                         roomState.room5.dialogueIndex++;
