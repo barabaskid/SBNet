@@ -544,12 +544,7 @@
                             $('#dialogue-options').hide();
                             $('#final-link').show().magnificPopup({
                                 type: 'iframe', mainClass: 'mfp-fade',
-                                                items: {
-                    // Corrected URL with autoplay and mute parameters
-                    src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&mute=1'
-                },
-                                iframe: { patterns: { youtube: { index: 'youtube.com/', id: 'v=', src: 'https://www.youtube.com/embed/%id%?autoplay=1&mute=1' } } },
-                                callbacks: { close: function() { showDialog("Goodbye", "Thank you
+                                items: { src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&autoplay=1&mute=1'}
                             });
                         }
                         roomState.room5.dialogueIndex++;
