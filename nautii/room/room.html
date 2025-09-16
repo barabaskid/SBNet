@@ -483,8 +483,12 @@
                         if (roomState.room5.dialogueIndex >= dialogueTree.length - 1) {
                             $('#dialogue-options').hide();
                             $('#final-link').show().magnificPopup({
-                                type: 'iframe', mainClass: 'mfp-fade',
-                                items: { src: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' }
+                                type: 'inline',
+                                mainClass: 'mfp-fade',
+                                items: {
+                                // The 'muted' attribute has been removed
+                                src: '<div class="video-popup"><video src="win.mp4" autoplay playsinline controls></video></div>',
+                }
                             });
                         }
                         roomState.room5.dialogueIndex++;
