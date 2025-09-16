@@ -71,13 +71,13 @@
                 rgba(255,255,255,0.02) 52%, 
                 transparent 100%);
             filter: blur(0.5px);
+            transform: translateX(-100px); /* Start off-screen */
         }
         #vhs-glitch-line.active {
             display: block;
             animation: vhs-scan 0.2s linear;
         }
         @keyframes vhs-scan {
-            0% { transform: translateX(-100px); }
             100% { transform: translateX(100vw); }
         }
 
@@ -196,6 +196,8 @@
     </style>
 </head>
 <body>
+    <video src="win.mp4" preload="auto" muted style="display: none;"></video>
+
     <dialog class="nes-dialog" id="generic-dialog">
         <form method="dialog">
             <p class="title"></p>
@@ -314,7 +316,7 @@
                         <button type="button" class="nes-btn is-primary" data-choice="y">Yes</button>
                         <button type="button" class="nes-btn is-primary" data-choice="n">No</button>
                     </div>
-                     <a href="#" id="final-link" class="nes-btn is-success" style="display: none;">A GIFT! TAKE IT!!!</a>
+                     <a href="#" id="final-link" class="nes-btn is-success" style="display: none;">HERE! A GIFT!!!</a>
                 </div>
             </div>
         </section>
@@ -370,19 +372,20 @@
                 }
             }
             
+            // FIXED: Rewritten with native JS for reliability
             function triggerVhsGlitch() {
-                const line = $('#vhs-glitch-line');
-                
+                const line = document.getElementById('vhs-glitch-line');
+                if (!line) return;
+
                 const topPos = Math.random() * 100;
                 const height = Math.random() * (Math.random() < 0.1 ? 70 : 20) + 5;
 
-                line.css({
-                    top: `${topPos}%`,
-                    height: `${height}%`
-                }).addClass('active');
+                line.style.top = `${topPos}%`;
+                line.style.height = `${height}%`;
+                line.classList.add('active');
 
                 setTimeout(() => {
-                    line.removeClass('active');
+                    line.classList.remove('active');
                 }, 200);
 
                 const nextGlitchTime = vhsGlitchInterval + (Math.random() * 2000 - 1000);
