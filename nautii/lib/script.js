@@ -320,7 +320,7 @@ SIGNATURE VERIFIED: <span class="primary">nautii</span>
         const handleModalClick = (event) => {
             const action = event.target.dataset.action;
             if (action === 'y') {
-                window.open('/nautii/room.html', '_blank');
+                window.open('https://samuelbutcher.net/nautii/room.html', '_blank');
                 glitchModal.hide();
             } else if (action === 'n') {
                 glitchModal.hide();
