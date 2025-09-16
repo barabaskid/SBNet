@@ -271,11 +271,11 @@ $(document).ready(function() {
     applyTheme();
     
     // --- 11. Glitch Modal Logic --- //
-    const glitchModalEl = document.getElementById('glitchModal');
-    if (glitchModalEl) {
-        const glitchModal = new bootstrap.Modal(glitchModalEl);
-        const ttlEl = document.getElementById('ttl');
-        const textToType = `╔════════════════════════════════╗
+const glitchModalEl = document.getElementById('glitchModal');
+if (glitchModalEl) {
+    const glitchModal = new bootstrap.Modal(glitchModalEl);
+    const ttlEl = document.getElementById('ttl');
+    const textToType = `╔════════════════════════════════╗
 ║ * * Copyright  (c)  Nautii * * ║
 ╚════════════════════════════════╝
 
@@ -286,66 +286,70 @@ DECODING... LATE_NIGHT_GROOVE
 HARMONICS... STABILIZED_SENSUAL
 SIGNATURE VERIFIED: <span class="primary">nautii</span>
 
-               Play <span data-action="y">Y</span>/<span data-action="n">N</span>`;
+                      Play <span data-action="y">Y</span>/<span data-action="n">N</span>`;
 
-        function typeWriter(element, text, i, callback) {
-            if (!element || !glitchModalEl.classList.contains('show')) {
-                return; // Stop if element is gone or modal is closed
-            }
-            if (i < text.length) {
-                const char = text.charAt(i);
-                if (char === '<') {
-                    const tagEndIndex = text.indexOf('>', i);
-                    element.innerHTML += text.substring(i, tagEndIndex + 1);
-                    setTimeout(() => typeWriter(element, text, tagEndIndex + 1, callback), 30);
-                } else {
-                    element.innerHTML += char;
-                    setTimeout(() => typeWriter(element, text, i + 1, callback), 30);
-                }
-            } else if (callback) {
-                callback();
-            }
+    function typeWriter(element, text, i, callback) {
+        // --- Adjustable typing speed in milliseconds ---
+        const typingSpeed = 24;
+
+        if (!element || !glitchModalEl.classList.contains('show')) {
+            return; // Stop if element is gone or modal is closed
         }
-
-        const handleModalKeydown = (event) => {
-            const key = event.key.toLowerCase();
-            if (key === 'y') {
-                window.open('room.html', '_blank');
-                glitchModal.hide();
-            } else if (key === 'n') {
-                glitchModal.hide();
+        if (i < text.length) {
+            const char = text.charAt(i);
+            if (char === '<') {
+                const tagEndIndex = text.indexOf('>', i);
+                element.innerHTML += text.substring(i, tagEndIndex + 1);
+                setTimeout(() => typeWriter(element, text, tagEndIndex + 1, callback), typingSpeed);
+            } else {
+                element.innerHTML += char;
+                setTimeout(() => typeWriter(element, text, i + 1, callback), typingSpeed);
             }
-        };
-
-        const handleModalClick = (event) => {
-            const action = event.target.dataset.action;
-            if (action === 'y') {
-                window.open('https://samuelbutcher.net/nautii/room.html', '_blank');
-                glitchModal.hide();
-            } else if (action === 'n') {
-                glitchModal.hide();
-            }
-        };
-
-        // Use 'shown.bs.modal' which fires after the modal is fully visible
-        glitchModalEl.addEventListener('shown.bs.modal', () => {
-            ttlEl.innerHTML = ''; // Always load fresh
-            typeWriter(ttlEl, textToType, 0, () => {
-                if (ttlEl) ttlEl.innerHTML += '<span class="cursor">█</span>';
-            });
-            document.addEventListener('keydown', handleModalKeydown);
-            ttlEl.addEventListener('click', handleModalClick);
-        });
-
-        glitchModalEl.addEventListener('hide.bs.modal', () => {
-            document.removeEventListener('keydown', handleModalKeydown);
-            if (ttlEl) ttlEl.removeEventListener('click', handleModalClick);
-        });
-
-        $('.dont-click-me').on('click', function() {
-            glitchModal.show();
-        });
+        } else if (callback) {
+            callback();
+        }
     }
+
+    // --- Single function to handle both click and keydown actions ---
+    function performModalAction(action) {
+        if (action === 'y') {
+            // Using the full absolute path for reliability
+            window.open('https://samuelbutcher.net/nautii/room.html', '_blank');
+            glitchModal.hide();
+        } else if (action === 'n') {
+            glitchModal.hide();
+        }
+    }
+
+    const handleModalKeydown = (event) => {
+        const key = event.key.toLowerCase();
+        performModalAction(key);
+    };
+
+    const handleModalClick = (event) => {
+        const action = event.target.dataset.action;
+        performModalAction(action);
+    };
+
+    // Use 'shown.bs.modal' which fires after the modal is fully visible
+    glitchModalEl.addEventListener('shown.bs.modal', () => {
+        ttlEl.innerHTML = ''; // Always load fresh
+        typeWriter(ttlEl, textToType, 0, () => {
+            if (ttlEl) ttlEl.innerHTML += '<span class="cursor">█</span>';
+        });
+        document.addEventListener('keydown', handleModalKeydown);
+        ttlEl.addEventListener('click', handleModalClick);
+    });
+
+    glitchModalEl.addEventListener('hide.bs.modal', () => {
+        document.removeEventListener('keydown', handleModalKeydown);
+        if (ttlEl) ttlEl.removeEventListener('click', handleModalClick);
+    });
+
+    $('.dont-click-me').on('click', function() {
+        glitchModal.show();
+    });
+}
     
     // --- 13. VHS Slide JS --- //
     if (document.querySelector('.vhs-slide')) {
