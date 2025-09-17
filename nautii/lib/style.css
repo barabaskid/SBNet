@@ -999,7 +999,7 @@ body.dark-mode .merch-card { box-shadow: 0 5px 15px rgba(0, 0, 0, .2); }
 }
 #scroll-to-top {
     bottom: 20px;
-    left: 12px;
+    right: 14px;
     opacity: 0;
     visibility: hidden;
     width: auto;
