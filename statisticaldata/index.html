@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Projection | Samuel Butcher</title>
+    <meta name="description" content="A gallery of commissioned work." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="../lib/css/style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link href="../apple-touch-icon.png" rel="apple-touch-icon" sizes="152x152" />
+    <link href="../favicon-32x32.png" rel="icon" sizes="32x32" type="image/png" />
+    <link href="../favicon-16x16.png" rel="icon" sizes="16x16" type="image/png" />
+    <link href="../safari-pinned-tab.svg" rel="mask-icon" />
+    <meta content="#b91d47" name="msapplication-TileColor" />
+    <meta content="#800000" name="theme-color" />
+    <style>
+        body {
+            font-family: 'Poiret One', cursive;
+            background-color: #ffffff;
+            color: #121212;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 60vh;
+            width: 100%; /* Changed from 90vw to be responsive within parent */
+            margin: auto;
+        }
+        
+        h1, h2 {
+            font-weight: bold;
+        }
+
+        /* Styles from original site for nav and loading to function */
+        .main-content {
+            /* Removed padding-left to prevent conflict with external stylesheet */
+            transition: padding-left 0.3s ease, opacity 0.5s ease-in-out;
+            opacity: 0;
+        }
+        .main-content.loaded {
+            opacity: 1;
+        }
+        @media (max-width: 991.98px) {
+            .main-content {
+                padding-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Desktop Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="../index.html#home" class="logo-container">
+                <img src="../lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
+                <img src="../lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
+            </a>
+        </div>
+        <div class="nav-container">
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link" href="../index.html#home"><span>Home</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#about"><span>About</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#resume"><span>Resume</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link" href="../index.html#contact"><span>Contact</span></a></li>
+                <li class="nav-item-divider"> <div class="navdivider-line"></div> </li>
+                <li class="nav-item"><a class="nav-link active" href="#"><span>Commission</span></a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="style-switcher">
+                <i class="fas fa-moon" id="theme-toggle"></i>
+            </div>
+            <p class="copyright">&copy; <span id="copyright-year"></span> Samuel Butcher</p>
+        </div>
+    </nav>
+
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+        <a href="../index.html#home" class="logo-container">
+            <img src="../lib/img/logo-light.png" alt="Dark Logo" class="logo-dark">
+            <img src="../lib/img/logo-dark.png" alt="Light Logo" class="logo-light">
+        </a>
+        <div class="style-switcher">
+            <i class="fas fa-moon" id="mobile-theme-toggle"></i>
+        </div>
+        <div class="hamburger-btn" id="hamburger-btn">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Dropdown -->
+    <div class="mobile-nav-dropdown" id="mobile-nav-dropdown">
+        <ul class="nav">
+            <li class="nav-item"><a class="nav-link" href="../index.html#home"><span>Home</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#about"><span>About</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#resume"><span>Resume</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link" href="../index.html#contact"><span>Contact</span></a></li>
+            <li class="nav-item-divider"><div class="navdivider-line"></div></li>
+            <li class="nav-item"><a class="nav-link active" href="#"><span>Commission</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main id="stat" class="main-content">
+        <section class="content-section active-section">
+            <div class="content-wrapper">
+                <div class="container my-5">
+                    <div class="content-card">
+                        <div class="p-3">
+                            <!-- Chart.js Graph -->
+                            <div class="row mt-4">
+                                <div class="col-12">
+                                    <div class="chart-container">
+                                        <canvas id="projectionChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Date Calculator -->
+                            <div class="row mt-5 justify-content-center">
+                                <div class="col-12 col-md-6 text-center">
+                                    <h2 id="calculator-title">Calculate Duration for a Future Date</h2>
+                                    <div class="input-group input-group-lg mt-3">
+                                        <input type="date" id="datePicker" class="form-control" aria-label="Select a date">
+                                    </div>
+                                    <div id="result" class="mt-4 fs-4"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JS Dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- From original site sb.js ---
+            const mainContent = document.querySelector('.main-content');
+            
+            const preloader = document.getElementById('preloader');
+            if (preloader) {
+                window.addEventListener('load', () => {
+                    preloader.style.display = 'none';
+                    if(mainContent) {
+                        mainContent.classList.add('loaded');
+                    }
+                });
+            }
+
+            const copyrightYear = document.getElementById('copyright-year');
+            if(copyrightYear) {
+                copyrightYear.textContent = new Date().getFullYear();
+            }
+
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('mobile-theme-toggle')];
+            
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileNav = document.getElementById('mobile-nav-dropdown');
+            if (hamburgerBtn && mobileNav) {
+                const mobileLinks = mobileNav.querySelectorAll('.nav-link');
+                const toggleMenu = () => {
+                    hamburgerBtn.classList.toggle('is-open');
+                    mobileNav.classList.toggle('is-open');
+                };
+                hamburgerBtn.addEventListener('click', toggleMenu);
+                mobileLinks.forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (mobileNav.classList.contains('is-open')) {
+                            toggleMenu();
+                        }
+                    });
+                });
+            }
+
+            // --- Chart and Calculator Logic ---
+            const rawData = [
+                { date: "2025-09-11", duration: 3 * 3600 + 44 * 60 + 26 },
+                { date: "2025-09-12", duration: 4 * 3600 + 21 * 60 + 48 },
+                { date: "2025-09-13", duration: 4 * 3600 + 28 * 60 + 22 },
+                { date: "2025-09-15", duration: 6 * 3600 + 15 * 60 + 34 },
+                { date: "2025-09-16", duration: 3 * 3600 + 11 * 60 + 6 },
+                { date: "2025-09-17", duration: 7 * 3600 + 51 * 60 + 40 },
+                { date: "2025-09-18", duration: 15 * 3600 + 34 * 60 + 9 }
+            ];
+
+            const startDate = dayjs(rawData[0].date);
+            const daysSinceStart = rawData.map(d => dayjs(d.date).diff(startDate, 'day'));
+            const durations = rawData.map(d => d.duration);
+
+            const n = daysSinceStart.length;
+            const sumX = daysSinceStart.reduce((a, b) => a + b, 0);
+            const sumY = durations.reduce((a, b) => a + b, 0);
+            const sumXY = daysSinceStart.map((x, i) => x * durations[i]).reduce((a, b) => a + b, 0);
+            const sumXX = daysSinceStart.map(x => x * x).reduce((a, b) => a + b, 0);
+
+            const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / n;
+            
+            const predictDuration = (day) => slope * day + intercept;
+
+            const ctx = document.getElementById('projectionChart').getContext('2d');
+            const endDateGraph = dayjs('2025-10-09');
+            const totalDaysGraph = endDateGraph.diff(startDate, 'day');
+            
+            const lineData1 = [];
+            const lineData2 = [];
+            const amplitude = 0.6;
+            const frequency = 0.8;
+
+            for (let i = 0; i <= totalDaysGraph; i++) {
+                const trend = predictDuration(i) / 3600;
+                const offset = amplitude * Math.sin(i * frequency);
+                lineData1.push({ x: i, y: trend + offset });
+                lineData2.push({ x: i, y: trend - offset });
+            }
+
+            const projectionChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Natalie Variance',
+                        data: lineData1,
+                        borderColor: '#bf00ff',
+                        borderWidth: 4,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10,
+                        shadowOffsetX: 4,
+                        shadowOffsetY: 4,
+                    }, {
+                        label: 'Samuel Variance',
+                        data: lineData2,
+                        borderColor: '#800000',
+                        borderWidth: 4,
+                        tension: 0.4,
+                        pointRadius: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.3)',
+                        shadowBlur: 10,
+                        shadowOffsetX: 4,
+                        shadowOffsetY: 4,
+                    }, {
+                        type: 'scatter',
+                        label: 'Raw Data',
+                        data: rawData.map(d => ({
+                            x: dayjs(d.date).diff(startDate, 'day'),
+                            y: d.duration / 3600
+                        })),
+                        backgroundColor: '#b0b0b0',
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Duration (Hours)', font: { size: 16 }, color: '#121212' },
+                            grid: { color: '#121212' },
+                            ticks: { color: '#121212', font: { size: 14 } }
+                        },
+                        x: {
+                            type: 'linear',
+                            title: { display: true, text: 'Date', font: { size: 16 }, color: '#121212' },
+                            grid: { color: '#121212' },
+                            ticks: {
+                                color: '#121212',
+                                font: { size: 14 },
+                                callback: function(value) {
+                                    return startDate.add(value, 'day').format('MMM D');
+                                },
+                                stepSize: 2,
+                                maxRotation: 45,
+                                minRotation: 45
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            labels: { 
+                                font: { size: 14 },
+                                color: '#121212'
+                            }
+                        },
+                        tooltip: {
+                            enabled: true,
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const days = tooltipItems[0].parsed.x;
+                                    return startDate.add(days, 'day').format('MMMM D, YY');
+                                },
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) { label += ': '; }
+                                    let totalHours = context.parsed.y;
+                                    if (totalHours) {
+                                        const totalSeconds = totalHours * 3600;
+                                        const hours = Math.floor(totalSeconds / 3600);
+                                        const minutes = Math.floor((totalSeconds % 3600) / 60);
+                                        const seconds = Math.floor(totalSeconds % 60);
+                                        label += `${hours}h ${minutes}m ${seconds}s`;
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const updateChartColors = () => {
+                const isLightMode = document.body.classList.contains('light-mode');
+                const newColor = isLightMode ? '#121212' : '#eeeeee';
+                const calculatorTitle = document.getElementById('calculator-title');
+
+                projectionChart.options.scales.y.title.color = newColor;
+                projectionChart.options.scales.y.grid.color = newColor;
+                projectionChart.options.scales.y.ticks.color = newColor;
+                projectionChart.options.scales.x.title.color = newColor;
+                projectionChart.options.scales.x.grid.color = newColor;
+                projectionChart.options.scales.x.ticks.color = newColor;
+                projectionChart.options.plugins.legend.labels.color = newColor;
+                
+                if (calculatorTitle) {
+                    calculatorTitle.style.color = newColor;
+                }
+
+                projectionChart.update();
+            };
+
+            themeToggles.forEach(toggle => {
+                if(toggle) {
+                    toggle.addEventListener('click', () => {
+                        document.body.classList.toggle('light-mode');
+                        const isLightMode = document.body.classList.contains('light-mode');
+                        themeToggles.forEach(t => {
+                           if(t) {
+                                t.classList.toggle('fa-sun', isLightMode);
+                                t.classList.toggle('fa-moon', !isLightMode);
+                           }
+                        });
+                        updateChartColors();
+                    });
+                }
+            });
+
+            // Set initial chart colors based on theme
+            updateChartColors();
+
+            const datePicker = document.getElementById('datePicker');
+            const resultDiv = document.getElementById('result');
+            const lastDataDate = dayjs(rawData[rawData.length - 1].date);
+            datePicker.min = lastDataDate.add(1, 'day').format('YYYY-MM-DD');
+
+            datePicker.addEventListener('change', (event) => {
+                const selectedDate = dayjs(event.target.value);
+                if (!selectedDate.isValid()) return;
+                const daysFromStart = selectedDate.diff(startDate, 'day');
+                const projectedSeconds = predictDuration(daysFromStart);
+                if (projectedSeconds < 0) {
+                     resultDiv.textContent = "Calculation results in a negative duration for this date.";
+                     return;
+                }
+                const hours = Math.floor(projectedSeconds / 3600);
+                const minutes = Math.floor((projectedSeconds % 3600) / 60);
+                const seconds = Math.floor(projectedSeconds % 60);
+                resultDiv.innerHTML = `On ${selectedDate.format('MMMM D, YYYY')},<br>the projected duration will be:<br>
+                    <strong>${hours.toLocaleString()}</strong> hours, 
+                    <strong>${minutes}</strong> minutes, and 
+                    <strong>${seconds}</strong> seconds.`;
+            });
+        });
+    </script>
+    
+</body>
+</html>
+
