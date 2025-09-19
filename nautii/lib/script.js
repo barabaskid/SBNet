@@ -161,7 +161,7 @@ $(document).ready(function() {
     if (glitchModalEl) {
         const glitchModal = new bootstrap.Modal(glitchModalEl),
             ttlElement = document.getElementById("ttl"),
-            modalText = `╔════════════════════════════════╗\n ║ * * Copyright (c) Nautii * * ║\n ╚════════════════════════════════╝\n\n SYNCING... RHYTHM_MODULE\n CALIBRATING... BASS_THUMPER\n UPLOADING... SUBCONSCIOUS_MELODY\n DECODING... LATE_NIGHT_GROOVE\n HARMONICS... STABILIZED_SENSUAL\n SIGNATURE VERIFIED: <span class="primary">nautii</span>\n\n Play <span data-action="y">Y</span> <span data-action="n">N</span>`;
+            modalText = `╔════════════════════════════════╗\n║ * * Copyright (c) Nautii * * ║\n╚════════════════════════════════╝\n\n SYNCING... RHYTHM_MODULE\n CALIBRATING... BASS_THUMPER\n UPLOADING... SUBCONSCIOUS_MELODY\n DECODING... LATE_NIGHT_GROOVE\n HARMONICS... STABILIZED_SENSUAL\n SIGNATURE VERIFIED: <span class="primary">nautii</span>\n\n Play <span data-action="y">Y</span> <span data-action="n">N</span>`;
 
         function typeWriter(e, t, o, a) {
             if (e && glitchModalEl.classList.contains("show")) {
@@ -173,7 +173,7 @@ $(document).ready(function() {
         }
 
         function handleModalAction(e) {
-            "y" === e ? (window.open("https://samuelbutcher.net/nautii/index.html", "_blank"), glitchModal.hide()) : "n" === e && glitchModal.hide()
+            "y" === e ? (window.open("https://samuelbutcher.net/nautii/room/index.html", "_blank"), glitchModal.hide()) : "n" === e && glitchModal.hide()
         }
         const handleKeyPress = e => {
                 const t = e.key.toLowerCase();
