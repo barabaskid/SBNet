@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>!!! NAUTII LAUNCH !!!</title>
+
+    <!-- This is Bootstrap... the cool kids use it -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FONT AWESOME FOR ICONS!!!! -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+
+    <!-- MY OWN CUSTOM FONTS because I am a pro designer -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Honk&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        /* This is CSS - Cascading Style Sheets. It makes things look pretty! */
+        body {
+            background: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            font-family: 'Comic Neue', cursive; /* The best font */
+            color: #00ff00;
+            text-shadow: 2px 2px #ff0000;
+            overflow: hidden; /* so the cool moving text doesnt make a scroll bar */
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .main-container {
+            margin-top: 30px;
+            padding: 20px;
+            border: 10px dashed yellow;
+            background-color: rgba(0, 0, 128, 0.5); /* Navy blue, but see-through! */
+            box-shadow: 0 0 50px 20px #ffffff; /* a cool glow effect */
+        }
+        
+        h1 {
+            font-family: 'Honk', system-ui; /* A REALLY LOUD FONT */
+            font-size: 6rem;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .countdown-box {
+            background: #ffffff;
+            color: #ff00ff;
+            padding: 10px;
+            margin: 5px;
+            border: 5px solid #000000;
+            border-radius: 15px;
+            font-family: 'Press Start 2P', cursive; /* A computer font! */
+            font-size: 2.5rem;
+            text-shadow: 2px 2px #00ffff;
+        }
+        
+        .countdown-label {
+            font-size: 1rem;
+            color: black;
+            text-shadow: none;
+        }
+
+        .blinking-text {
+            animation: blinker 0.8s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        
+        /* I found this code online for the marquee, it's so cool */
+        marquee {
+            font-size: 2rem;
+            color: yellow;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- i added a marquee because all the best 90s websites have them -->
+    <marquee>*** GET READY FOR THE BEST WEBSITE EVER *** GET READY FOR NAUTII *** COMING SOON *** DONT MISS IT ***</marquee>
+
+    <div class="container main-container text-center">
+
+        <!-- This is a comment, the browser doesn't show it. it's for me to remember my code -->
+        <!-- The main title for my awesome page -->
+        <h1 class="my-4">
+            NAUTII IS COMING!!!
+        </h1>
+
+        <p class="lead" style="font-size: 2rem; color: white; text-shadow: 2px 2px #000;">ARE YOU READY TO GET NAUTICAL?!?!?!</p>
+
+        <img src="https://media.giphy.com/media/IB9foBA4PVkKA/giphy.gif" alt="Dancing Banana" style="border: 5px solid red;">
+
+        <h2 class="mt-4 blinking-text" style="font-size: 3rem; color: #ffff00;">LAUNCHING IN...</h2>
+
+        <div id="countdown" class="row justify-content-center mt-3">
+            <div class="col-2 countdown-box">
+                <div id="days">00</div>
+                <div class="countdown-label">Days</div>
+            </div>
+            <div class="col-2 countdown-box">
+                <div id="hours">00</div>
+                <div class="countdown-label">Hours</div>
+            </div>
+            <div class="col-2 countdown-box">
+                <div id="minutes">00</div>
+                <div class="countdown-label">Minutes</div>
+            </div>
+            <div class="col-2 countdown-box">
+                <div id="seconds">00</div>
+                <div class="countdown-label">Seconds</div>
+            </div>
+        </div>
+
+        <div id="launched" class="d-none mt-5">
+            <h2 style="font-size: 5rem; color: lime;">WE HAVE LAUNCHED!!!</h2>
+            <img src="https://media.giphy.com/media/ytTYwqaobCKJAQ6m5I/giphy.gif" alt="Celebration">
+            <p style="font-size: 2rem; color: white;">GO TO NAUTII.COM NOW!!!!! (not a real website)</p>
+        </div>
+
+        <!-- Silly Fact Zone -->
+        <div class="mt-5 p-3" style="border: 4px dotted lime; background-color: rgba(255, 0, 255, 0.3);">
+            <h3 style="font-family: 'Press Start 2P', cursive; color: yellow;">!!! SILLY ANIMAL FACT ZONE !!!</h3>
+            <p id="animal-fact" style="font-size: 1.5rem; color: white; min-height: 100px; padding-top: 10px;"></p>
+        </div>
+
+    </div>
+
+    <!-- This is the footer, where copyright stuff goes -->
+    <footer class="text-center mt-5" style="color: black; font-weight: bold;">
+        <p>&copy; 2025ish - Nautii Web Solutions Inc. A Division of Very Cool Websites LLC.</p>
+        <p>This page was made by a professional webmaster.</p>
+    </footer>
+
+
+    <!-- JavaScript magic happens here!! -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Set the date we're counting down to
+        // Month is 0-indexed, so 9 is October
+        const countDownDate = new Date("Oct 1, 2026 12:00:00").getTime();
+
+        // Update the count down every 1 second
+        const x = setInterval(function() {
+
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("days").innerText = String(days).padStart(2, '0');
+            document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+            document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+            document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").classList.add("d-none");
+                document.getElementById("launched").classList.remove("d-none");
+            }
+        }, 1000); // 1000 milliseconds is 1 second
+        
+        // --- Silly Animal Facts Section ---
+        const animalFacts = [
+            "A group of flamingos is called a 'flamboyance.'",
+            "Wombat poop is cube-shaped. They use it to mark their territory!",
+            "A snail can sleep for up to three years straight.",
+            "The heart of a shrimp is located in its head.",
+            "Sea otters hold hands when they sleep so they don't float away from each other.",
+            "A grizzly bear's bite is strong enough to crush a bowling ball.",
+            "Butterflies taste with their feet.",
+            "Goats and octopuses have rectangular pupils.",
+            "An ostrich's eye is bigger than its entire brain.",
+            "Squirrels are responsible for planting thousands of trees every year because they forget where they buried their nuts."
+        ];
+
+        function displayRandomFact() {
+            const factElement = document.getElementById("animal-fact");
+            const randomIndex = Math.floor(Math.random() * animalFacts.length);
+            factElement.innerText = animalFacts[randomIndex];
+        }
+
+        // Display an initial fact and then change it every 5 seconds
+        displayRandomFact();
+        setInterval(displayRandomFact, 5000); // 5000 milliseconds is 5 seconds
+    </script>
+
+</body>
+</html>
+
