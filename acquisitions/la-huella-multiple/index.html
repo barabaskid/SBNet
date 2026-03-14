@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Huella Múltiple 1999 | Portfolio Ed. 157/300</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+
+    <style>
+        body {
+            font-family: 'Cormorant Garamond', serif;
+            background-color: #fcfcfc;
+            color: #121212; 
+        }
+        .header-section {
+            padding: 4rem 0 2rem;
+            margin-bottom: 2rem;
+        }
+        .header-section h1, .header-section h5 {
+            color: #121212;
+        }
+        
+        /* Provenance Hero Section */
+        .provenance-section {
+            border-bottom: 1px solid #eaeaea;
+            padding-bottom: 3rem;
+            margin-bottom: 3rem;
+        }
+        .hero-card {
+            border-radius: 0;
+            background-color: #fff;
+            box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
+            transition: box-shadow 0.3s ease;
+            border: none;
+        }
+        .hero-card:hover {
+            box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.15);
+        }
+        .hero-img-top {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        /* Colophon PDF Link */
+        .colophon-link {
+            display: inline-block;
+            transition: opacity 0.3s ease;
+            text-decoration: none;
+        }
+        .colophon-link:hover {
+            opacity: 0.6;
+        }
+
+        /* Sort Controls */
+        .sort-controls {
+            margin-bottom: 2.5rem;
+        }
+        .btn-outline-dark {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.5px;
+            border-radius: 0;
+            color: #121212;
+            border-color: #121212;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-dark:hover, .btn-outline-dark.active {
+            color: #fff;
+            background-color: #121212;
+        }
+
+        /* Grid Cards */
+        .card {
+            border-radius: 0;
+            background-color: #fff;
+            box-shadow: 0 .25rem .5rem rgba(0,0,0,.05);
+            transition: box-shadow 0.3s ease;
+            border: none;
+        }
+        .card:hover {
+            box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.15)!important;
+        }
+        .card-img-container {
+            position: relative;
+            overflow: hidden;
+            background: #fff;
+        }
+        .card-img-top {
+            border-radius: 0;
+            object-fit: cover;
+            height: 350px; 
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(138, 102, 184, 0.45); /* Pale Royal Purple */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2; 
+            pointer-events: none; /* Allows clicks to pass through */
+        }
+        .card:hover .overlay {
+            opacity: 1;
+        }
+        .overlay ion-icon {
+            font-size: 4rem; 
+            color: #ffffff; /* Crisp white icon */
+        }
+        .card-body {
+            padding: 1.25rem 1rem;
+        }
+        .print-meta {
+            font-size: 1.25rem;
+            line-height: 1.5;
+            color: #121212;
+            margin-bottom: 0;
+        }
+        .gallery-item {
+            width: 33.333%;
+            padding: 0 15px;
+        }
+        @media (max-width: 991px) { .gallery-item { width: 50%; } }
+        @media (max-width: 767px) { .gallery-item { width: 100%; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header class="header-section text-center">
+        <h1 class="display-5 fw-bold mb-3">La Huella Múltiple 1999</h1>
+        <h5 class="fw-normal mb-4">Complete Portfolio • 54 Original Prints • Edition 157 / 300</h5>
+    </header>
+
+    <div class="row provenance-section justify-content-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="hero-card">
+                <a href="images/x01.jpg" class="image-link" title="Original Stamped Housing Box (Ed. 157/300)">
+                    <img src="images/x01.jpg" alt="Housing Box" class="hero-img-top">
+                </a>
+                <div class="p-3 text-center border-top">
+                    <p class="mb-0 fw-bold">Original Stamped Housing Box</p>
+                    <p class="small text-muted mb-0">Numbered 157/300</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="hero-card">
+                <a href="images/x02.jpg" class="image-link" title="Title Page with Handwritten 1999 Exhibition Provenance">
+                    <img src="images/x02.jpg" alt="Title Page Provenance" class="hero-img-top">
+                </a>
+                <div class="p-3 text-center border-top">
+                    <p class="mb-0 fw-bold">Title Page / Provenance</p>
+                    <p class="small text-muted mb-0">Contemporary Purchase Inscription (Havana, Jan 1999)</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12 text-center mt-5">
+            <a href="colophon.pdf" target="_blank" class="colophon-link">
+                <ion-icon name="document-text-outline" style="font-size: 2.5rem; color: #121212;"></ion-icon><br>
+                <span class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #121212; font-size: 0.9rem;">Colophon</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="sort-controls text-center">
+        <span class="me-3 small text-uppercase" style="letter-spacing: 1px;">Sort By:</span>
+        <div class="btn-group button-group" role="group" aria-label="Sort Controls">
+            <button type="button" class="btn btn-outline-dark active" data-sort-value="number">Number</button>
+            <button type="button" class="btn btn-outline-dark" data-sort-value="artist">Artist</button>
+            <button type="button" class="btn btn-outline-dark" data-sort-value="title">Title</button>
+        </div>
+    </div>
+
+    <div class="row" id="gallery-container">
+        </div>
+    
+    <footer class="text-center py-5 mt-5 border-top">
+        <p class="mb-0 text-uppercase">Inquiries: Samuel Butcher | Juneau, Alaska</p>
+    </footer>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    // Master Inventory with Verified Spanish Nomenclature
+    const printData = [
+        { num: 1, artist: "Pedro Abascal Vázquez", title: "Arqueología de una idea (serie)" },
+        { num: 2, artist: "Michel Acosta Pérez", title: "Almacenes S.A." },
+        { num: 3, artist: "Juan Carlos Alom Jiménez", title: "S/T" },
+        { num: 4, artist: "Belkis Ayón Manso", title: "¿Tranquilo? (Portfolio Edition)" },
+        { num: 5, artist: "Hugo Azcuy Castillo", title: "Arte sano" },
+        { num: 6, artist: "Abel Barroso Arencibia", title: "¡Esto no hay quien lo arme!" },
+        { num: 7, artist: "Agustín Bejarano Caballero", title: "La coqueta (serie)" },
+        { num: 8, artist: "Pablo Borges Delgado", title: "Juego I / II" },
+        { num: 9, artist: "Yamilys Brito Jorge", title: "El hombre ilustrado" },
+        { num: 10, artist: "Janette Brossard Duharte", title: "Las cosas marchan / Frágil" },
+        { num: 11, artist: "Luis Cabrera Hernández", title: "(Variante del colofón)" },
+        { num: 12, artist: "Anyelmaidelin Calzadilla Fernández", title: "Ilusión sumergible / Lloviendo reflejos" },
+        { num: 13, artist: "Marlon Castellanos Barrera", title: "Cañaveral" },
+        { num: 14, artist: "Liset Castillo Valdés", title: "S/T (tríptico)" },
+        { num: 15, artist: "Sandra Ceballos Obaya", title: "Clínica Los angeles" },
+        { num: 16, artist: "Juan Ramón Chacón Zaldivar", title: "Sentado en el silencio / Andar los caminos..." },
+        { num: 17, artist: "Angel Delgado Fuentes", title: "Señales de adentro" },
+        { num: 18, artist: "Carlos Fernández Montes de Oca", title: "La Montaña" },
+        { num: 19, artist: "Dania Fleites Díaz", title: "S/T" },
+        { num: 20, artist: "José Fors Durán", title: "Los espacios" },
+        { num: 21, artist: "Carlos Garaicoa Manso", title: "De la serie 'Principio y fin de la fascinación'" },
+        { num: 22, artist: "Luis Gómez Armenteros", title: "Mil días de lluvia" },
+        { num: 23, artist: "Alfredo González Rostgaard", title: "Naturaleza viva (I, II, III o IV)" },
+        { num: 24, artist: "Eduardo Guerra Hernández", title: "Souvenir" },
+        { num: 25, artist: "Eduardo Hernández Santos", title: "Lo que es, lo que no es, y lo que es no siendo" },
+        { num: 26, artist: "Joel Jiménez Bringas", title: "Filo y pico en la garra" },
+        { num: 27, artist: "Luis Lara Calaña", title: "De la serie '7 cabezas mansas'" },
+        { num: 28, artist: "Kelvin López Nieves", title: "Fantasma zodiacal" },
+        { num: 29, artist: "Jacqueline Maggi Hollands", title: "Ajuar" },
+        { num: 30, artist: "Norberto Marrero Pírez", title: "(Variante del colofón)" },
+        { num: 31, artist: "Frank Martínez González", title: "(Variante del colofón)" },
+        { num: 32, artist: "Juan Carlos Menéndez Ruiz", title: "(Variante del colofón)" },
+        { num: 33, artist: "Enrique Miralles Tartabull (Tente)", title: "Pérdida de la virginidad antes de la inocencia" },
+        { num: 34, artist: "Ibrahim Miranda Ramos", title: "Marea alta" },
+        { num: 35, artist: "Andrés Montalván Cuellar", title: "Sobre la conciencia del tiempo" },
+        { num: 36, artist: "Yamiliany Morales Ferraz", title: "La siesta" },
+        { num: 37, artist: "Antonio Nuñez Hernández", title: "Knock-out" },
+        { num: 38, artist: "Hanoi Pérez Cordero", title: "21" },
+        { num: 39, artist: "Eduardo Ponjuán González", title: "1, 2 y 3" },
+        { num: 40, artist: "Juan Carlos Pozo Gálvez", title: "Matamoscas" },
+        { num: 41, artist: "Angel Ramírez Roque", title: "Papel de regalo" },
+        { num: 42, artist: "Alfredo Ramos Fernández", title: "De la serie 'Impresiones'" },
+        { num: 43, artist: "Sandra Ramos Lorenzo", title: "La incapacidad de atrapar imágenes" },
+        { num: 44, artist: "Juan Carlos Rivero Cintra", title: "Las historias de la historia" },
+        { num: 45, artist: "Elio Rodríguez Valdés", title: "Tropicalísima" },
+        { num: 46, artist: "Fernando Rodríguez Falcón", title: "Con el calor de mi cuerpo" },
+        { num: 47, artist: "René Francisco Rodríguez Hernández", title: "Huella vieja (obra colectiva)" },
+        { num: 48, artist: "Rubén Rodríguez Martínez", title: "S/T" },
+        { num: 49, artist: "Lázaro Saavedra González", title: "Autorretrato digital" },
+        { num: 50, artist: "Ezequiel Suárez González", title: "Una mano" },
+        { num: 51, artist: "José Toirac Batista", title: "Viaje por la isla de Cuba pintoresca" },
+        { num: 52, artist: "José Vincench Barrera", title: "Limpieza" },
+        { num: 53, artist: "Zenén Vizcaíno Ortiz", title: "Lección de anatomía" },
+        { num: 54, artist: "Rafael Zarza González", title: "De la serie 'Taurorretratos...'" }
+    ];
+
+    $(document).ready(function() {
+        const container = $('#gallery-container');
+
+        // Inject all items
+        printData.forEach(item => {
+            const fileNum = String(item.num).padStart(2, '0');
+            const imgPath = `images/${fileNum}.jpg`;
+            const caption = `#${item.num} - ${item.artist} - ${item.title}`;
+
+            const html = `
+                <div class="gallery-item mb-4" data-number="${item.num}" data-artist="${item.artist}" data-title="${item.title}">
+                    <div class="card h-100 border-0">
+                        <div class="card-img-container">
+                            <a href="${imgPath}" class="image-link" title="${caption}">
+                                <img src="${imgPath}" class="card-img-top" alt="${item.title}" loading="lazy">
+                            </a>
+                            <div class="overlay">
+                                <ion-icon name="search-outline"></ion-icon>
+                            </div>
+                        </div>
+                        <div class="card-body text-center">
+                            <p class="print-meta">
+                                <span class="fw-bold">#${item.num} - ${item.artist}</span><br>
+                                <em>${item.title}</em>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.append(html);
+        });
+
+        // Initialize Isotope
+        var $grid = $('#gallery-container').isotope({
+            itemSelector: '.gallery-item',
+            layoutMode: 'fitRows',
+            getSortData: {
+                number: '[data-number] parseInt',
+                artist: '[data-artist]',
+                title: '[data-title]'
+            },
+            sortBy: 'number' 
+        });
+
+        // Bind sort button clicks
+        $('.button-group').on('click', 'button', function() {
+            var sortByValue = $(this).attr('data-sort-value');
+            $grid.isotope({ sortBy: sortByValue });
+            
+            $('.button-group .btn').removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Initialize Magnific Popup for all gallery images (including heroes)
+        $('.image-link').magnificPopup({
+            type: 'image',
+            gallery: { enabled: true },
+            zoom: { enabled: true, duration: 300 } 
+        });
+    });
+</script>
+
+</body>
+</html>
