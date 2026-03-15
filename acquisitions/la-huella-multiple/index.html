@@ -153,8 +153,8 @@
     <div class="row provenance-section justify-content-center">
         <div class="col-md-6 mb-4 mb-md-0">
             <div class="hero-card">
-                <a href="acquisitions/la-huella-multiple/images/x01.jpg" class="image-link" title="Original Stamped Housing Box (Ed. 157/300)">
-                    <img src="acquisitions/la-huella-multiple/images/x01.jpg" alt="Housing Box" class="hero-img-top">
+                <a href="/acquisitions/la-huella-multiple/x01.jpg" class="image-link" title="Original Stamped Housing Box (Ed. 157/300)">
+                    <img src="/acquisitions/la-huella-multiple/x01.jpg" alt="Housing Box" class="hero-img-top">
                 </a>
                 <div class="p-3 text-center border-top">
                     <p class="mb-0 fw-bold">Original Stamped Housing Box</p>
@@ -164,8 +164,8 @@
         </div>
         <div class="col-md-6">
             <div class="hero-card">
-                <a href="acquisitions/la-huella-multiple/x02.jpg" class="image-link" title="Title Page with Handwritten 1999 Exhibition Provenance">
-                    <img src="acquisitions/la-huella-multiple/x02.jpg" alt="Title Page Provenance" class="hero-img-top">
+                <a href="/acquisitions/la-huella-multiple/images/x02.jpg" class="image-link" title="Title Page with Handwritten 1999 Exhibition Provenance">
+                    <img src="/acquisitions/la-huella-multiple/images/x02.jpg" alt="Title Page Provenance" class="hero-img-top">
                 </a>
                 <div class="p-3 text-center border-top">
                     <p class="mb-0 fw-bold">Title Page / Provenance</p>
@@ -175,7 +175,7 @@
         </div>
         
         <div class="col-12 text-center mt-5">
-            <a href="colophon.pdf" target="_blank" class="colophon-link">
+            <a href="/acquisitions/la-huella-multiple/colophon.pdf" target="_blank" class="colophon-link">
                 <ion-icon name="document-text-outline" style="font-size: 2.5rem; color: #121212;"></ion-icon><br>
                 <span class="fw-bold text-uppercase" style="letter-spacing: 1px; color: #121212; font-size: 0.9rem;">Colophon</span>
             </a>
@@ -270,7 +270,8 @@
         // Inject all items
         printData.forEach(item => {
             const fileNum = String(item.num).padStart(2, '0');
-            const imgPath = `${fileNum}.jpg`;
+            // Explicit root-relative URI enforcement
+            const imgPath = `/acquisitions/la-huella-multiple/${fileNum}.jpg`;
             const caption = `#${item.num} - ${item.artist} - ${item.title}`;
 
             const html = `
