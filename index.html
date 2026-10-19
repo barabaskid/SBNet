@@ -48,10 +48,10 @@
         })();
     </script>
 
-    <!-- ============ Fonts (Attorney: EB Garamond / Technologist: Source Code Pro / Human: Source Sans 3) ============ -->
+    <!-- ============ Fonts (text / titles + links) — Attorney: EB Garamond / Cinzel · Technologist: Source Code Pro / Space Grotesk · Human: Source Sans 3 / Fraunces ============ -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,300..800;1,300..800&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Source+Sans+3:ital,wght@0,300..900;1,300..900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Source+Code+Pro:ital,wght@0,300..800;1,300..800&family=Source+Sans+3:ital,wght@0,300..900;1,300..900&family=Space+Grotesk:wght@300..700&display=swap">
 
     <!-- ============ Styles ============ -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
@@ -72,25 +72,18 @@
 
     <!-- ============ Backdrop: one scene per side, crossfaded by theme ============ -->
     <div class="backdrop" aria-hidden="true">
-        <!-- Attorney: soft paper light with falling maroon lines -->
+        <!-- Attorney: soft paper light; two maroon lines always running, one rising and one falling, on random 10% columns (JS) -->
         <div class="texture texture-attorney">
-            <div class="lines">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
+            <span class="line-runner is-rising" data-direction="up"></span>
+            <span class="line-runner" data-direction="down"></span>
         </div>
-        <!-- Technologist: a terminal quietly printing this site's own source -->
+        <!-- Technologist: a terminal printing this site's own source, syntax-highlighted (JS) -->
         <div class="texture texture-tech">
-            <pre class="code-stream" id="code-stream"></pre>
+            <div class="code-stream" id="code-stream"></div>
         </div>
-        <!-- Human: three layers of drifting stars -->
+        <!-- Human: a night sky turning slowly around the pole star, with twinkling and the odd shooting star (JS) -->
         <div class="texture texture-personal">
-            <div class="stars stars-sm"></div>
-            <div class="stars stars-md"></div>
-            <div class="stars stars-lg"></div>
+            <canvas class="night-sky" id="night-sky"></canvas>
         </div>
     </div>
 
@@ -251,10 +244,16 @@
                             <ol class="route" aria-label="The route so far">
                                 <li>London</li>
                                 <li>Amsterdam</li>
-                                <li>Florida</li>
+                                <li>Colorado Springs</li>
+                                <li>Lake Mary</li>
+                                <li>Tallahassee</li>
+                                <li>Orlando</li>
+                                <li>Olympia</li>
+                                <li>Portland</li>
+                                <li>Leesburg</li>
                                 <li>New York City</li>
-                                <li>St. Croix</li>
                                 <li>Kodiak</li>
+                                <li>St. Croix</li>
                                 <li>Juneau</li>
                                 <li>Kingman</li>
                             </ol>
@@ -328,47 +327,77 @@
                         </div>
                     </div>
 
-                    <!-- Human only: places lived, in the resume postcard style -->
+                    <!-- Human only: places lived (newest first), in the resume postcard style; county shown top-right -->
                     <div class="content-card reveal" data-only="personal">
                         <div class="subsection-title"><h3>Places I&rsquo;ve Lived</h3><p class="subsection-sub">The Geography Behind the Dates</p><div class="divider"></div></div>
                         <div class="cv">
                             <article class="cv-item spot" tabindex="0" data-stamp="Kingman · AZ">
-                                <header class="cv-head"><h4>Kingman, Arizona</h4></header>
+                                <header class="cv-head"><h4>Kingman, Arizona</h4><span class="cv-place">Mohave County</span></header>
                                 <div class="cv-sub"><span class="cv-role">The High Desert</span><span class="cv-date">2026 to Present</span></div>
                                 <p class="cv-desc">Trading rainforest mist for Route 66, red rock horizons, and desert sun after a seven-day, three-thousand-three-hundred-mile drive south from Alaska through Whitehorse, Muncho Lake, Calgary, Butte, and Provo.</p>
                             </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="Juneau · AK">
-                                <header class="cv-head"><h4>Juneau, Alaska</h4></header>
+                                <header class="cv-head"><h4>Juneau, Alaska</h4><span class="cv-place">City and Borough of Juneau</span></header>
                                 <div class="cv-sub"><span class="cv-role">Tempered by Rain and Mountains</span><span class="cv-date">2025 to 2026</span></div>
                                 <p class="cv-desc">Practicing law in a capital city reachable only by boat or plane, framed by glaciers, bald eagles, and sideways rain along the Inside Passage.</p>
                             </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="St. Croix · USVI">
-                                <header class="cv-head"><h4>St. Croix, U.S. Virgin Islands</h4></header>
+                                <header class="cv-head"><h4>St. Croix, U.S. Virgin Islands</h4><span class="cv-place">District of St. Croix</span></header>
                                 <div class="cv-sub"><span class="cv-role">Salted by the Trade Winds</span><span class="cv-date">2024 to 2025</span></div>
                                 <p class="cv-desc">Living at Estate Judith's Fancy under Caribbean trade winds, drafting judicial opinions by day and writing Python scripts to tame a nine-hundred-case courthouse calendar by night.</p>
                             </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="Kodiak · AK">
-                                <header class="cv-head"><h4>Kodiak, Alaska</h4></header>
+                                <header class="cv-head"><h4>Kodiak, Alaska</h4><span class="cv-place">Kodiak Island Borough</span></header>
                                 <div class="cv-sub"><span class="cv-role">A Rugged Emerald Island</span><span class="cv-date">2024</span></div>
                                 <p class="cv-desc">Front-line trial work on a rugged emerald island where brown bears outnumber trial lawyers, learning resilience, neighborliness, and what it means to stand up for people when the weather and the odds are equally unforgiving.</p>
                             </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="New York · NY">
-                                <header class="cv-head"><h4>New York City</h4></header>
+                                <header class="cv-head"><h4>New York City</h4><span class="cv-place">Queens County</span></header>
                                 <div class="cv-sub"><span class="cv-role">Sharpened</span><span class="cv-date">2021 to 2024</span></div>
                                 <p class="cv-desc">Three years in New York learning how to turn moral conviction into admissible evidence, fueled by corner-deli coffee, long subway rides with a heavy book in hand, and classmates who genuinely wanted to leave the world fairer than they found it.</p>
                             </article>
-                            <article class="cv-item spot" tabindex="0" data-stamp="Florida · USA">
-                                <header class="cv-head"><h4>Florida</h4></header>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Leesburg · FL">
+                                <header class="cv-head"><h4>Leesburg, Florida</h4><span class="cv-place">Lake County</span></header>
+                                <div class="cv-sub"><span class="cv-role">Lake Country</span></div>
+                                <p class="cv-desc">A small lakeside city in the rolling hills of Lake County, ringed by the Harris Chain of Lakes, Spanish moss, and long, quiet Central Florida evenings.</p>
+                            </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Portland · OR">
+                                <header class="cv-head"><h4>Portland, Oregon</h4><span class="cv-place">Multnomah County</span></header>
+                                <div class="cv-sub"><span class="cv-role">City of Roses</span></div>
+                                <p class="cv-desc">Bridges over the Willamette, Powell's City of Books, and a soft Pacific Northwest drizzle that turns every caf&eacute; into a reading room.</p>
+                            </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Olympia · WA">
+                                <header class="cv-head"><h4>Olympia, Washington</h4><span class="cv-place">Thurston County</span></header>
+                                <div class="cv-sub"><span class="cv-role">Capital on the Sound</span></div>
+                                <p class="cv-desc">A small state capital at the southern tip of Puget Sound, all evergreens, gray skies, and the Olympic Mountains waiting on the horizon.</p>
+                            </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Orlando · FL">
+                                <header class="cv-head"><h4>Orlando, Florida</h4><span class="cv-place">Orange County</span></header>
+                                <div class="cv-sub"><span class="cv-role">Central Florida</span></div>
+                                <p class="cv-desc">The American base of Zeg LLC, set in Central Florida's sprawling crossroads of highways, lakes, and towering summer thunderheads.</p>
+                            </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Tallahassee · FL">
+                                <header class="cv-head"><h4>Tallahassee, Florida</h4><span class="cv-place">Leon County</span></header>
                                 <div class="cv-sub"><span class="cv-role">Sun-Baked</span></div>
                                 <p class="cv-desc">Entered Florida State early as a junior, fell in love with game theory, paused for a three-year walkabout in the real world from 2004 to 2007 to grow up properly, and returned to finish on the Dean's List.</p>
                             </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Lake Mary · FL">
+                                <header class="cv-head"><h4>Lake Mary, Florida</h4><span class="cv-place">Seminole County</span></header>
+                                <div class="cv-sub"><span class="cv-role">Lakes and Live Oaks</span></div>
+                                <p class="cv-desc">A leafy, lake-dotted suburb just north of Orlando, where Spanish moss, afternoon thunderstorms, and endless summers set the rhythm.</p>
+                            </article>
+                            <article class="cv-item spot" tabindex="0" data-stamp="Colo. Springs · CO">
+                                <header class="cv-head"><h4>Colorado Springs, Colorado</h4><span class="cv-place">El Paso County</span></header>
+                                <div class="cv-sub"><span class="cv-role">At the Foot of Pikes Peak</span></div>
+                                <p class="cv-desc">The first American address: thin mountain air, Front Range sunsets, and Pikes Peak filling the western sky.</p>
+                            </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="Amsterdam · NL">
-                                <header class="cv-head"><h4>Amsterdam</h4></header>
+                                <header class="cv-head"><h4>Amsterdam</h4><span class="cv-place">North Holland</span></header>
                                 <div class="cv-sub"><span class="cv-role">Raised</span></div>
                                 <p class="cv-desc">Dutch canals, bicycles, and pragmatic social tolerance: the place that left a lifelong affection for personal eccentricity paired with a sturdy public commons.</p>
                             </article>
                             <article class="cv-item spot" tabindex="0" data-stamp="London · UK">
-                                <header class="cv-head"><h4>London</h4></header>
+                                <header class="cv-head"><h4>London</h4><span class="cv-place">Greater London</span></header>
                                 <div class="cv-sub"><span class="cv-role">Born</span></div>
                                 <p class="cv-desc">Home port for more than fifteen years of real-life historical detective work: digging through European and American archives, tracing provenance across borders, and helping return displaced pieces of history to public hands.</p>
                             </article>
@@ -492,6 +521,12 @@
 
                     <div class="content-card reveal">
                         <div class="header-page"><h2>Resume</h2></div>
+
+                        <!-- Mission statement (Attorney) -->
+                        <blockquote class="mission" data-only="attorney">
+                            <span class="mission-kicker">Mission Statement</span>
+                            <p>To exercise the authority of the state as a fiduciary of the public trust: charging only what the admissible record proves, disclosing what fairness demands, and pursuing outcomes that protect the community while honoring the constitutional rights of every person who stands before the court.</p>
+                        </blockquote>
 
                         <!-- Bar admission strip (professional sides only) -->
                         <div class="bar-admissions" data-only="attorney tech">
@@ -873,7 +908,9 @@
                                     <p class="contact-prompt" data-only="attorney">Inquiries regarding felony and misdemeanor prosecution, appellate litigation, public-sector governance, or criminal justice policy are welcome. Reach out directly by phone or email, or send a message below.</p>
                                     <p class="contact-prompt" data-only="tech">Architecting frontier AI evaluation suites, building legal automation pipelines, or designing governance frameworks for courts and enterprises? Reach out by phone or email, or send a message below.</p>
                                     <p class="contact-prompt" data-only="personal">Want to play a game of correspondence chess (1. Nf3 awaits), trade recommendations in classic literature or hard science fiction, swap stories from the Alaska Highway, or simply say hello? Drop a note below or reach out by phone or email.</p>
-                                    <form id="contact-form">
+                                    <form id="contact-form" novalidate>
+                                        <!-- Spam trap: hidden from people, filled in by bots -->
+                                        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
                                         <div class="row">
                                             <div class="col-md-6"><div class="form-group"><input name="name" id="name" placeholder="Name *" class="form-control" type="text" required></div></div>
                                             <div class="col-md-6"><div class="form-group"><input name="email" id="email" placeholder="E-mail *" class="form-control" type="email" required></div></div>
@@ -881,6 +918,7 @@
                                             <div class="col-md-12"><div class="form-group"><textarea name="message" id="message" placeholder="Your message *" rows="5" class="form-control" required></textarea></div></div>
                                             <div class="col-md-12"><p class="required-text">* Denotes a Required Field</p></div>
                                             <div class="col-md-12 text-center"><button class="send-btn" type="submit">Send Message <i class="fas fa-paper-plane"></i></button></div>
+                                            <div class="col-md-12"><p class="form-status" id="form-status" role="status" aria-live="polite"></p></div>
                                         </div>
                                     </form>
                                 </div>
