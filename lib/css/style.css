@@ -125,10 +125,10 @@ body {
 }
 
 /* Section 4 - CSS-Based DOM State Management */
-.defense-content { display: none; }
+.ai-content { display: none; }
 .prosecutor-content { display: block; }
 
-body.light-mode .defense-content { display: block; }
+body.light-mode .ai-content { display: block; }
 body.light-mode .prosecutor-content { display: none; }
 
 @keyframes focusIn {
@@ -137,7 +137,7 @@ body.light-mode .prosecutor-content { display: none; }
 }
 
 .prosecutor-content, 
-.defense-content,
+.ai-content,
 .dynamic-headline span {
     animation: focusIn 0.8s cubic-bezier(0.12, 0.7, 0.14, 1) forwards;
     will-change: opacity, filter, transform;
@@ -254,9 +254,9 @@ body.light-mode .checkbox-label { background-color: #e0e0e0; border-color: #bbb;
 
 .checkbox-label .fas { font-size: 14px; z-index: 1; width: 24px; text-align: center; transition: color 0.8s ease-in-out; }
 .text-prosecutor { color: var(--active-color); }
-.text-defense { color: #f5f5f5; }
+.text-ai { color: #f5f5f5; }
 body.light-mode .text-prosecutor { color: #121212; }
-body.light-mode .text-defense { color: var(--active-color); }
+body.light-mode .text-ai { color: var(--active-color); }
 
 .checkbox-label .ball {
     background-color: var(--active-color); border: 1px solid #fff; width: 25px; height: 25px; position: absolute;
@@ -296,8 +296,8 @@ body.light-mode .toggle-switch { background: #e0e0e0; border-color: #ccc; }
 body.light-mode .toggle-knob { left: 60px !important; }
 
 .mode-label { font-family: var(--font-link); font-size: 1em; text-transform: uppercase; font-weight: 700; opacity: 0.7; color: var(--text-color) !important; transition: opacity 0.9s ease, color 0.8s ease; }
-body.prosecutor-mode .prosecutor-label,
-body.light-mode .defense-label { opacity: 1; color: var(--active-color); text-shadow: 0 0 10px rgba(128, 0, 0, 0.2); }
+body:not(.light-mode) .prosecutor-label,
+body.light-mode .ai-label { opacity: 1; color: var(--active-color); text-shadow: 0 0 10px rgba(128, 0, 0, 0.2); }
 
 .dynamic-headline { font-family: var(--font-secondary); font-size: 1.8rem; color: var(--text-color-light); line-height: 1.4; font-weight: 700; margin-bottom: 1.5rem; }
 .dynamic-body-text p { font-family: var(--font-main); font-size: 1.15rem; line-height: 1.8; margin-bottom: 1.5rem; color: var(--text-color); }
