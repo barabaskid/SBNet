@@ -60,7 +60,7 @@
 :root {
     /* Colours */
     --attorney-bg: #eeebe5;
-    --attorney-surface: rgba(255, 253, 249, 0.94);
+    --attorney-surface: rgba(255, 253, 249, 0.97);
     --attorney-surface-raised: #fffdf9;
     --attorney-text: #2c2723;
     --attorney-heading: #1a1512;
@@ -137,7 +137,7 @@
     --attorney-dropcap-float: left;
     --attorney-dropcap-size: 4.1em;
     --attorney-dropcap-leading: 0.8;
-    --attorney-dropcap-padding: 0.05em 0.1em 0 0;
+    --attorney-dropcap-padding: 0;
     --attorney-dropcap-weight: 500;
 
     /* Portrait: pewter double-ring medallion */
@@ -169,7 +169,7 @@
 :root {
     /* Colours */
     --tech-bg: #0a0d13;
-    --tech-surface: rgba(14, 18, 27, 0.95);
+    --tech-surface: rgba(14, 18, 27, 0.975);
     --tech-surface-raised: #131a27;
     --tech-text: #c3ccd8;
     --tech-heading: #f1f5fa;
@@ -280,34 +280,36 @@
 
 
 /* =====================================================================
-   4. TOKENS — HUMAN / PERSONAL (light grey cards, maroon, Source Sans 3 + Fraunces)
+   4. TOKENS — HUMAN / PERSONAL (dark grey cards, white text, maroon, Source Sans 3 + Fraunces)
    ===================================================================== */
 :root {
-    /* Colours: light grey menu + cards over a dark night sky */
-    --personal-bg: #090a0f;
-    --personal-surface: rgba(222, 223, 227, 0.97);
-    --personal-surface-raised: #e9eaed;
-    --personal-text: #2b2724;
-    --personal-heading: #17120f;
-    --personal-muted: #6c6762;
+    /* Colours: dark grey menu + cards with white text over the night sky,
+       with #800000 for emphasis */
+    --personal-bg: #05060a;
+    --personal-surface: rgba(36, 38, 44, 0.975);
+    --personal-surface-raised: #2d3037;
+    --personal-text: #e6e7ec;
+    --personal-heading: #ffffff;
+    --personal-muted: #a2a6b1;
     --personal-accent: #800000;
-    --personal-on-accent: #f4f4f6;
+    --personal-on-accent: #ffffff;
     --personal-ornament: #800000;
-    --personal-border: rgba(30, 25, 22, 0.16);
-    --personal-shadow: rgba(0, 0, 0, 0.45);
-    --personal-spot: rgba(128, 0, 0, 0.08);
-    --personal-scrim: rgba(5, 6, 10, 0.55);
+    --personal-border: rgba(255, 255, 255, 0.11);
+    --personal-shadow: rgba(0, 0, 0, 0.65);
+    --personal-spot: rgba(128, 0, 0, 0.16);
+    --personal-scrim: rgba(2, 3, 7, 0.7);
 
-    /* Backdrop: a night sky drawn on canvas. The whole sky turns slowly around the
-       pole star (top right), stars twinkle, and now and then one shoots across.
+    /* Backdrop: a night sky drawn on canvas. The whole sky (stars, the Milky Way
+       band and its nebula glow) turns slowly around the pole star (top right),
+       stars twinkle and bright ones flare.
        All read by JS. */
-    --personal-space: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+    --personal-space: radial-gradient(ellipse at 30% 110%, #1d2a3d 0%, #0b0f1a 45%, #030408 100%);
     --personal-star-color: #ffffff;
-    --personal-star-density: 0.00042;           /* stars per square pixel */
+    --personal-star-density: 0.0011;            /* background stars per square pixel */
+    --personal-milky-way: 0.55;                 /* extra stars packed into the Milky Way arc, as a share of the above */
     --personal-sky-pole-x: 0.82;                /* pole position, as a fraction of the backdrop */
     --personal-sky-pole-y: -0.08;
-    --personal-sky-turn: 900s;                  /* one full turn of the sky */
-    --personal-shooting-star-every: 9s;         /* average gap between shooting stars */
+    --personal-sky-turn: 600s;                  /* one full turn of the sky */
 
     /* Fonts: Source Sans 3 for reading, Fraunces (a warm, soft serif) for titles + links */
     --personal-mainfont: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
@@ -333,11 +335,11 @@
     /* 3D title */
     --personal-brand-weight: 800;
     --personal-brand-tracking: -0.01em;
-    --personal-brand-color: #2a1d15;
+    --personal-brand-color: #ffffff;
     --personal-brand-shadow:
         0.012em 0.012em 0 #800000, 0.024em 0.024em 0 #730000, 0.036em 0.036em 0 #660000,
         0.048em 0.048em 0 #590000, 0.06em 0.06em 0 #4c0000,
-        0.09em 0.12em 0.12em rgba(70, 35, 15, 0.3);
+        0.09em 0.12em 0.14em rgba(0, 0, 0, 0.55);
 
     /* Ornaments */
     --personal-divider-glyph: "♚";               /* the king */
@@ -353,22 +355,22 @@
     --personal-card-radius: 14px;
     --personal-chip-radius: 999px;
     --personal-icon-radius: 50%;
-    --personal-inner-bg: #e9eaed;
+    --personal-inner-bg: #2d3037;
 
     /* Drop cap */
     --personal-dropcap-float: left;
     --personal-dropcap-size: 3.9em;
     --personal-dropcap-leading: 0.82;
-    --personal-dropcap-padding: 0.04em 0.1em 0 0;
+    --personal-dropcap-padding: 0;
     --personal-dropcap-weight: 900;
 
     /* Portrait: polaroid */
     --personal-photo-radius: 3px;
     --personal-photo-img-radius: 1px;
     --personal-photo-pad: 10px 10px 36px;
-    --personal-photo-bg: #f1f1f3;
-    --personal-photo-ring: 1px solid rgba(30, 25, 22, 0.15);
-    --personal-photo-tilt: -2.5deg;
+    --personal-photo-bg: #ececef;                /* the polaroid stays white */
+    --personal-photo-ring: 1px solid rgba(255, 255, 255, 0.2);
+    --personal-photo-tilt: 0deg;
     --personal-photo-filter: none;
 
     /* Places: postcards with postmarks */
@@ -377,9 +379,9 @@
     --personal-cv-ease: cubic-bezier(0.45, 0, 0.2, 1);
     --personal-cv-speed: 0.6s;
     --personal-cv-role-style: normal;
-    --personal-cv-rest-bg: #e9eaed;
-    --personal-cv-rest-border: 1px dashed rgba(30, 25, 22, 0.24);
-    --personal-cv-shadow: 0 22px 38px -22px rgba(0, 0, 0, 0.5), 0 2px 0 rgba(30, 25, 22, 0.06);
+    --personal-cv-rest-bg: #2d3037;
+    --personal-cv-rest-border: 1px dashed rgba(255, 255, 255, 0.18);
+    --personal-cv-shadow: 0 22px 38px -22px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.06);
     --personal-logo-filter: grayscale(0.4) sepia(0.6);
     --personal-logo-opacity: 0.14;
 }
@@ -477,7 +479,7 @@
     --shadow: var(--personal-shadow);
     --spot: var(--personal-spot);
     --scrim: var(--personal-scrim);
-    color-scheme: light;
+    color-scheme: dark;
 }
 
 /* Type & shapes: Attorney */
@@ -694,6 +696,9 @@ button { font: inherit; }
 
 .container-85 { width: 85%; margin-left: auto; margin-right: auto; }
 
+/* Add class="hidden" to anything to take it off the page */
+.hidden { display: none !important; }
+
 /* Scrollbars follow the side's accent */
 * { scrollbar-width: thin; scrollbar-color: color-mix(in srgb, var(--accent) 65%, transparent) transparent; }
 *::-webkit-scrollbar { width: 8px; height: 8px; }
@@ -874,23 +879,21 @@ button { font: inherit; }
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg);
-    transition: opacity 0.9s var(--ease-out), visibility 0s linear 0.9s;
+    background: #000;
+    transition: opacity 0.9s var(--ease-in-out), visibility 0s linear 0.9s;
 }
 .preloader.is-hidden { opacity: 0; visibility: hidden; }
-.loader {
-    width: 60px;
-    aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(farthest-side, var(--accent) 90%, #0000);
-    background: var(--_g) 0 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
-    background-size: 25% 50%;
-    animation: loader-dots 1s infinite linear;
+.spinner {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-top-color: #fff;
+    animation: spin 0.9s linear infinite;
+    transition: transform 0.9s var(--ease-in-out), opacity 0.6s ease;
 }
-@keyframes loader-dots {
-    33% { background-position: 0 0, 50% 100%, 100% 0; }
-    66% { background-position: 50% 0, 0 100%, 100% 100%; }
-    100% { background-position: 50% 50%, 0 50%, 100% 50%; }
-}
+.preloader.is-hidden .spinner { transform: scale(0.6); opacity: 0; }
+@keyframes spin { to { rotate: 360deg; } }
 
 
 /* =====================================================================
@@ -1018,8 +1021,10 @@ button { font: inherit; }
         filter 0.5s var(--ease-out);
 }
 .logo-on-dark { opacity: 0; }
-:root[data-theme="tech"] .logo-on-dark { opacity: 1; }
-:root[data-theme="tech"] .logo-on-light { opacity: 0; }
+:root[data-theme="tech"] .logo-on-dark,
+:root[data-theme="personal"] .logo-on-dark { opacity: 1; }
+:root[data-theme="tech"] .logo-on-light,
+:root[data-theme="personal"] .logo-on-light { opacity: 0; }
 .logo-container:hover .logo { transform: scale(1.08); filter: drop-shadow(0 10px 14px var(--shadow)); }
 
 /* Nav list */
@@ -1184,15 +1189,29 @@ button { font: inherit; }
 .prose p { margin-bottom: 1.25em; text-align: left; }
 .prose p:last-child { margin-bottom: 0; }
 .prose.lede > p:first-child::before { content: var(--lede-prefix); color: var(--accent); font-weight: 700; }
+/* Drop cap: two lines tall with 5px of space to its right and 5px below.
+   Browsers that support initial-letter line it up with the text exactly;
+   others get a float sized to the same two lines. */
 :root:not([data-side="tech"]) .prose.lede > p:first-child::first-letter {
     float: var(--dropcap-float);
-    margin: 0.04em 0.1em 0 0;
+    margin: 0.06em 5px 5px 0;
     padding: var(--dropcap-padding);
     font-family: var(--font-display);
     font-size: var(--dropcap-size);
     font-weight: var(--dropcap-weight);
     line-height: var(--dropcap-leading);
     color: var(--accent);
+}
+@supports (initial-letter: 2) or (-webkit-initial-letter: 2) {
+    :root:not([data-side="tech"]) .prose.lede > p:first-child::first-letter {
+        float: none;
+        margin: 0 5px 0 0;
+        font-size: inherit;
+        line-height: inherit;
+        -webkit-initial-letter: 2;
+        initial-letter: 2;
+    }
+    :root:not([data-side="tech"]) .prose.lede > p:first-child { padding-bottom: 0; }
 }
 
 
@@ -1335,6 +1354,93 @@ button { font: inherit; }
     background: repeating-linear-gradient(to bottom, transparent 0 2px, rgba(0, 0, 0, 0.35) 2px 3px);
     pointer-events: none;
 }
+
+/* Futurist: identity-scan overlay on the portrait */
+.hud { position: absolute; inset: var(--photo-pad); overflow: hidden; pointer-events: none; z-index: 2; }
+.hud-grid {
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px) 0 0 / 100% 24px,
+        linear-gradient(90deg, color-mix(in srgb, var(--accent) 12%, transparent) 1px, transparent 1px) 0 0 / 24px 100%;
+    -webkit-mask-image: radial-gradient(ellipse at center, transparent 35%, #000 100%);
+    mask-image: radial-gradient(ellipse at center, transparent 35%, #000 100%);
+}
+.hud-ring {                                                 /* targeting reticle turning around the face */
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    width: 64%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px dashed color-mix(in srgb, var(--accent) 70%, transparent);
+    transform: translate(-50%, -50%);
+    animation: hud-turn 18s linear infinite;
+}
+.hud-ring--inner {
+    width: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    border-bottom-color: color-mix(in srgb, var(--accent) 40%, transparent);
+    animation-duration: 7s;
+    animation-direction: reverse;
+}
+@keyframes hud-turn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.hud-scan {                                                 /* glowing scan line sweeping the portrait */
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 18%;
+    background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--accent) 22%, transparent) 80%, var(--accent) 98%, transparent);
+    animation: hud-sweep 3.6s var(--ease-in-out) infinite alternate;
+}
+@keyframes hud-sweep { from { transform: translateY(-100%); } to { transform: translateY(560%); } }
+.hud-corner { position: absolute; width: 18px; height: 18px; border: 2px solid var(--accent); }
+.hud-corner--tl { left: 8px; top: 8px; border-right: 0; border-bottom: 0; }
+.hud-corner--tr { right: 8px; top: 8px; border-left: 0; border-bottom: 0; }
+.hud-corner--bl { left: 8px; bottom: 8px; border-right: 0; border-top: 0; }
+.hud-corner--br { right: 8px; bottom: 8px; border-left: 0; border-top: 0; }
+.hud-tag {
+    position: absolute;
+    top: 12px;
+    right: 32px;
+    font-family: var(--tech-mainfont);
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    animation: hud-pulse 2.4s ease-in-out infinite;
+}
+@keyframes hud-pulse { 50% { opacity: 0.35; } }
+.hud-readout {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    display: flex;
+    flex-direction: column;
+    padding: 6px 9px;
+    font-family: var(--tech-mainfont);
+    font-size: 0.66rem;
+    line-height: 1.5;
+    color: var(--accent);
+    background: rgba(0, 0, 0, 0.55);
+    border-left: 2px solid var(--accent);
+}
+.hud-readout span::before { content: "> "; opacity: 0.6; }
+
+/* Futurist mission statement: a terminal file rather than an engraved quote */
+.mission.mission--tech { max-width: 900px; padding: 18px 22px; text-align: left; border: 1px solid var(--border); border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent) 4%, transparent); }
+.mission.mission--tech::before,
+.mission.mission--tech::after { content: none; }
+.mission.mission--tech .mission-kicker { margin-bottom: 8px; font-family: var(--tech-mainfont); font-size: 0.76rem; letter-spacing: 0.04em; text-transform: none; }
+.mission.mission--tech .mission-kicker::before { content: "$ "; margin: 0; color: var(--muted); }
+.mission.mission--tech .mission-kicker::after { content: none; }
+.mission.mission--tech p { font-family: var(--tech-mainfont); font-size: 1rem; font-style: normal; line-height: 1.75; color: var(--heading); }
+.mission.mission--tech p::before { content: "> "; color: var(--accent); }
+.mission.mission--tech p::after { content: none; }
+
+/* Caret shown while the Futurist side types text out */
+.type-caret { display: inline-block; width: 0.55em; height: 1.05em; margin-left: 2px; vertical-align: -0.15em; background: var(--accent); animation: caret-blink 1.1s ease-in-out infinite; }
 
 /* Human-only "passport" details */
 .info-list {
@@ -1630,9 +1736,9 @@ button { font: inherit; }
 }
 
 /* Entry header: "Org · Location" over "Title · Dates", like the PDF */
-.cv-head { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
+.cv-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; }
 .cv-head h4 { margin: 0; font-family: var(--font-heading); font-size: 1.14rem; font-weight: var(--title-weight); line-height: 1.3; color: var(--heading); }
-.cv-sub { position: relative; z-index: 1; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; margin-top: 4px; }
+.cv-sub { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 2px 16px; margin-top: 4px; }
 .cv-role { font-size: 0.98rem; font-weight: 600; font-style: var(--cv-role-style); line-height: 1.4; color: var(--accent); }
 .cv-place, .cv-date { font-size: calc(0.82rem * var(--ui-scale)); line-height: 1.5; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .cv-place::before { content: "\f3c5"; margin-right: 6px; font-family: "Font Awesome 5 Free"; font-weight: 900; font-size: 0.85em; color: var(--accent); }
@@ -1656,7 +1762,7 @@ button { font: inherit; }
     position: absolute;
     top: calc((100% - var(--cv-logo-height)) / 2);
     right: 18px;
-    z-index: 0;
+    z-index: -1;                                            /* behind the text, above the card */
     width: var(--cv-logo-width);
     height: var(--cv-logo-height);
     object-fit: contain;
@@ -1935,6 +2041,24 @@ button { font: inherit; }
 .position-more i { margin-left: 6px; transition: transform 0.35s var(--ease-out); }
 .position-card:hover .position-more i { transform: translateX(5px); }
 
+/* Human: Rabbit Holes carousel (Owl Carousel), three at a time */
+.rabbit-carousel .owl-stage-outer { padding: 10px 4px 22px; margin: -10px -4px 0; }
+.rabbit-carousel .owl-stage { display: flex; }
+.rabbit-carousel .owl-item { display: flex; }
+.rabbit-item { display: flex; width: 100%; }
+.rabbit-item .position-card { width: 100%; }
+.rabbit-carousel .owl-dots { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+.rabbit-carousel .owl-dot span {
+    display: block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    transition: background-color 0.4s ease, transform 0.4s var(--ease-out);
+}
+.rabbit-carousel .owl-dot.active span { background: var(--accent); transform: scale(1.25); }
+.rabbit-carousel .owl-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 50%; }
+
 /* Shared essay modal: scrim + focus-pull entrance */
 .essay-modal {
     position: fixed;
@@ -2197,8 +2321,7 @@ button { font: inherit; }
    ===================================================================== */
 /* Visitors with "reduce motion" on (e.g. Windows: Settings > Accessibility >
    Visual effects > Animation effects OFF) still see everything slow and calm:
-   fades, the cross-fade, the two red lines, the turning sky (no shooting
-   stars, handled in JS), skill bars and hover zooms. Only quick flashes and
+   fades, the cross-fade, the red lines, the turning sky, skill bars and hover zooms. Only quick flashes and
    glitches are held back. */
 @media (prefers-reduced-motion: reduce) {
     .code-stream,
